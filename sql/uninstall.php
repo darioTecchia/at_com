@@ -32,8 +32,12 @@
 $sql = array();
 
 $sql[] = 'ALTER TABLE `'. _DB_PREFIX_.'customer` DROP `sdi`;';
+$sql[] = 'ALTER TABLE `'. _DB_PREFIX_.'customer` DROP `pec`;';
+$sql[] = 'ALTER TABLE `'. _DB_PREFIX_.'customer` DROP `var`;';
 
 $sql[] = 'DROP TABLE IF EXISTS `'. _DB_PREFIX_.'customer_application`;';
+$sql[] = 'DROP TABLE IF EXISTS `'. _DB_PREFIX_.'customer_bank`;';
+$sql[] = 'DROP TABLE IF EXISTS `'. _DB_PREFIX_.'customer_trade_reference`;';
 
 foreach ($sql as $query) {
     if (Db::getInstance()->execute($query) == false) {
