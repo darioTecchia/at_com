@@ -28,13 +28,13 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
-class at_com extends Module
+class at_com_module extends Module
 {
     protected $config_form = false;
 
     public function __construct()
     {
-        $this->name = 'at_com';
+        $this->name = 'at_com_module';
         $this->tab = 'administration';
         $this->version = '1.0.0';
         $this->author = 'dariotecchia';
@@ -61,7 +61,7 @@ class at_com extends Module
      */
     public function install()
     {
-        Configuration::updateValue('AT_COM_LIVE_MODE', false);
+        Configuration::updateValue('AT_COM_MODULE_LIVE_MODE', false);
 
         Configuration::updateValue('PS_B2B_ENABLE', true);
 
@@ -76,7 +76,7 @@ class at_com extends Module
 
     public function uninstall()
     {
-        Configuration::deleteByName('AT_COM_LIVE_MODE');
+        Configuration::deleteByName('AT_COM_MODULE_LIVE_MODE');
 
         include(dirname(__FILE__).'/sql/uninstall.php');
 
@@ -150,7 +150,7 @@ class at_com extends Module
                     array(
                         'type' => 'switch',
                         'label' => $this->l('Live mode'),
-                        'name' => 'AT_COM_LIVE_MODE',
+                        'name' => 'AT_COM_MODULE_LIVE_MODE',
                         'is_bool' => true,
                         'desc' => $this->l('Use this module in live mode'),
                         'values' => array(
@@ -171,12 +171,12 @@ class at_com extends Module
                         'type' => 'text',
                         'prefix' => '<i class="icon icon-envelope"></i>',
                         'desc' => $this->l('Enter a valid email address'),
-                        'name' => 'AT_COM_ACCOUNT_EMAIL',
+                        'name' => 'AT_COM_MODULE_ACCOUNT_EMAIL',
                         'label' => $this->l('Email'),
                     ),
                     array(
                         'type' => 'password',
-                        'name' => 'AT_COM_ACCOUNT_PASSWORD',
+                        'name' => 'AT_COM_MODULE_ACCOUNT_PASSWORD',
                         'label' => $this->l('Password'),
                     ),
                 ),
@@ -193,9 +193,9 @@ class at_com extends Module
     protected function getConfigFormValues()
     {
         return array(
-            'AT_COM_LIVE_MODE' => Configuration::get('AT_COM_LIVE_MODE', true),
-            'AT_COM_ACCOUNT_EMAIL' => Configuration::get('AT_COM_ACCOUNT_EMAIL', 'contact@prestashop.com'),
-            'AT_COM_ACCOUNT_PASSWORD' => Configuration::get('AT_COM_ACCOUNT_PASSWORD', null),
+            'AT_COM_MODULE_LIVE_MODE' => Configuration::get('AT_COM_MODULE_LIVE_MODE', true),
+            'AT_COM_MODULE_ACCOUNT_EMAIL' => Configuration::get('AT_COM_MODULE_ACCOUNT_EMAIL', 'contact@prestashop.com'),
+            'AT_COM_MODULE_ACCOUNT_PASSWORD' => Configuration::get('AT_COM_MODULE_ACCOUNT_PASSWORD', null),
         );
     }
 

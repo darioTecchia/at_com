@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <module>
-	<name>at_com</name>
+	<name>at_com_module</name>
 	<displayName><![CDATA[@.com module]]></displayName>
 	<version><![CDATA[1.0.0]]></version>
 	<description><![CDATA[Prestashop module built in house by @.com Srl.]]></description>
