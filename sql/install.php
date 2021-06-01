@@ -66,7 +66,7 @@ $sql[] =
 ) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8;';
 
 $sql[] = 'ALTER TABLE `' . _DB_PREFIX_ . 'customer` ADD `sdi` varchar(64);';
-$sql[] = 'ALTER TABLE `' . _DB_PREFIX_ . 'customer` ADD `pec` varchar(64);';
+$sql[] = 'ALTER TABLE `' . _DB_PREFIX_ . 'customer` ADD `pec` varchar(255);';
 $sql[] = 'ALTER TABLE `' . _DB_PREFIX_ . 'customer` ADD `vat` varchar(64);';
 
 foreach ($sql as $query) {
