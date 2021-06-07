@@ -140,7 +140,7 @@ class CustomerApplicationCore extends \ObjectModel
     {
 
         if ($id_customer != null) {
-            die(Tools::displayError());
+            die(\Tools::displayError());
         }
 
         $result = \Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow(
