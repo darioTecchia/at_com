@@ -68,8 +68,6 @@ $sql[] =
 $sql[] = 'ALTER TABLE `' . _DB_PREFIX_ . 'customer` ADD `sdi` varchar(64);';
 $sql[] = 'ALTER TABLE `' . _DB_PREFIX_ . 'customer` ADD `vat` varchar(64);';
 
-dump($sql);
-
 foreach ($sql as $query) {
     if (Db::getInstance()->execute($query) == false) {
         return false;

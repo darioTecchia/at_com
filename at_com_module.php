@@ -240,9 +240,6 @@ class At_com_module extends Module
         $customerApplication = CustomerApplication::getByCustomerId($params['id_customer']);
         $customerBank = CustomerBank::getByCustomerId($params['id_customer']);
         $customerTradeReference = CustomerTradeReference::getByCustomerId($params['id_customer']);
-        dump($customerApplication);
-        dump($customerBank);
-        dump($customerTradeReference);
 
         return $this->render($this->getModuleTemplatePath() . 'customer_application_info.html.twig', [
             'customerApplication' => $customerApplication,
@@ -265,7 +262,6 @@ class At_com_module extends Module
      */
     private function getModuleTemplatePath(): string
     {
-        dump(sprintf('@Modules/%s/views/templates/admin/', $this->name));
         return sprintf('@Modules/%s/views/templates/admin/', $this->name);
     }
 }
