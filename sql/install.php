@@ -37,7 +37,7 @@ $sql[] =
     `ebay` varchar(128),
     `other` varchar(128),
     PRIMARY KEY  (`id_customer_application`),
-    KEY `id_customer` (`id_customer`),
+    KEY `id_customer` (`id_customer`)
 ) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8;';
 
 $sql[] =
@@ -49,7 +49,7 @@ $sql[] =
     `iban` varchar(34) NOT NULL,
     `swift` varchar(11) NOT NULL,
     PRIMARY KEY  (`id_customer_bank`),
-    KEY `id_customer` (`id_customer`),
+    KEY `id_customer` (`id_customer`)
 ) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8;';
 
 $sql[] =
@@ -62,7 +62,7 @@ $sql[] =
     `phone_mobile` varchar(32) DEFAULT NULL,
     `buyer_group` varchar(255) NOT NULL,
     PRIMARY KEY  (`id_customer_trade_reference`),
-    KEY `id_customer` (`id_customer`),
+    KEY `id_customer` (`id_customer`)
 ) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8;';
 
 $sql[] = 'ALTER TABLE `' . _DB_PREFIX_ . 'customer` ADD `sdi` varchar(64);';
