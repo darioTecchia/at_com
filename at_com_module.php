@@ -67,6 +67,7 @@ class At_com_module extends Module
 
         return parent::install() &&
         $this->registerHook('header') &&
+        $this->registerHook('actionSubmitAccountBefore') &&
         $this->registerHook('backOfficeHeader');
     }
 
@@ -76,7 +77,10 @@ class At_com_module extends Module
 
         include dirname(__FILE__) . '/sql/uninstall.php';
 
-        return parent::uninstall();
+        return $this->unregisterHook('header') &&
+        $this->unregisterHook('actionSubmitAccountBefore') &&
+        $this->unregisterHook('backOfficeHeader') &&
+        parent::uninstall();
     }
 
     /**
@@ -220,5 +224,10 @@ class At_com_module extends Module
     {
         $this->context->controller->addJS($this->_path . '/views/js/front.js');
         $this->context->controller->addCSS($this->_path . '/views/css/front.css');
+    }
+
+    public function hookActionSubmitAccountBefore($params)
+    {
+        dump($params);
     }
 }
