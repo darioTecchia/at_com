@@ -36,7 +36,7 @@ $sql[] =
     `amazon` varchar(128),
     `ebay` varchar(128),
     `other` varchar(128),
-    PRIMARY KEY  (`id_customer_application`)
+    PRIMARY KEY  (`id_customer_application`),
     KEY `id_customer` (`id_customer`),
 ) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8;';
 
@@ -48,7 +48,7 @@ $sql[] =
     `address` varchar(255) NOT NULL,
     `iban` varchar(34) NOT NULL,
     `swift` varchar(11) NOT NULL,
-    PRIMARY KEY  (`id_customer_bank`)
+    PRIMARY KEY  (`id_customer_bank`),
     KEY `id_customer` (`id_customer`),
 ) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8;';
 
@@ -61,12 +61,14 @@ $sql[] =
     `phone` varchar(32) DEFAULT NULL,
     `phone_mobile` varchar(32) DEFAULT NULL,
     `buyer_group` varchar(255) NOT NULL,
-    PRIMARY KEY  (`id_customer_trade_reference`)
+    PRIMARY KEY  (`id_customer_trade_reference`),
     KEY `id_customer` (`id_customer`),
 ) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8;';
 
 $sql[] = 'ALTER TABLE `' . _DB_PREFIX_ . 'customer` ADD `sdi` varchar(64);';
 $sql[] = 'ALTER TABLE `' . _DB_PREFIX_ . 'customer` ADD `vat` varchar(64);';
+
+dump($sql);
 
 foreach ($sql as $query) {
     if (Db::getInstance()->execute($query) == false) {
