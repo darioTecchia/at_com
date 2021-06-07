@@ -1,0 +1,49 @@
+<div class="col col-12">
+  <div class="card customer-personal-informations-card">
+    <h3 class="card-header">
+      <i class="material-icons">person</i>
+      Customer Bank Info
+    </h3>
+    <div class="card-body">
+
+      <div class="row mb-1">
+        <div class="col-4 text-right">
+          {{ 'Name'|trans({}, 'Admin.Global') }}
+        </div>
+        <div class="col-8">
+          {{ customerBank.name }}
+        </div>
+      </div>
+
+      <div class="row mb-1">
+        <div class="col-4 text-right">
+          {{ 'Address'|trans({}, 'Admin.Global') }}
+        </div>
+        <div class="col-8">
+          <a target="_blank" href="{{ customerBank.address }}">
+            {{ customerBank.address }}
+          </a>
+        </div>
+      </div>
+
+      <div class="row mb-1">
+        <div class="col-4 text-right">
+          {{ 'IBAN'|trans({}, 'Admin.Global') }}
+        </div>
+        <div class="col-8">
+          {{ customerBank.iban }}
+        </div>
+      </div>
+
+      <div class="row mb-1">
+        <div class="col-4 text-right">
+          {{ 'Swift'|trans({}, 'Admin.Global') }}
+        </div>
+        <div class="col-8">
+          {{ customerBank.swift }}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

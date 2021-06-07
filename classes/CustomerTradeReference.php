@@ -114,7 +114,7 @@ class CustomerTradeReferenceCore extends \ObjectModel
      */
     public static function getCustomerTradeReferences()
     {
-        return Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS(
+        return \Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS(
             'SELECT `id_customer_trade_reference`, `id_customer`, `name`, `email`, `phone`, `phone_mobile`, `buyer_group`
             FROM `' . _DB_PREFIX_ . 'customer_trade_reference`
             ORDER BY `id_customer` ASC'
@@ -132,22 +132,15 @@ class CustomerTradeReferenceCore extends \ObjectModel
     {
 
         if ($id_customer != null) {
-            die(Tools::displayError());
+            die(\Tools::displayError());
         }
 
-        $result = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow(
+        $result = \Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow(
             'SELECT `id_customer_trade_reference`, `id_customer`, `name`, `email`, `phone`, `phone_mobile`, `buyer_group`
             FROM `' . _DB_PREFIX_ . 'customer_trade_reference`
-            WHERE `id_customer` = \'' . pSQL($id) . '\'
+            WHERE `id_customer` = \'' . pSQL($id_customer) . '\'
             ORDER BY `id_customer` ASC'
         );
-
-        // $sql = new DbQuery();
-        // $sql->select('c.id_customer_trade_reference, c.id_customer, c.brand, c.b2b, c.b2c, c.website, c.amazon, c.ebay, c.other');
-        // $sql->from('customer_trade_reference', 'c');
-        // $sql->where('c.`id_customer` = \'' . pSQL($id) . '\'');
-
-        // $result = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow($sql);
 
         if (!$result) {
             return false;

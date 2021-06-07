@@ -1,0 +1,110 @@
+{#**
+ * Copyright since 2007 PrestaShop SA and Contributors
+ * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.md.
+ * It is also available through the world-wide-web at this URL:
+ * https://opensource.org/licenses/OSL-3.0
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@prestashop.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade PrestaShop to newer
+ * versions in the future. If you wish to customize PrestaShop for your
+ * needs please refer to https://devdocs.prestashop.com/ for more information.
+ *
+ * @author    PrestaShop SA and Contributors <contact@prestashop.com>
+ * @copyright Since 2007 PrestaShop SA and Contributors
+ * @license   https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
+ *#}
+<div class="col col-12">
+  <div class="card customer-personal-informations-card">
+    <h3 class="card-header">
+      <i class="material-icons">person</i>
+      Customer Application
+    </h3>
+    <div class="card-body">
+
+      <div class="row mb-1">
+        <div class="col-4 text-right">
+          {{ 'Brands'|trans({}, 'Admin.Global') }}
+        </div>
+        <div class="customer-social-title col-8">
+          {{ customerApplication.brands }}
+        </div>
+      </div>
+
+      <div class="row mb-1">
+        <div class="col-4 text-right">
+          {{ 'B2B'|trans({}, 'Admin.Orderscustomers.Feature') }}
+        </div>
+        <div class="col-8">
+          {% set isB2B = customerApplication.b2b %}
+
+          <span class="badge badge-{% if isB2B %}success{% else %}danger{% endif %} rounded">
+            <i class="material-icons">{% if isB2B %}check{% else %}cancel{% endif %}</i>
+            {{ 'B2B'|trans({}, 'Admin.Global') }}
+          </span>
+        </div>
+      </div>
+
+      <div class="row mb-1">
+        <div class="col-4 text-right">
+          {{ 'B2C'|trans({}, 'Admin.Orderscustomers.Feature') }}
+        </div>
+        <div class="col-8">
+          {% set isB2C = customerApplication.b2c %}
+
+          <span class="badge badge-{% if isB2C %}success{% else %}danger{% endif %} rounded">
+            <i class="material-icons">{% if isB2C %}check{% else %}cancel{% endif %}</i>
+            {{ 'B2C'|trans({}, 'Admin.Global') }}
+          </span>
+        </div>
+      </div>
+
+      <div class="row mb-1">
+        <div class="col-4 text-right">
+          {{ 'Website'|trans({}, 'Admin.Global') }}
+        </div>
+        <div class="customer-social-title col-8">
+          <a target="_blank" href="{{ customerApplication.website }}">
+            {{ customerApplication.website }}
+          </a>
+        </div>
+      </div>
+
+      <div class="row mb-1">
+        <div class="col-4 text-right">
+          {{ 'Amazon'|trans({}, 'Admin.Global') }}
+        </div>
+        <div class="customer-social-title col-8">
+          {{ customerApplication.amazon }}
+        </div>
+      </div>
+
+      <div class="row mb-1">
+        <div class="col-4 text-right">
+          {{ 'Ebay'|trans({}, 'Admin.Global') }}
+        </div>
+        <div class="customer-social-title col-8">
+          {{ customerApplication.ebay }}
+        </div>
+      </div>
+
+      <div class="row mb-1">
+        <div class="col-4 text-right">
+          {{ 'Other'|trans({}, 'Admin.Global') }}
+        </div>
+        <div class="customer-social-title col-8">
+          {{ customerApplication.other }}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

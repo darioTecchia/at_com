@@ -28,8 +28,17 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
+require_once _PS_MODULE_DIR_ . 'at_com_module/classes/CustomerApplication.php';
+require_once _PS_MODULE_DIR_ . 'at_com_module/classes/CustomerBank.php';
+require_once _PS_MODULE_DIR_ . 'at_com_module/classes/CustomerTradeReference.php';
+
+use At_com\CustomerApplicationCore as CustomerApplication;
+use At_com\CustomerBankCore as CustomerBank;
+use At_com\CustomerTradeReferenceCore as CustomerTradeReference;
+
 class At_com_module extends Module
 {
+
     protected $config_form = false;
 
     public function __construct()
@@ -67,7 +76,8 @@ class At_com_module extends Module
 
         return parent::install() &&
         $this->registerHook('header') &&
-        $this->registerHook('backOfficeHeader');
+        $this->registerHook('backOfficeHeader') &&
+        $this->registerHook('displayAdminCustomers');
     }
 
     public function uninstall()
@@ -78,6 +88,7 @@ class At_com_module extends Module
 
         return $this->unregisterHook('header') &&
         $this->unregisterHook('backOfficeHeader') &&
+        $this->unregisterHook('displayAdminCustomers') &&
         parent::uninstall();
     }
 
@@ -222,5 +233,39 @@ class At_com_module extends Module
     {
         $this->context->controller->addJS($this->_path . '/views/js/front.js');
         $this->context->controller->addCSS($this->_path . '/views/css/front.css');
+    }
+
+    public function hookDisplayAdminCustomers($params)
+    {
+        $customerApplication = CustomerApplication::getByCustomerId($params['id_customer']);
+        $customerBank = CustomerBank::getByCustomerId($params['id_customer']);
+        $customerTradeReference = CustomerTradeReference::getByCustomerId($params['id_customer']);
+        dump($customerApplication);
+        dump($customerBank);
+        dump($customerTradeReference);
+
+        return $this->render($this->getModuleTemplatePath() . 'customer_application_info.html.twig', [
+            'customerApplication' => $customerApplication,
+        ]);
+    }
+
+    /**
+     * Render a twig template.
+     */
+    private function render(string $template, array $params = []): string
+    {
+        /** @var Twig_Environment $twig */
+        $twig = $this->get('twig');
+
+        return $twig->render($template, $params);
+    }
+
+    /**
+     * Get path to this module's template directory
+     */
+    private function getModuleTemplatePath(): string
+    {
+        dump(sprintf('@Modules/%s/views/templates/admin/', $this->name));
+        return sprintf('@Modules/%s/views/templates/admin/', $this->name);
     }
 }

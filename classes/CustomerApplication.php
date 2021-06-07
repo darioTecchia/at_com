@@ -122,7 +122,7 @@ class CustomerApplicationCore extends \ObjectModel
      */
     public static function getCustomerApplications()
     {
-        return Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS(
+        return \Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS(
             'SELECT `id_customer_application`, `id_customer`, `brands`, `b2b`, `b2c`, `website`, `amazon`, `ebay`, `other`
             FROM `' . _DB_PREFIX_ . 'customer_application`
             ORDER BY `id_customer` ASC'
@@ -143,19 +143,12 @@ class CustomerApplicationCore extends \ObjectModel
             die(Tools::displayError());
         }
 
-        $result = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow(
+        $result = \Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow(
             'SELECT `id_customer_application`, `id_customer`, `brands`, `b2b`, `b2c`, `website`, `amazon`, `ebay`, `other`
             FROM `' . _DB_PREFIX_ . 'customer_application`
-            WHERE `id_customer` = \'' . pSQL($id) . '\'
+            WHERE `id_customer` = \'' . pSQL($id_customer) . '\'
             ORDER BY `id_customer` ASC'
         );
-
-        // $sql = new DbQuery();
-        // $sql->select('c.id_customer_application, c.id_customer, c.brand, c.b2b, c.b2c, c.website, c.amazon, c.ebay, c.other');
-        // $sql->from('customer_application', 'c');
-        // $sql->where('c.`id_customer` = \'' . pSQL($id) . '\'');
-
-        // $result = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow($sql);
 
         if (!$result) {
             return false;

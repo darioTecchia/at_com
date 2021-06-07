@@ -1,0 +1,62 @@
+<div class="col col-12">
+  <div class="card customer-personal-informations-card">
+    <h3 class="card-header">
+      <i class="material-icons">person</i>
+      Trade Reference
+    </h3>
+    <div class="card-body">
+
+      <div class="row mb-1">
+        <div class="col-4 text-right">
+          {{ 'Name'|trans({}, 'Admin.Global') }}
+        </div>
+        <div class="col-8">
+          {{ customerTradeReference.name }}
+        </div>
+      </div>
+
+      <div class="row mb-1">
+        <div class="col-4 text-right">
+          {{ 'Email'|trans({}, 'Admin.Global') }}
+        </div>
+        <div class="col-8">
+          <a href="mailto:{{ customerTradeReference.email }}">
+            {{ customerTradeReference.email }}
+          </a>
+        </div>
+      </div>
+
+      <div class="row mb-1">
+        <div class="col-4 text-right">
+          {{ 'Phone'|trans({}, 'Admin.Global') }}
+        </div>
+        <div class="col-8">
+          <a href="tel:{{ customerTradeReference.phone }}">
+            {{ customerTradeReference.phone }}
+          </a>
+        </div>
+      </div>
+
+      <div class="row mb-1">
+        <div class="col-4 text-right">
+          {{ 'Phone mobile'|trans({}, 'Admin.Global') }}
+        </div>
+        <div class="col-8">
+          <a href="tel:{{ customerTradeReference.phone_mobile }}">
+            {{ customerTradeReference.phone_mobile }}
+          </a>
+        </div>
+      </div>
+
+      <div class="row mb-1">
+        <div class="col-4 text-right">
+          {{ 'Buyer Group'|trans({}, 'Admin.Global') }}
+        </div>
+        <div class="col-8">
+          {{ customerTradeReference.buyer_group }}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
