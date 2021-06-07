@@ -53,9 +53,6 @@ class AuthController extends AuthControllerCore
                 );
 
                 if ($hookResult && $register_form->submit()) {
-                    dump($register_form->getCustomer());
-                    dump($register_form);
-                    dump(Tools::getValue('sdi'));
 
                     //NEED TO CREATE HERE NEW CUSTOMER APPLIACE AND BANK INFOS
                     $customerApplication = new CustomerApplication();
