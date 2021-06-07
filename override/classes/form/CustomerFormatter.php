@@ -3,14 +3,21 @@ use Symfony\Component\Translation\TranslatorInterface;
 
 class CustomerFormatter extends CustomerFormatterCore
 {
+
     private $translator;
+
     private $language;
 
     private $ask_for_birthdate = true;
+
     private $ask_for_partner_optin = true;
+
     private $partner_optin_is_required = true;
+
     private $ask_for_password = true;
+
     private $password_is_required = true;
+
     private $ask_for_new_password = false;
 
     public function __construct(
@@ -24,42 +31,36 @@ class CustomerFormatter extends CustomerFormatterCore
     public function setAskForBirthdate($ask_for_birthdate)
     {
         $this->ask_for_birthdate = $ask_for_birthdate;
-
         return $this;
     }
 
     public function setAskForPartnerOptin($ask_for_partner_optin)
     {
         $this->ask_for_partner_optin = $ask_for_partner_optin;
-
         return $this;
     }
 
     public function setPartnerOptinRequired($partner_optin_is_required)
     {
         $this->partner_optin_is_required = $partner_optin_is_required;
-
         return $this;
     }
 
     public function setAskForPassword($ask_for_password)
     {
         $this->ask_for_password = $ask_for_password;
-
         return $this;
     }
 
     public function setAskForNewPassword($ask_for_new_password)
     {
         $this->ask_for_new_password = $ask_for_new_password;
-
         return $this;
     }
 
     public function setPasswordRequired($password_is_required)
     {
         $this->password_is_required = $password_is_required;
-
         return $this;
     }
 
@@ -75,10 +76,39 @@ class CustomerFormatter extends CustomerFormatterCore
                     'Shop.Forms.Labels'
                 )
             )
-            ->setRequired(true)
+            ->setRequired(false)
             ->setType('title');
 
-        /** Company Name */
+        $format['firstname'] = (new FormField())
+            ->setName('firstname')
+            ->setLabel(
+                $this->translator->trans(
+                    'First name',
+                    [],
+                    'Shop.Forms.Labels'
+                )
+            )
+            ->setRequired(true)
+            ->addAvailableValue(
+                'comment',
+                $this->translator->trans('Only letters and the dot (.) character, followed by a space, are allowed.', [], 'Shop.Forms.Help')
+            );
+
+        $format['lastname'] = (new FormField())
+            ->setName('lastname')
+            ->setLabel(
+                $this->translator->trans(
+                    'Last name',
+                    [],
+                    'Shop.Forms.Labels'
+                )
+            )
+            ->setRequired(true)
+            ->addAvailableValue(
+                'comment',
+                $this->translator->trans('Only letters and the dot (.) character, followed by a space, are allowed.', [], 'Shop.Forms.Help')
+            );
+
         $format['company'] = (new FormField())
             ->setName('company')
             ->setType('text')
@@ -89,7 +119,6 @@ class CustomerFormatter extends CustomerFormatterCore
                 'Shop.Forms.Labels'
             ));
 
-        /** VAT Number */
         $format['vat'] = (new FormField())
             ->setName('vat')
             ->setType('text')
@@ -100,7 +129,6 @@ class CustomerFormatter extends CustomerFormatterCore
                 'Shop.Forms.Labels'
             ));
 
-        /** Registration Number */
         $format['siret'] = (new FormField())
             ->setName('siret')
             ->setType('text')
@@ -111,7 +139,6 @@ class CustomerFormatter extends CustomerFormatterCore
                 'Shop.Forms.Labels'
             ));
 
-        /** SDI */
         $format['sdi'] = (new FormField())
             ->setName('sdi')
             ->setType('text')
@@ -125,7 +152,6 @@ class CustomerFormatter extends CustomerFormatterCore
                 $this->translator->trans('Only for Italian Client.', [], 'Shop.Forms.Help')
             );
 
-        /** PEC */
         $format['email'] = (new FormField())
             ->setName('email')
             ->setType('email')
@@ -138,7 +164,6 @@ class CustomerFormatter extends CustomerFormatterCore
             )
             ->setRequired(true);
 
-        /** Website */
         $format['website'] = (new FormField())
             ->setName('website')
             ->setType('text')
@@ -151,9 +176,6 @@ class CustomerFormatter extends CustomerFormatterCore
                 )
             );
 
-        /**
-         * CUSTOMER APPLICATION SPECIFIC FIELDS
-         */
         $format['title_1'] = (new FormField())
             ->setName(
                 $this->translator->trans(
@@ -162,10 +184,9 @@ class CustomerFormatter extends CustomerFormatterCore
                     'Shop.Forms.Labels'
                 )
             )
-            ->setRequired(true)
+            ->setRequired(false)
             ->setType('title');
 
-        /** trade reference name */
         $format['tr_name'] = (new FormField())
             ->setName('tr_name')
             ->setLabel(
@@ -177,7 +198,6 @@ class CustomerFormatter extends CustomerFormatterCore
             )
             ->setRequired(true);
 
-        /** trade reference email */
         $format['tr_email'] = (new FormField())
             ->setName('tr_email')
             ->setLabel(
@@ -189,7 +209,6 @@ class CustomerFormatter extends CustomerFormatterCore
             )
             ->setRequired(true);
 
-        /** trade reference phone */
         $format['tr_phone'] = (new FormField())
             ->setName('tr_phone')
             ->setLabel(
@@ -201,7 +220,6 @@ class CustomerFormatter extends CustomerFormatterCore
             )
             ->setRequired(true);
 
-        /** trade reference cellular */
         $format['tr_cell'] = (new FormField())
             ->setName('tr_cell')
             ->setLabel(
@@ -213,7 +231,6 @@ class CustomerFormatter extends CustomerFormatterCore
             )
             ->setRequired(true);
 
-        /** trade reference buyer group */
         $format['tr_group'] = (new FormField())
             ->setName('tr_group')
             ->setLabel(
@@ -225,9 +242,6 @@ class CustomerFormatter extends CustomerFormatterCore
             )
             ->setRequired(true);
 
-        /**
-         * BANK INFORMATIONS SPECIFIC FIELDS
-         */
         $format['title_2'] = (new FormField())
             ->setName(
                 $this->translator->trans(
@@ -236,10 +250,9 @@ class CustomerFormatter extends CustomerFormatterCore
                     'Shop.Forms.Labels'
                 )
             )
-            ->setRequired(true)
+            ->setRequired(false)
             ->setType('title');
 
-        /** bank name */
         $format['bank_name'] = (new FormField())
             ->setName('bank_name')
             ->setLabel(
@@ -251,7 +264,6 @@ class CustomerFormatter extends CustomerFormatterCore
             )
             ->setRequired(true);
 
-        /** bank address */
         $format['bank_address'] = (new FormField())
             ->setName('bank_address')
             ->setLabel(
@@ -263,7 +275,6 @@ class CustomerFormatter extends CustomerFormatterCore
             )
             ->setRequired(true);
 
-        /** bank IBAN */
         $format['iban'] = (new FormField())
             ->setName('iban')
             ->setLabel(
@@ -275,7 +286,6 @@ class CustomerFormatter extends CustomerFormatterCore
             )
             ->setRequired(true);
 
-        /** bank swift */
         $format['swift'] = (new FormField())
             ->setName('swift')
             ->setLabel(
@@ -287,9 +297,6 @@ class CustomerFormatter extends CustomerFormatterCore
             )
             ->setRequired(true);
 
-        /**
-         * BRANDS AND TRADE CHANNELS
-         */
         $format['title_3'] = (new FormField())
             ->setName(
                 $this->translator->trans(
@@ -298,10 +305,9 @@ class CustomerFormatter extends CustomerFormatterCore
                     'Shop.Forms.Labels'
                 )
             )
-            ->setRequired(true)
+            ->setRequired(false)
             ->setType('title');
 
-        /** brand names */
         $format['brands'] = (new FormField())
             ->setName('brands')
             ->setLabel(
@@ -316,7 +322,6 @@ class CustomerFormatter extends CustomerFormatterCore
                 'comment',
                 $this->translator->trans('Inserire i brand separati da virgola.', [], 'Shop.Forms.Help')
             );
-
         $format['title_4'] = (new FormField())
             ->setName(
                 $this->translator->trans(
@@ -325,10 +330,9 @@ class CustomerFormatter extends CustomerFormatterCore
                     'Shop.Forms.Labels'
                 )
             )
-            ->setRequired(true)
+            ->setRequired(false)
             ->setType('title');
 
-        /** b2b checkbox */
         $format['tc_b2b'] = (new FormField())
             ->setName('tc_b2b')
             ->setType('checkbox')
@@ -341,7 +345,6 @@ class CustomerFormatter extends CustomerFormatterCore
             )
             ->setRequired(false);
 
-        /** b2c checkbox */
         $format['tc_b2c'] = (new FormField())
             ->setName('tc_b2c')
             ->setType('checkbox')
@@ -354,7 +357,6 @@ class CustomerFormatter extends CustomerFormatterCore
             )
             ->setRequired(false);
 
-        /** amazon shop name/url */
         $format['tc_amazon'] = (new FormField())
             ->setName('tc_amazon')
             ->setType('text')
@@ -371,7 +373,6 @@ class CustomerFormatter extends CustomerFormatterCore
             )
             ->setRequired(false);
 
-        /** ebay shop name/url */
         $format['tc_ebay'] = (new FormField())
             ->setName('tc_ebay')
             ->setType('text')
@@ -388,7 +389,6 @@ class CustomerFormatter extends CustomerFormatterCore
             )
             ->setRequired(false);
 
-        /** other field */
         $format['tc_other'] = (new FormField())
             ->setName('tc_other')
             ->setType('text')
@@ -410,7 +410,7 @@ class CustomerFormatter extends CustomerFormatterCore
                         'Shop.Forms.Labels'
                     )
                 )
-                ->setRequired(true)
+                ->setRequired(false)
                 ->setType('title');
 
             $format['password'] = (new FormField())
@@ -425,7 +425,6 @@ class CustomerFormatter extends CustomerFormatterCore
                 )
                 ->setRequired($this->password_is_required);
         }
-
         if ($this->ask_for_new_password) {
             $format['new_password'] = (new FormField())
                 ->setName('new_password')
@@ -438,7 +437,6 @@ class CustomerFormatter extends CustomerFormatterCore
                     )
                 );
         }
-
         if ($this->ask_for_partner_optin) {
             $format['optin'] = (new FormField())
                 ->setName('optin')
@@ -452,32 +450,24 @@ class CustomerFormatter extends CustomerFormatterCore
                 )
                 ->setRequired($this->partner_optin_is_required);
         }
-
-        // ToDo, replace the hook exec with HookFinder when the associated PR will be merged
         $additionalCustomerFormFields = Hook::exec('additionalCustomerFormFields', ['fields' => &$format], null, true);
-
         if (is_array($additionalCustomerFormFields)) {
             foreach ($additionalCustomerFormFields as $moduleName => $additionnalFormFields) {
                 if (!is_array($additionnalFormFields)) {
                     continue;
                 }
-
                 foreach ($additionnalFormFields as $formField) {
                     $formField->moduleName = $moduleName;
                     $format[$moduleName . '_' . $formField->getName()] = $formField;
                 }
             }
         }
-
-        // TODO: TVA etc.?
-
         return $this->addConstraints($format);
     }
 
     private function addConstraints(array $format)
     {
         $constraints = Customer::$definition['fields'];
-
         foreach ($format as $field) {
             if (!empty($constraints[$field->getName()]['validate'])) {
                 $field->addConstraint(
@@ -485,7 +475,6 @@ class CustomerFormatter extends CustomerFormatterCore
                 );
             }
         }
-
         return $format;
     }
 }

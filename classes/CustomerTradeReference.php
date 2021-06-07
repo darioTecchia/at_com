@@ -1,9 +1,11 @@
 <?php
 
+namespace At_com;
+
 /**
  * Class CustomerTradeReferenceCore
  */
-class CustomerTradeReferenceCore extends ObjectModel
+class CustomerTradeReferenceCore extends \ObjectModel
 {
     /** @var int Customer Trade Reference ID */
     public $id;

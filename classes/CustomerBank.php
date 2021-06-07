@@ -1,9 +1,11 @@
 <?php
 
+namespace At_com;
+
 /**
  * Class CustomerBankCore
  */
-class CustomerBankCore extends ObjectModel
+class CustomerBankCore extends \ObjectModel
 {
     /** @var int Customer Bank ID */
     public $id;

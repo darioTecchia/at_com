@@ -1,9 +1,11 @@
 <?php
 
+namespace At_com;
+
 /**
  * Class CustomerApplicationCore
  */
-class CustomerApplicationCore extends ObjectModel
+class CustomerApplicationCore extends \ObjectModel
 {
     /** @var int Customer Application ID */
     public $id;
