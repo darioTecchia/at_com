@@ -126,8 +126,8 @@ class CustomerFormatter extends CustomerFormatterCore
             );
 
         /** PEC */
-        $format['pec'] = (new FormField())
-            ->setName('pec')
+        $format['email'] = (new FormField())
+            ->setName('email')
             ->setType('email')
             ->setLabel(
                 $this->translator->trans(
@@ -136,10 +136,7 @@ class CustomerFormatter extends CustomerFormatterCore
                     'Shop.Forms.Labels'
                 )
             )
-            ->addAvailableValue(
-                'comment',
-                $this->translator->trans('Only for Italian Client.', [], 'Shop.Forms.Help')
-            );
+            ->setRequired(true);
 
         /** Website */
         $format['website'] = (new FormField())

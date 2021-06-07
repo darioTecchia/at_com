@@ -7,8 +7,6 @@ class Customer extends CustomerCore
 {
     public $sdi;
 
-    public $pec;
-
     public $vat;
 
     /**
@@ -19,7 +17,6 @@ class Customer extends CustomerCore
     public function __construct($id = null)
     {
         self::$definition['fields']['sdi'] = ['type' => self::TYPE_STRING, 'required' => true, 'size' => 64];
-        self::$definition['fields']['pec'] = ['type' => self::TYPE_STRING, 'validate' => 'isEmail', 'required' => true, 'size' => 255];
         self::$definition['fields']['vat'] = ['type' => self::TYPE_STRING, 'required' => true, 'size' => 64];
         parent::__construct($id);
     }
