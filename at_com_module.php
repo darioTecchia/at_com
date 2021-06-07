@@ -241,8 +241,17 @@ class At_com_module extends Module
         $customerBank = CustomerBank::getByCustomerId($params['id_customer']);
         $customerTradeReference = CustomerTradeReference::getByCustomerId($params['id_customer']);
 
-        return $this->render($this->getModuleTemplatePath() . 'customer_application_info.html.twig', [
+        return
+        $this->render($this->getModuleTemplatePath() . 'customer_application_info.html.twig', [
             'customerApplication' => $customerApplication,
+        ])
+        .
+        $this->render($this->getModuleTemplatePath() . 'customer_bank_info.html.twig', [
+            'customerBank' => $customerBank,
+        ])
+        .
+        $this->render($this->getModuleTemplatePath() . 'customer_trade_reference_info.html.twig', [
+            'customerTradeReference' => $customerTradeReference,
         ]);
     }
 
