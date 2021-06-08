@@ -26,7 +26,7 @@
   <div class="card customer-personal-informations-card">
     <h3 class="card-header">
       <i class="material-icons">person</i>
-      Customer Application
+      Customer Application - {{customer.company}}
     </h3>
     <div class="card-body">
 
@@ -72,7 +72,7 @@
           {{ 'Website'|trans({}, 'Admin.Global') }}
         </div>
         <div class="customer-social-title col-8">
-          <a target="_blank" href="{{ customerApplication.website }}">
+          <a target="_blank" href="//{{ customerApplication.website }}">
             {{ customerApplication.website }}
           </a>
         </div>

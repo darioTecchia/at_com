@@ -237,6 +237,7 @@ class At_com_module extends Module
 
     public function hookDisplayAdminCustomers($params)
     {
+        $customer = new Customer($params['id_customer']);
         $customerApplication = CustomerApplication::getByCustomerId($params['id_customer']);
         $customerBank = CustomerBank::getByCustomerId($params['id_customer']);
         $customerTradeReference = CustomerTradeReference::getByCustomerId($params['id_customer']);
@@ -244,6 +245,7 @@ class At_com_module extends Module
         $sections = "";
         if ($customerApplication != false) {
             $sections .= $this->render($this->getModuleTemplatePath() . 'customer_application_info.html.twig', [
+                'customer' => $customer,
                 'customerApplication' => $customerApplication,
             ]);
         }
