@@ -269,7 +269,7 @@ class At_com_module extends Module
     private function render(string $template, array $params = []): string
     {
         /** @var Twig_Environment $twig */
-        $twig = $this->get('twig');
+        $twig = PrestaShop\PrestaShop\Adapter\SymfonyContainer::getInstance()->get('twig');
 
         return $twig->render($template, $params);
     }
