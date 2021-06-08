@@ -241,18 +241,26 @@ class At_com_module extends Module
         $customerBank = CustomerBank::getByCustomerId($params['id_customer']);
         $customerTradeReference = CustomerTradeReference::getByCustomerId($params['id_customer']);
 
-        return
-        $this->render($this->getModuleTemplatePath() . 'customer_application_info.html.twig', [
-            'customerApplication' => $customerApplication,
-        ])
-        .
-        $this->render($this->getModuleTemplatePath() . 'customer_bank_info.html.twig', [
-            'customerBank' => $customerBank,
-        ])
-        .
-        $this->render($this->getModuleTemplatePath() . 'customer_trade_reference_info.html.twig', [
-            'customerTradeReference' => $customerTradeReference,
-        ]);
+        $sections = "";
+        if ($customerApplication != false) {
+            $sections .= $this->render($this->getModuleTemplatePath() . 'customer_application_info.html.twig', [
+                'customerApplication' => $customerApplication,
+            ]);
+        }
+
+        if ($customerBank != false) {
+            $sections .= $this->render($this->getModuleTemplatePath() . 'customer_bank_info.html.twig', [
+                'customerBank' => $customerBank,
+            ]);
+        }
+
+        if ($customerTradeReference != false) {
+            $sections .= $this->render($this->getModuleTemplatePath() . 'customer_trade_reference_info.html.twig', [
+                'customerTradeReference' => $customerTradeReference,
+            ]);
+        }
+
+        return $sections;
     }
 
     /**
