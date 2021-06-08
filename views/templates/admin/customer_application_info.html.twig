@@ -46,7 +46,7 @@
         <div class="col-8">
           {% set isB2B = customerApplication.b2b %}
 
-          <span class="badge badge-{% if isB2B %}success{% else %}danger{% endif %} rounded">
+          <span class="badge badge-{% if isB2B %}success{% else %}danger{% endif %} rounded pb-0 pt-0">
             <i class="material-icons">{% if isB2B %}check{% else %}cancel{% endif %}</i>
             {{ 'B2B'|trans({}, 'Admin.Global') }}
           </span>
@@ -60,7 +60,7 @@
         <div class="col-8">
           {% set isB2C = customerApplication.b2c %}
 
-          <span class="badge badge-{% if isB2C %}success{% else %}danger{% endif %} rounded">
+          <span class="badge badge-{% if isB2C %}success{% else %}danger{% endif %} rounded pb-0 pt-0">
             <i class="material-icons">{% if isB2C %}check{% else %}cancel{% endif %}</i>
             {{ 'B2C'|trans({}, 'Admin.Global') }}
           </span>
