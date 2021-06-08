@@ -76,7 +76,6 @@ class CustomerFormatter extends CustomerFormatterCore
                     'Shop.Forms.Labels'
                 )
             )
-            ->setRequired(false)
             ->setType('title');
 
         $format['firstname'] = (new FormField())
@@ -122,7 +121,6 @@ class CustomerFormatter extends CustomerFormatterCore
         $format['vat'] = (new FormField())
             ->setName('vat')
             ->setType('text')
-            ->setRequired(true)
             ->setLabel($this->translator->trans(
                 'VAT Number',
                 [],
@@ -132,7 +130,6 @@ class CustomerFormatter extends CustomerFormatterCore
         $format['siret'] = (new FormField())
             ->setName('siret')
             ->setType('text')
-            ->setRequired(true)
             ->setLabel($this->translator->trans(
                 'Identification number',
                 [],
@@ -157,7 +154,7 @@ class CustomerFormatter extends CustomerFormatterCore
             ->setType('email')
             ->setLabel(
                 $this->translator->trans(
-                    'PEC',
+                    'PEC/Email',
                     [],
                     'Shop.Forms.Labels'
                 )
@@ -184,7 +181,6 @@ class CustomerFormatter extends CustomerFormatterCore
                     'Shop.Forms.Labels'
                 )
             )
-            ->setRequired(false)
             ->setType('title');
 
         $format['tr_name'] = (new FormField())
@@ -239,8 +235,7 @@ class CustomerFormatter extends CustomerFormatterCore
                     [],
                     'Shop.Forms.Labels'
                 )
-            )
-            ->setRequired(true);
+            );
 
         $format['title_2'] = (new FormField())
             ->setName(
@@ -250,7 +245,6 @@ class CustomerFormatter extends CustomerFormatterCore
                     'Shop.Forms.Labels'
                 )
             )
-            ->setRequired(false)
             ->setType('title');
 
         $format['bank_name'] = (new FormField())
@@ -305,7 +299,6 @@ class CustomerFormatter extends CustomerFormatterCore
                     'Shop.Forms.Labels'
                 )
             )
-            ->setRequired(false)
             ->setType('title');
 
         $format['brands'] = (new FormField())
@@ -317,11 +310,11 @@ class CustomerFormatter extends CustomerFormatterCore
                     'Shop.Forms.Labels'
                 )
             )
-            ->setRequired(true)
             ->addAvailableValue(
                 'comment',
                 $this->translator->trans('Inserire i brand separati da virgola.', [], 'Shop.Forms.Help')
             );
+
         $format['title_4'] = (new FormField())
             ->setName(
                 $this->translator->trans(
@@ -330,7 +323,6 @@ class CustomerFormatter extends CustomerFormatterCore
                     'Shop.Forms.Labels'
                 )
             )
-            ->setRequired(false)
             ->setType('title');
 
         $format['tc_b2b'] = (new FormField())

@@ -38,8 +38,8 @@ class CustomerTradeReferenceCore extends \ObjectModel
             'id_customer' => ['type' => self::TYPE_INT, 'validate' => 'isNullOrUnsignedId', 'copy_post' => false],
             'name' => ['type' => self::TYPE_STRING, 'required' => true, 'size' => 255],
             'email' => ['type' => self::TYPE_STRING, 'validate' => 'isEmail', 'required' => true, 'size' => 255],
-            'phone' => ['type' => self::TYPE_STRING, 'validate' => 'isPhoneNumber', 'size' => 32],
-            'phone_mobile' => ['type' => self::TYPE_STRING, 'validate' => 'isPhoneNumber', 'size' => 32],
+            'phone' => ['type' => self::TYPE_STRING, 'validate' => 'isPhoneNumber', 'required' => true, 'size' => 32],
+            'phone_mobile' => ['type' => self::TYPE_STRING, 'validate' => 'isPhoneNumber', 'required' => true, 'size' => 32],
             'buyer_group' => ['type' => self::TYPE_STRING, 'required' => true, 'size' => 255],
         ],
     ];
