@@ -139,7 +139,7 @@ class CustomerApplicationCore extends \ObjectModel
     public static function getByCustomerId($id_customer = null)
     {
 
-        if ($id_customer != null) {
+        if ($id_customer == null) {
             die(\Tools::displayError());
         }
 
