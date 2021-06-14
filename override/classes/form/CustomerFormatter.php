@@ -67,7 +67,6 @@ class CustomerFormatter extends CustomerFormatterCore
     public function getFormat()
     {
         $format = [];
-
         $format['client_title'] = (new FormField())
             ->setName(
                 $this->translator->trans(
@@ -183,6 +182,65 @@ class CustomerFormatter extends CustomerFormatterCore
             )
             ->setType('title');
 
+        $format['address1'] = (new FormField())
+            ->setName('address1')
+            ->setType('text')
+            ->setLabel(
+                $this->translator->trans(
+                    'Address',
+                    [],
+                    'Shop.Forms.Labels'
+                )
+            )
+            ->setRequired(true);
+
+        $format['address2'] = (new FormField())
+            ->setName('address2')
+            ->setType('text')
+            ->setLabel(
+                $this->translator->trans(
+                    'Address Complement',
+                    [],
+                    'Shop.Forms.Labels'
+                )
+            )
+            ->setRequired(true);
+
+        $format['postcode'] = (new FormField())
+            ->setLabel(
+                $this->translator->trans(
+                    'Zip/Postal Code',
+                    [],
+                    'Shop.Forms.Labels'
+                )
+            )
+            ->setName('id_country_postcode')
+            ->setType('text');
+
+        $format['city'] = (new FormField())
+            ->setName('city')
+            ->setType('text')
+            ->setLabel(
+                $this->translator->trans(
+                    'City',
+                    [],
+                    'Shop.Forms.Labels'
+                )
+            )
+            ->setRequired(true);
+
+        $format['legal_state'] = (new FormField())
+            ->setLabel(
+                $this->translator->trans(
+                    'State',
+                    [],
+                    'Shop.Forms.Labels'
+                )
+            )
+            ->setName('id_state')
+            ->setAvailableValues(array())
+            ->setType('state');
+
         $countries = Country::getCountries((int) Context::getContext()->language->id, true);
         $mapped_countries = array();
         foreach ($countries as $id => $country) {
@@ -197,19 +255,20 @@ class CustomerFormatter extends CustomerFormatterCore
                     'Shop.Forms.Labels'
                 )
             )
-            ->setAvailableValues($mapped_countries)
+            ->setName('id_country')
+            ->setAvailableValues($countries)
             ->setType('country');
 
-        $format['legal_state'] = (new FormField())
+        $format['dni'] = (new FormField())
             ->setLabel(
                 $this->translator->trans(
-                    'State',
+                    'Identification number',
                     [],
                     'Shop.Forms.Labels'
                 )
             )
-            ->setAvailableValues(array())
-            ->setType('state');
+            ->setName('dni')
+            ->setType('text');
 
         $format['title_1'] = (new FormField())
             ->setName(
@@ -455,6 +514,7 @@ class CustomerFormatter extends CustomerFormatterCore
                 )
                 ->setRequired($this->password_is_required);
         }
+
         if ($this->ask_for_new_password) {
             $format['new_password'] = (new FormField())
                 ->setName('new_password')
@@ -467,6 +527,7 @@ class CustomerFormatter extends CustomerFormatterCore
                     )
                 );
         }
+
         if ($this->ask_for_partner_optin) {
             $format['optin'] = (new FormField())
                 ->setName('optin')
