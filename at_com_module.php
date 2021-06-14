@@ -231,12 +231,21 @@ class At_com_module extends Module
      */
     public function hookHeader()
     {
+        $context = $this->context;
+        if($context->controller->php_self == 'authentication') {
+            $this->context->controller->registerJavascript(
+                'registration-module',
+                $this->_path . '/views/js/registration.js'
+            );
+            // $this->context->controller->addJS($this->_path . '/views/js/registration.js');
+        }
         $this->context->controller->addJS($this->_path . '/views/js/front.js');
         $this->context->controller->addCSS($this->_path . '/views/css/front.css');
     }
 
     public function hookDisplayAdminCustomers($params)
     {
+        $customer = new Customer($params['id_customer']);
         $customerApplication = CustomerApplication::getByCustomerId($params['id_customer']);
         $customerBank = CustomerBank::getByCustomerId($params['id_customer']);
         $customerTradeReference = CustomerTradeReference::getByCustomerId($params['id_customer']);
@@ -244,6 +253,7 @@ class At_com_module extends Module
         $sections = "";
         if ($customerApplication != false) {
             $sections .= $this->render($this->getModuleTemplatePath() . 'customer_application_info.html.twig', [
+                'customer' => $customer,
                 'customerApplication' => $customerApplication,
             ]);
         }
