@@ -48,13 +48,15 @@
  *
  * new CountryStateSelectionToggler('#id_country', '#id_state', '.js-state-selection-block');
  */
-class CountryStateSelectionToggler {
+ class CountryStateSelectionToggler {
   constructor(countryInputSelector, countryStateSelector, stateSelectionBlockSelector) {
     this.$stateSelectionBlock = $(stateSelectionBlockSelector);
     this.$countryStateSelector = $(countryStateSelector);
     this.$countryInput = $(countryInputSelector);
 
     this.$countryInput.on('change', () => this.change());
+
+    this.toggle();
 
     return {};
   }
@@ -75,7 +77,8 @@ class CountryStateSelectionToggler {
       data: {
         'filter[id_country]': '['+countryId+']',
         output_format: 'JSON',
-        display: 'full'
+        display: 'full',
+        language: prestashop.language.id
       },
     }).then((response) => {
       this.$countryStateSelector.empty();
@@ -111,6 +114,7 @@ class CountryStateSelectionToggler {
   }
 
 }
+
 // import CountryDniRequiredToggler from '@components/country-dni-required-toggler';
 /**
  * Toggle DNI input requirement on country selection
@@ -129,12 +133,11 @@ class CountryStateSelectionToggler {
  * new CountryDniRequiredToggler('#id_country', '#id_country_dni', 'label[for="id_country_dni"]');
  */
 class CountryDniRequiredToggler {
-  constructor(countryInputSelector, countryDniInput, countryDniInputLabel) {
+  constructor(countryInputSelector, countryDniInput) {
     this.$countryDniInput = $(countryDniInput);
-    this.$countryDniInputLabel = $(countryDniInputLabel);
     this.$countryInput = $(countryInputSelector);
     this.countryInputSelectedSelector = `${countryInputSelector}>option:selected`;
-    this.countryDniInputLabelDangerSelector = `${countryDniInputLabel}>span.text-danger`;
+    this.commentLabel = this.$countryDniInput.closest('.form-group').find('.form-control-comment');
 
     // If field is required regardless of the country
     // keep it required
@@ -154,14 +157,15 @@ class CountryDniRequiredToggler {
    * @private
    */
   toggle() {
-    $(this.countryDniInputLabelDangerSelector).remove();
     this.$countryDniInput.prop('required', false);
+    $(this.commentLabel).fadeIn();
     if (1 === parseInt($(this.countryInputSelectedSelector).attr('need_dni'), 10)) {
+      $(this.commentLabel).fadeOut();
       this.$countryDniInput.prop('required', true);
-      this.$countryDniInputLabel.prepend($('<span class="text-danger">*</span>'));
     }
   }
 }
+
 // import CountryPostcodeRequiredToggler from '@components/country-postcode-required-toggler';
 /**
  * Toggle Postcode input requirement on country selection
@@ -180,12 +184,11 @@ class CountryDniRequiredToggler {
  * new CountryPostcodeRequiredToggler('#id_country', '#id_country_postcode', 'label[for="id_country_postcode"]');
  */
 class CountryPostcodeRequiredToggler {
-  constructor(countryInputSelector, countryPostcodeInput, countryPostcodeInputLabel) {
+  constructor(countryInputSelector, countryPostcodeInput) {
     this.$countryPostcodeInput = $(countryPostcodeInput);
-    this.$countryPostcodeInputLabel = $(countryPostcodeInputLabel);
     this.$countryInput = $(countryInputSelector);
     this.countryInputSelectedSelector = `${countryInputSelector}>option:selected`;
-    this.countryPostcodeInputLabelDangerSelector = `${countryPostcodeInputLabel}>span.text-danger`;
+    this.commentLabel = this.$countryPostcodeInput.closest('.form-group').find('.form-control-comment');
 
     // If field is required regardless of the country
     // keep it required
@@ -205,17 +208,17 @@ class CountryPostcodeRequiredToggler {
    * @private
    */
   toggle() {
-    $(this.countryPostcodeInputLabelDangerSelector).remove();
     this.$countryPostcodeInput.prop('required', false);
+    $(this.commentLabel).fadeIn();
     if (1 === parseInt($(this.countryInputSelectedSelector).attr('need_postcode'), 10)) {
+      $(this.commentLabel).fadeOut();
       this.$countryPostcodeInput.prop('required', true);
-      this.$countryPostcodeInputLabel.prepend($('<span class="text-danger">*</span>'));
     }
   }
 }
 
 $(document).ready(() => {
-  new CountryStateSelectionToggler('#id_country', '#id_state', '.js-state-selection-block');
-  new CountryDniRequiredToggler('#id_country', '#id_country_dni', 'label[for="id_country_dni"]');
-  new CountryPostcodeRequiredToggler('#id_country', '#id_country_postcode', 'label[for="id_country_postcode"]');
+  new CountryStateSelectionToggler('#fi_id_country', '#fi_id_state', '.js-state-selection-block');
+  new CountryDniRequiredToggler('#fi_id_country', '#fi_dni');
+  new CountryPostcodeRequiredToggler('#fi_id_country', '#fi_id_country_postcode');
 });
