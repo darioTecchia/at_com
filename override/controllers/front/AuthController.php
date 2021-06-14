@@ -55,6 +55,7 @@ class AuthController extends AuthControllerCore
                 if ($hookResult && $register_form->submit()) {
 
                     //NEED TO CREATE HERE NEW CUSTOMER APPLIACE AND BANK INFOS
+                    // customer application
                     $customerApplication = new CustomerApplication();
                     $customerApplication->id_customer = $register_form->getCustomer()->id;
                     $customerApplication->brands = Tools::getValue('brands');
@@ -65,6 +66,7 @@ class AuthController extends AuthControllerCore
                     $customerApplication->ebay = Tools::getValue('tc_ebay');
                     $customerApplication->other = Tools::getValue('tc_other');
 
+                    // customer bank
                     $customerBank = new CustomerBank();
                     $customerBank->id_customer = $register_form->getCustomer()->id;
                     $customerBank->name = Tools::getValue('bank_name');
@@ -72,6 +74,7 @@ class AuthController extends AuthControllerCore
                     $customerBank->iban = Tools::getValue('iban');
                     $customerBank->swift = Tools::getValue('swift');
 
+                    // customer trade reference
                     $customerTradeReference = new CustomerTradeReference();
                     $customerTradeReference->id_customer = $register_form->getCustomer()->id;
                     $customerTradeReference->name = Tools::getValue('tr_name');
@@ -80,7 +83,54 @@ class AuthController extends AuthControllerCore
                     $customerTradeReference->phone_mobile = Tools::getValue('tr_cell');
                     $customerTradeReference->buyer_group = Tools::getValue('tr_group');
 
-                    if ($customerApplication->save() && $customerBank->save() && $customerTradeReference->save()) {
+                    // legal address
+                    $legalAddress = new Address(
+                        null,
+                        $this->context->language->id
+                    );
+                    $legalAddress->id_country = (int) Tools::getValue("id_country");
+                    $legalAddress->id_state = (int) Tools::getValue("id_state");
+                    $legalAddress->address1 = Tools::getValue('address1');
+                    $legalAddress->address2 = Tools::getValue('address2');
+                    $legalAddress->postcode = Tools::getValue('postcode');
+                    $legalAddress->city = Tools::getValue('city');
+                    $legalAddress->phone = Tools::getValue('phone');
+                    $legalAddress->dni = Tools::getValue('dni');
+                    
+                    $legalAddress->firstname = $register_form->getCustomer()->firstname;
+                    $legalAddress->lastname = $register_form->getCustomer()->lastname;
+                    $legalAddress->id_customer = $register_form->getCustomer()->id;
+                    
+                    $legalAddress->id_state = 0;
+                    $legalAddress->alias = $this->trans('Sede Legale', [], 'Shop.Theme.Checkout');
+
+                    // operative address
+                    $operativeAddress = new Address(
+                        null,
+                        $this->context->language->id
+                    );
+                    $operativeAddress->id_country = (int) Tools::getValue("op_id_country");
+                    $operativeAddress->id_state = (int) Tools::getValue("op_id_state");
+                    $operativeAddress->address1 = Tools::getValue('op_address1');
+                    $operativeAddress->address2 = Tools::getValue('op_address2');
+                    $operativeAddress->postcode = Tools::getValue('op_postcode');
+                    $operativeAddress->city = Tools::getValue('op_city');
+                    $operativeAddress->phone = Tools::getValue('op_phone');
+                    
+                    $operativeAddress->firstname = $register_form->getCustomer()->firstname;
+                    $operativeAddress->lastname = $register_form->getCustomer()->lastname;
+                    $operativeAddress->id_customer = $register_form->getCustomer()->id;
+                    
+                    $operativeAddress->id_state = 0;
+                    $operativeAddress->alias = $this->trans('Sede Operativa', [], 'Shop.Theme.Checkout');
+
+                    $successfull = $customerApplication->save() 
+                        && $customerBank->save() 
+                        && $customerTradeReference->save()
+                        && $legalAddress->save()
+                        && $operativeAddress->save();
+
+                    if ($successfull) {
                         $should_redirect = true;
                     } else {
                         $register_form->getCustomer()->delete();

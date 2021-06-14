@@ -271,6 +271,17 @@ class CustomerFormatter extends CustomerFormatterCore
                 ->setName('dni')
                 ->setType('text');
 
+            $format['phone'] = (new FormField())
+                ->setLabel(
+                    $this->translator->trans(
+                        'Phone',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
+                )
+                ->setName('phone')
+                ->setType('text');
+
             $format['title_operative'] = (new FormField())
                 ->setName(
                     $this->translator->trans(
@@ -328,7 +339,7 @@ class CustomerFormatter extends CustomerFormatterCore
                 )
                 ->setRequired(true);
 
-            $format['op_legal_state'] = (new FormField())
+            $format['op_state'] = (new FormField())
                 ->setLabel(
                     $this->translator->trans(
                         'State',
@@ -340,7 +351,7 @@ class CustomerFormatter extends CustomerFormatterCore
                 ->setAvailableValues(array())
                 ->setType('state');
 
-            $format['op_legal_country'] = (new FormField())
+            $format['op_country'] = (new FormField())
                 ->setLabel(
                     $this->translator->trans(
                         'Country',
@@ -352,15 +363,15 @@ class CustomerFormatter extends CustomerFormatterCore
                 ->setAvailableValues($countries)
                 ->setType('country');
 
-            $format['op_dni'] = (new FormField())
+            $format['op_phone'] = (new FormField())
                 ->setLabel(
                     $this->translator->trans(
-                        'Identification number',
+                        'Phone',
                         [],
                         'Shop.Forms.Labels'
                     )
                 )
-                ->setName('op_dni')
+                ->setName('op_phone')
                 ->setType('text');
         }
 

@@ -16,8 +16,8 @@ class Customer extends CustomerCore
      */
     public function __construct($id = null)
     {
-        self::$definition['fields']['sdi'] = ['type' => self::TYPE_STRING, 'required' => true, 'size' => 64];
-        self::$definition['fields']['vat'] = ['type' => self::TYPE_STRING, 'required' => true, 'size' => 64];
+        self::$definition['fields']['sdi'] = ['type' => self::TYPE_STRING, 'required' => false, 'size' => 64];
+        self::$definition['fields']['vat'] = ['type' => self::TYPE_STRING, 'required' => false, 'size' => 64];
         parent::__construct($id);
     }
 
