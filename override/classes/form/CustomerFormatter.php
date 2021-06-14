@@ -172,103 +172,197 @@ class CustomerFormatter extends CustomerFormatterCore
                 )
             );
 
-        $format['title_legal'] = (new FormField())
-            ->setName(
-                $this->translator->trans(
-                    'Sede Legale',
-                    [],
-                    'Shop.Forms.Labels'
-                )
-            )
-            ->setType('title');
+        if (Context::getContext()->controller->php_self == "authentication") {
+            $countries = Country::getCountries((int) Context::getContext()->language->id, true);
+            $mapped_countries = array();
+            foreach ($countries as $id => $country) {
+                $mapped_countries[$id] = $country['name'];
+            }
 
-        $format['address1'] = (new FormField())
-            ->setName('address1')
-            ->setType('text')
-            ->setLabel(
-                $this->translator->trans(
-                    'Address',
-                    [],
-                    'Shop.Forms.Labels'
+            $format['title_legal'] = (new FormField())
+                ->setName(
+                    $this->translator->trans(
+                        'Sede Legale',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
                 )
-            )
-            ->setRequired(true);
+                ->setType('title');
 
-        $format['address2'] = (new FormField())
-            ->setName('address2')
-            ->setType('text')
-            ->setLabel(
-                $this->translator->trans(
-                    'Address Complement',
-                    [],
-                    'Shop.Forms.Labels'
+            $format['address1'] = (new FormField())
+                ->setName('address1')
+                ->setType('text')
+                ->setLabel(
+                    $this->translator->trans(
+                        'Address',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
                 )
-            )
-            ->setRequired(true);
+                ->setRequired(true);
 
-        $format['postcode'] = (new FormField())
-            ->setLabel(
-                $this->translator->trans(
-                    'Zip/Postal Code',
-                    [],
-                    'Shop.Forms.Labels'
+            $format['address2'] = (new FormField())
+                ->setName('address2')
+                ->setType('text')
+                ->setLabel(
+                    $this->translator->trans(
+                        'Address Complement',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
                 )
-            )
-            ->setName('id_country_postcode')
-            ->setType('text');
+                ->setRequired(true);
 
-        $format['city'] = (new FormField())
-            ->setName('city')
-            ->setType('text')
-            ->setLabel(
-                $this->translator->trans(
-                    'City',
-                    [],
-                    'Shop.Forms.Labels'
+            $format['postcode'] = (new FormField())
+                ->setLabel(
+                    $this->translator->trans(
+                        'Zip/Postal Code',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
                 )
-            )
-            ->setRequired(true);
+                ->setName('id_country_postcode')
+                ->setType('text');
 
-        $format['legal_state'] = (new FormField())
-            ->setLabel(
-                $this->translator->trans(
-                    'State',
-                    [],
-                    'Shop.Forms.Labels'
+            $format['city'] = (new FormField())
+                ->setName('city')
+                ->setType('text')
+                ->setLabel(
+                    $this->translator->trans(
+                        'City',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
                 )
-            )
-            ->setName('id_state')
-            ->setAvailableValues(array())
-            ->setType('state');
+                ->setRequired(true);
 
-        $countries = Country::getCountries((int) Context::getContext()->language->id, true);
-        $mapped_countries = array();
-        foreach ($countries as $id => $country) {
-            $mapped_countries[$id] = $country['name'];
+            $format['legal_state'] = (new FormField())
+                ->setLabel(
+                    $this->translator->trans(
+                        'State',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
+                )
+                ->setName('id_state')
+                ->setAvailableValues(array())
+                ->setType('state');
+
+            $format['legal_country'] = (new FormField())
+                ->setLabel(
+                    $this->translator->trans(
+                        'Country',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
+                )
+                ->setName('id_country')
+                ->setAvailableValues($countries)
+                ->setType('country');
+
+            $format['dni'] = (new FormField())
+                ->setLabel(
+                    $this->translator->trans(
+                        'Identification number',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
+                )
+                ->setName('dni')
+                ->setType('text');
+
+            $format['title_operative'] = (new FormField())
+                ->setName(
+                    $this->translator->trans(
+                        'Sede Operativa',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
+                )
+                ->setType('title');
+
+            $format['op_address1'] = (new FormField())
+                ->setName('op_address1')
+                ->setType('text')
+                ->setLabel(
+                    $this->translator->trans(
+                        'Address',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
+                )
+                ->setRequired(true);
+
+            $format['op_address2'] = (new FormField())
+                ->setName('op_address2')
+                ->setType('text')
+                ->setLabel(
+                    $this->translator->trans(
+                        'Address Complement',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
+                )
+                ->setRequired(true);
+
+            $format['op_postcode'] = (new FormField())
+                ->setLabel(
+                    $this->translator->trans(
+                        'Zip/Postal Code',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
+                )
+                ->setName('op_id_country_postcode')
+                ->setType('text');
+
+            $format['op_city'] = (new FormField())
+                ->setName('op_city')
+                ->setType('text')
+                ->setLabel(
+                    $this->translator->trans(
+                        'City',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
+                )
+                ->setRequired(true);
+
+            $format['op_legal_state'] = (new FormField())
+                ->setLabel(
+                    $this->translator->trans(
+                        'State',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
+                )
+                ->setName('op_id_state')
+                ->setAvailableValues(array())
+                ->setType('state');
+
+            $format['op_legal_country'] = (new FormField())
+                ->setLabel(
+                    $this->translator->trans(
+                        'Country',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
+                )
+                ->setName('op_id_country')
+                ->setAvailableValues($countries)
+                ->setType('country');
+
+            $format['op_dni'] = (new FormField())
+                ->setLabel(
+                    $this->translator->trans(
+                        'Identification number',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
+                )
+                ->setName('op_dni')
+                ->setType('text');
         }
-
-        $format['legal_country'] = (new FormField())
-            ->setLabel(
-                $this->translator->trans(
-                    'Country',
-                    [],
-                    'Shop.Forms.Labels'
-                )
-            )
-            ->setName('id_country')
-            ->setAvailableValues($countries)
-            ->setType('country');
-
-        $format['dni'] = (new FormField())
-            ->setLabel(
-                $this->translator->trans(
-                    'Identification number',
-                    [],
-                    'Shop.Forms.Labels'
-                )
-            )
-            ->setName('dni')
-            ->setType('text');
 
         $format['title_1'] = (new FormField())
             ->setName(

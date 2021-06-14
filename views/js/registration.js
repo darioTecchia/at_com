@@ -48,9 +48,8 @@
  *
  * new CountryStateSelectionToggler('#id_country', '#id_state', '.js-state-selection-block');
  */
- class CountryStateSelectionToggler {
-  constructor(countryInputSelector, countryStateSelector, stateSelectionBlockSelector) {
-    this.$stateSelectionBlock = $(stateSelectionBlockSelector);
+class CountryStateSelectionToggler {
+  constructor(countryInputSelector, countryStateSelector) {
     this.$countryStateSelector = $(countryStateSelector);
     this.$countryInput = $(countryInputSelector);
 
@@ -75,7 +74,7 @@
       url: this.$countryInput.data('states-url'),
       dataType: 'json',
       data: {
-        'filter[id_country]': '['+countryId+']',
+        'filter[id_country]': '[' + countryId + ']',
         output_format: 'JSON',
         display: 'full',
         language: prestashop.language.id
@@ -83,13 +82,13 @@
     }).then((response) => {
       this.$countryStateSelector.empty();
 
-      if(response.states) {
+      if (response.states) {
         Object.keys(response.states).forEach((value) => {
           this.$countryStateSelector.append(
             $('<option></option>')
               .attr('value', response.states[value].id)
               .text(response.states[value].name)
-            );
+          );
         });
       }
 
@@ -104,12 +103,12 @@
   toggle() {
     if (this.$countryStateSelector.find('option').length > 0) {
       console.log('fadein');
-      this.$stateSelectionBlock.attr('disabled', false);
-      this.$stateSelectionBlock.closest('.form-group').fadeIn();
+      this.$countryStateSelector.attr('disabled', false);
+      this.$countryStateSelector.closest('.form-group').fadeIn();
     } else {
       console.log('fadeout');
-      this.$stateSelectionBlock.attr('disabled', 'disabled');
-      this.$stateSelectionBlock.closest('.form-group').fadeOut();
+      this.$countryStateSelector.attr('disabled', 'disabled');
+      this.$countryStateSelector.closest('.form-group').fadeOut();
     }
   }
 
@@ -157,11 +156,12 @@ class CountryDniRequiredToggler {
    * @private
    */
   toggle() {
-    this.$countryDniInput.prop('required', false);
-    $(this.commentLabel).fadeIn();
     if (1 === parseInt($(this.countryInputSelectedSelector).attr('need_dni'), 10)) {
       $(this.commentLabel).fadeOut();
       this.$countryDniInput.prop('required', true);
+    } else {
+      this.$countryDniInput.prop('required', false);
+      $(this.commentLabel).fadeIn();
     }
   }
 }
@@ -208,17 +208,22 @@ class CountryPostcodeRequiredToggler {
    * @private
    */
   toggle() {
-    this.$countryPostcodeInput.prop('required', false);
-    $(this.commentLabel).fadeIn();
     if (1 === parseInt($(this.countryInputSelectedSelector).attr('need_postcode'), 10)) {
       $(this.commentLabel).fadeOut();
       this.$countryPostcodeInput.prop('required', true);
+    } else {
+      this.$countryPostcodeInput.prop('required', false);
+      $(this.commentLabel).fadeIn();
     }
   }
 }
 
 $(document).ready(() => {
-  new CountryStateSelectionToggler('#fi_id_country', '#fi_id_state', '.js-state-selection-block');
+  new CountryStateSelectionToggler('#fi_id_country', '#fi_id_state');
   new CountryDniRequiredToggler('#fi_id_country', '#fi_dni');
   new CountryPostcodeRequiredToggler('#fi_id_country', '#fi_id_country_postcode');
+
+  new CountryStateSelectionToggler('#fi_op_id_country', '#fi_op_id_state');
+  new CountryDniRequiredToggler('#fi_op_id_country', '#fi_op_dni');
+  new CountryPostcodeRequiredToggler('#fi_op_id_country', '#fi_op_id_country_postcode');
 });
