@@ -231,6 +231,14 @@ class At_com_module extends Module
      */
     public function hookHeader()
     {
+        $context = $this->context;
+        if($context->controller->php_self == 'authentication') {
+            $this->context->controller->registerJavascript(
+                'registration-module',
+                $this->_path . '/views/js/registration.js'
+            );
+            // $this->context->controller->addJS($this->_path . '/views/js/registration.js');
+        }
         $this->context->controller->addJS($this->_path . '/views/js/front.js');
         $this->context->controller->addCSS($this->_path . '/views/css/front.css');
     }
