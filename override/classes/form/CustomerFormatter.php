@@ -173,6 +173,44 @@ class CustomerFormatter extends CustomerFormatterCore
                 )
             );
 
+        $format['title_legal'] = (new FormField())
+            ->setName(
+                $this->translator->trans(
+                    'Sede Legale',
+                    [],
+                    'Shop.Forms.Labels'
+                )
+            )
+            ->setType('title');
+
+        $countries = Country::getCountries((int) Context::getContext()->language->id, true);
+        $mapped_countries = array();
+        foreach ($countries as $id => $country) {
+            $mapped_countries[$id] = $country['name'];
+        }
+
+        $format['legal_country'] = (new FormField())
+            ->setLabel(
+                $this->translator->trans(
+                    'Country',
+                    [],
+                    'Shop.Forms.Labels'
+                )
+            )
+            ->setAvailableValues($mapped_countries)
+            ->setType('country');
+
+        $format['legal_state'] = (new FormField())
+            ->setLabel(
+                $this->translator->trans(
+                    'State',
+                    [],
+                    'Shop.Forms.Labels'
+                )
+            )
+            ->setAvailableValues(array())
+            ->setType('state');
+
         $format['title_1'] = (new FormField())
             ->setName(
                 $this->translator->trans(
