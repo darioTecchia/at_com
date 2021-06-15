@@ -2,7 +2,28 @@
   <div class="card customer-personal-informations-card">
     <h3 class="card-header">
       <i class="material-icons">sell</i>
-      Trade Reference
+      Customer Trade Reference 
+      {% if customerTradeReference %}
+        <a href="{{ getAdminLink('AdminCustomerTradeReference', true, {'id_customer_trade_reference': customerTradeReference.id_customer_trade_reference, 'updatecustomer_trade_reference':1, 'back': app.request.uri}) }}"
+          class="tooltip-link float-right"
+          data-toggle="pstooltip"
+          title=""
+          data-placement="top"
+          data-original-title="{{ 'Edit'|trans({}, 'Admin.Actions') }}"
+        >
+          <i class="material-icons">edit</i> 
+        </a>
+      {% else %}
+        <a href="{{ getAdminLink('AdminCustomerTradeReference', true, {'id_customer': customer.id, 'addcustomer_application':1, 'back': app.request.uri}) }}"
+          class="tooltip-link float-right"
+          data-toggle="pstooltip"
+          title=""
+          data-placement="top"
+          data-original-title="{{ 'Add'|trans({}, 'Admin.Actions') }}"
+        >
+          <i class="material-icons">add_circle</i>
+        </a>
+      {% endif %}
     </h3>
     <div class="card-body">
 

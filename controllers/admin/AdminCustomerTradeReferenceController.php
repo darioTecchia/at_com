@@ -22,16 +22,54 @@ class AdminCustomerTradeReferenceController extends ModuleAdminController
             'phone_mobile' => ['title' => $this->l('Phone mobile'), 'type' => 'text'],
             'buyer_group' => ['title' => $this->l('Buyer Group'), 'type' => 'text'],
         ];
-    }
 
-    public function renderView()
-    {
-        return;
-    }
-
-    public function postProcess()
-    {
-        return;
+        $this->fields_form = [
+            'legend' => [
+                'title' => $this->l('Customer Trade Reference'),
+            ],
+            'input' => [
+                'id_customer' => [
+                    'type' => 'text',
+                    'label' => $this->l('ID Customer'),
+                    'name' => 'id_customer',
+                    'required' => true,
+                    'disabled' => true,
+                ],
+                'name' => [
+                    'type' => 'text',
+                    'label' => $this->l('Name'),
+                    'name' => 'name',
+                    'required' => true,
+                ],
+                'email' => [
+                    'type' => 'text',
+                    'label' => $this->l('Email'),
+                    'name' => 'email',
+                    'required' => true,
+                ],
+                'phone' => [
+                    'type' => 'text',
+                    'label' => $this->l('Phone'),
+                    'name' => 'phone',
+                    'required' => true,
+                ],
+                'phone_mobile' => [
+                    'type' => 'text',
+                    'label' => $this->l('Phone mobile'),
+                    'name' => 'phone_mobile',
+                    'required' => true,
+                ],
+                'buyer_group' => [
+                    'type' => 'text',
+                    'label' => $this->l('Buyer group'),
+                    'name' => 'buyer_group',
+                    'required' => true,
+                ],
+            ],
+            'submit' => [
+                'title' => $this->l('Save'),
+            ],
+        ];
     }
 
     public function initContent()

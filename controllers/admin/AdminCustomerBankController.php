@@ -21,16 +21,48 @@ class AdminCustomerBankController extends ModuleAdminController
             'iban' => ['title' => $this->l('Iban'), 'type' => 'text'],
             'swift' => ['title' => $this->l('Swift'), 'type' => 'text'],
         ];
-    }
 
-    public function renderView()
-    {
-        return;
-    }
-
-    public function postProcess()
-    {
-        return;
+        $this->fields_form = [
+            'legend' => [
+                'title' => $this->l('Customer Bank'),
+            ],
+            'input' => [
+                'id_customer' => [
+                    'type' => 'text',
+                    'label' => $this->l('ID Customer'),
+                    'name' => 'id_customer',
+                    'required' => true,
+                    'disabled' => true,
+                ],
+                'name' => [
+                    'type' => 'text',
+                    'label' => $this->l('Name'),
+                    'name' => 'name',
+                    'required' => true,
+                ],
+                'address' => [
+                    'type' => 'text',
+                    'label' => $this->l('Address'),
+                    'name' => 'address',
+                    'required' => true,
+                ],
+                'iban' => [
+                    'type' => 'text',
+                    'label' => $this->l('IBAN'),
+                    'name' => 'iban',
+                    'required' => true,
+                ],
+                'swift' => [
+                    'type' => 'text',
+                    'label' => $this->l('Swift'),
+                    'name' => 'swift',
+                    'required' => true,
+                ],
+            ],
+            'submit' => [
+                'title' => $this->l('Save'),
+            ],
+        ];
     }
 
     public function initContent()
