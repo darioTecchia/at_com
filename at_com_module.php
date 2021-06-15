@@ -78,7 +78,8 @@ class At_com_module extends Module
         $this->installTab() &&
         $this->registerHook('header') &&
         $this->registerHook('backOfficeHeader') &&
-        $this->registerHook('displayAdminCustomers');
+        $this->registerHook('displayAdminCustomers') &&
+        $this->registerHook('displayCustomerAccount');
     }
 
     public function uninstall()
@@ -90,6 +91,7 @@ class At_com_module extends Module
         return $this->unregisterHook('header') &&
         $this->unregisterHook('backOfficeHeader') &&
         $this->unregisterHook('displayAdminCustomers') &&
+        $this->unregisterHook('displayCustomerAccount') &&
         $this->uninstallTab() &&
         parent::uninstall();
     }
@@ -312,6 +314,28 @@ class At_com_module extends Module
         }
 
         return $sections;
+    }
+
+    /**
+     * @return string
+     */
+    public function hookDisplayCustomerAccount()
+    {
+        $context = Context::getContext();
+        $id_customer = $context->customer->id;
+
+        $boxes = "";
+
+        $url = Context::getContext()->link->getModuleLink($this->name, 'CustomerApplication', [], true);
+
+        $this->context->smarty->assign([
+            'front_controller' => $url,
+            'id_customer' => $id_customer
+        ]);
+
+        $boxes .= $this->display(dirname(__FILE__), '/views/templates/front/customerApplicationBox.tpl');
+
+        return $boxes;
     }
 
     /**
