@@ -31,7 +31,7 @@
 
       {# <a href="{{ getAdminLink('AdminCustomers', true, {'id_customer': customerInformation.customerId.value, 'updatecustomer': 1, 'back': app.request.uri}) }}" #}
       {% if customerApplication %}
-        <a href="{{ getAdminLink('CustomerApplication', true, {'id_customer': customer.id, 'back': app.request.uri}) }}"
+        <a href="{{ getAdminLink('AdminCustomerApplication', true, {'id_customer': customer.id, 'back': app.request.uri}) }}"
           class="tooltip-link float-right"
           data-toggle="pstooltip"
           title=""
