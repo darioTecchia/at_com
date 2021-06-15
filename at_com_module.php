@@ -329,13 +329,22 @@ class At_com_module extends Module
         $boxes = "";
 
         $url = Context::getContext()->link->getModuleLink($this->name, 'CustomerApplication', [], true);
-
         $this->context->smarty->assign([
-            'front_controller' => $url,
-            'id_customer' => $id_customer
+            'front_controller' => $url
         ]);
-
         $boxes .= $this->display(dirname(__FILE__), '/views/templates/front/customerApplicationBox.tpl');
+
+        $url = Context::getContext()->link->getModuleLink($this->name, 'CustomerBank', [], true);
+        $this->context->smarty->assign([
+            'front_controller' => $url
+        ]);
+        $boxes .= $this->display(dirname(__FILE__), '/views/templates/front/customerBankBox.tpl');
+
+        $url = Context::getContext()->link->getModuleLink($this->name, 'CustomerTradeReference', [], true);
+        $this->context->smarty->assign([
+            'front_controller' => $url
+        ]);
+        $boxes .= $this->display(dirname(__FILE__), '/views/templates/front/customerTradeReferenceBox.tpl');
 
         return $boxes;
     }
