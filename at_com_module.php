@@ -75,6 +75,7 @@ class At_com_module extends Module
         include dirname(__FILE__) . '/sql/install.php';
 
         return parent::install() &&
+        $this->installTab() &&
         $this->registerHook('header') &&
         $this->registerHook('backOfficeHeader') &&
         $this->registerHook('displayAdminCustomers');
@@ -89,7 +90,47 @@ class At_com_module extends Module
         return $this->unregisterHook('header') &&
         $this->unregisterHook('backOfficeHeader') &&
         $this->unregisterHook('displayAdminCustomers') &&
+        $this->uninstallTab() &&
         parent::uninstall();
+    }
+
+    public function installTab()
+    {
+        $controllers = array("AdminCustomerApplicationController", "AdminCustomerBankController", "AdminCustomerTradeReferenceController");
+        $successfull = true;
+
+        foreach ($controllers as $key => $controller) {
+            $tab = new Tab();
+            $tab->active = 1;
+            $tab->class_name = $controller;
+
+            foreach (Language::getLanguages(true) as $lang) {
+                $tab->name[$lang['id_lang']] = $controller;
+            }
+
+            $tab->id_parent = -1;
+            $tab->module = $this->name;
+
+            $successfull = $successfull && $tab->add();
+        }
+        return $successfull;
+    }
+
+    public function uninstallTab()
+    {
+        $controllers = array("AdminCustomerApplicationController", "AdminCustomerBankController", "AdminCustomerTradeReferenceController");
+        $successfull = true;
+
+        foreach ($controllers as $key => $controller) {
+
+            $id_tab = (int) Tab::getIdFromClassName($controller);
+
+            if ($id_tab) {
+                $tab = new Tab($id_tab);
+                $successfull = $successfull && $tab->delete();
+            }
+        }
+        return $successfull;
     }
 
     /**
@@ -232,7 +273,7 @@ class At_com_module extends Module
     public function hookHeader()
     {
         $context = $this->context;
-        if($context->controller->php_self == 'authentication') {
+        if ($context->controller->php_self == 'authentication') {
             $this->context->controller->registerJavascript(
                 'registration-module',
                 $this->_path . '/views/js/registration.js'
