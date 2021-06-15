@@ -25,104 +25,130 @@
 <div class="col col-6">
   <div class="card customer-personal-informations-card">
     <h3 class="card-header">
-      <i class="material-icons">person</i>
-      Customer Application - {{customer.company}}
+      <i class="material-icons">business</i>
+      Customer Application 
+      {% if customer %} - {{customer.company}} {% endif %}
+
+      {# <a href="{{ getAdminLink('AdminCustomers', true, {'id_customer': customerInformation.customerId.value, 'updatecustomer': 1, 'back': app.request.uri}) }}" #}
+      {% if customerApplication %}
+        <a href="{{ getAdminLink('CustomerApplication', true, {'id_customer': customer.id, 'back': app.request.uri}) }}"
+          class="tooltip-link float-right"
+          data-toggle="pstooltip"
+          title=""
+          data-placement="top"
+          data-original-title="{{ 'Edit'|trans({}, 'Admin.Actions') }}"
+        >
+          <i class="material-icons">edit</i>
+        </a>
+      {% else %}
+        <a href=""
+          class="tooltip-link float-right"
+          data-toggle="pstooltip"
+          title=""
+          data-placement="top"
+          data-original-title="{{ 'Add'|trans({}, 'Admin.Actions') }}"
+        >
+          <i class="material-icons">add_circle</i>
+        </a>
+      {% endif %}
     </h3>
+
     <div class="card-body">
+      {% if customerApplication %}
+        <div class="row mb-1">
+          <div class="col-4 text-right">
+            {{ 'Brands'|trans({}, 'Admin.Global') }}
+          </div>
+          <div class="customer-social-title col-8">
+            {{ customerApplication.brands }}
+          </div>
+        </div>
 
-      <div class="row mb-1">
-        <div class="col-4 text-right">
-          {{ 'Brands'|trans({}, 'Admin.Global') }}
+        <div class="row mb-1">
+          <div class="col-4 text-right">
+            {{ 'VAT'|trans({}, 'Admin.Global') }}
+          </div>
+          <div class="customer-social-title col-8">
+            {{ customer.vat }}
+          </div>
         </div>
-        <div class="customer-social-title col-8">
-          {{ customerApplication.brands }}
-        </div>
-      </div>
 
-      <div class="row mb-1">
-        <div class="col-4 text-right">
-          {{ 'VAT'|trans({}, 'Admin.Global') }}
+        <div class="row mb-1">
+          <div class="col-4 text-right">
+            {{ 'SDI'|trans({}, 'Admin.Global') }}
+          </div>
+          <div class="customer-social-title col-8">
+            {{ customer.sdi }}
+          </div>
         </div>
-        <div class="customer-social-title col-8">
-          {{ customer.vat }}
-        </div>
-      </div>
 
-      <div class="row mb-1">
-        <div class="col-4 text-right">
-          {{ 'SDI'|trans({}, 'Admin.Global') }}
-        </div>
-        <div class="customer-social-title col-8">
-          {{ customer.sdi }}
-        </div>
-      </div>
+        <div class="row mb-1">
+          <div class="col-4 text-right">
+            {{ 'B2B'|trans({}, 'Admin.Orderscustomers.Feature') }}
+          </div>
+          <div class="col-8">
+            {% set isB2B = customerApplication.b2b %}
 
-      <div class="row mb-1">
-        <div class="col-4 text-right">
-          {{ 'B2B'|trans({}, 'Admin.Orderscustomers.Feature') }}
+            <span class="badge badge-{% if isB2B %}success{% else %}danger{% endif %} rounded pb-0 pt-0">
+              <i class="material-icons">{% if isB2B %}check{% else %}cancel{% endif %}</i>
+              {{ 'B2B'|trans({}, 'Admin.Global') }}
+            </span>
+          </div>
         </div>
-        <div class="col-8">
-          {% set isB2B = customerApplication.b2b %}
 
-          <span class="badge badge-{% if isB2B %}success{% else %}danger{% endif %} rounded pb-0 pt-0">
-            <i class="material-icons">{% if isB2B %}check{% else %}cancel{% endif %}</i>
-            {{ 'B2B'|trans({}, 'Admin.Global') }}
-          </span>
-        </div>
-      </div>
+        <div class="row mb-1">
+          <div class="col-4 text-right">
+            {{ 'B2C'|trans({}, 'Admin.Orderscustomers.Feature') }}
+          </div>
+          <div class="col-8">
+            {% set isB2C = customerApplication.b2c %}
 
-      <div class="row mb-1">
-        <div class="col-4 text-right">
-          {{ 'B2C'|trans({}, 'Admin.Orderscustomers.Feature') }}
+            <span class="badge badge-{% if isB2C %}success{% else %}danger{% endif %} rounded pb-0 pt-0">
+              <i class="material-icons">{% if isB2C %}check{% else %}cancel{% endif %}</i>
+              {{ 'B2C'|trans({}, 'Admin.Global') }}
+            </span>
+          </div>
         </div>
-        <div class="col-8">
-          {% set isB2C = customerApplication.b2c %}
 
-          <span class="badge badge-{% if isB2C %}success{% else %}danger{% endif %} rounded pb-0 pt-0">
-            <i class="material-icons">{% if isB2C %}check{% else %}cancel{% endif %}</i>
-            {{ 'B2C'|trans({}, 'Admin.Global') }}
-          </span>
+        <div class="row mb-1">
+          <div class="col-4 text-right">
+            {{ 'Website'|trans({}, 'Admin.Global') }}
+          </div>
+          <div class="customer-social-title col-8">
+            <a target="_blank" href="//{{ customerApplication.website }}">
+              {{ customerApplication.website }}
+            </a>
+          </div>
         </div>
-      </div>
 
-      <div class="row mb-1">
-        <div class="col-4 text-right">
-          {{ 'Website'|trans({}, 'Admin.Global') }}
+        <div class="row mb-1">
+          <div class="col-4 text-right">
+            {{ 'Amazon'|trans({}, 'Admin.Global') }}
+          </div>
+          <div class="customer-social-title col-8">
+            {{ customerApplication.amazon }}
+          </div>
         </div>
-        <div class="customer-social-title col-8">
-          <a target="_blank" href="//{{ customerApplication.website }}">
-            {{ customerApplication.website }}
-          </a>
-        </div>
-      </div>
 
-      <div class="row mb-1">
-        <div class="col-4 text-right">
-          {{ 'Amazon'|trans({}, 'Admin.Global') }}
+        <div class="row mb-1">
+          <div class="col-4 text-right">
+            {{ 'Ebay'|trans({}, 'Admin.Global') }}
+          </div>
+          <div class="customer-social-title col-8">
+            {{ customerApplication.ebay }}
+          </div>
         </div>
-        <div class="customer-social-title col-8">
-          {{ customerApplication.amazon }}
-        </div>
-      </div>
 
-      <div class="row mb-1">
-        <div class="col-4 text-right">
-          {{ 'Ebay'|trans({}, 'Admin.Global') }}
+        <div class="row mb-1">
+          <div class="col-4 text-right">
+            {{ 'Other'|trans({}, 'Admin.Global') }}
+          </div>
+          <div class="customer-social-title col-8">
+            {{ customerApplication.other }}
+          </div>
         </div>
-        <div class="customer-social-title col-8">
-          {{ customerApplication.ebay }}
-        </div>
-      </div>
 
-      <div class="row mb-1">
-        <div class="col-4 text-right">
-          {{ 'Other'|trans({}, 'Admin.Global') }}
-        </div>
-        <div class="customer-social-title col-8">
-          {{ customerApplication.other }}
-        </div>
-      </div>
-
+      {% endif %}
     </div>
   </div>
 </div>
