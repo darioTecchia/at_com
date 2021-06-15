@@ -330,7 +330,7 @@ class At_com_module extends Module
 
         $url = Context::getContext()->link->getModuleLink($this->name, 'CustomerApplication', [], true);
         $this->context->smarty->assign([
-            'front_controller' => $url
+            'front_controller' => $url.'?back='.urlencode(Context::getContext()->link->getPageLink('my-account', true))
         ]);
         $boxes .= $this->display(dirname(__FILE__), '/views/templates/front/customerApplicationBox.tpl');
 

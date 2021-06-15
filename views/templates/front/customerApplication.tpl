@@ -29,11 +29,11 @@
     method="post">
     <section>
         <div class="form-group row ">
-            <label for="fi_brands" class="col-md-3 form-control-label">
+            <label for="brands" class="col-md-3 form-control-label">
                 Marchi Principali
             </label>
             <div class="col-md-6">
-                <input id="fi_brands" class="form-control" name="brands" type="text" value="">
+                <input id="brands" class="form-control" name="brands" type="text" value="{$customerApplication->brands}">
                 <span class="form-control-comment">
                     Inserire i brand separati da virgola.
                 </span>
@@ -43,12 +43,12 @@
             </div>
         </div>
         <div class="form-group row ">
-            <label for="fi_tc_b2b" class="col-md-3 form-control-label">
+            <label for="b2b" class="col-md-3 form-control-label">
             </label>
             <div class="col-md-6">
                 <span class="custom-checkbox">
-                    <label for="fi_tc_b2b">
-                        <input id="fi_tc_b2b" name="tc_b2b" type="checkbox" value="1">
+                    <label for="b2b">
+                        <input id="b2b" name="b2b" type="checkbox" value="1" {if $customerApplication->b2b eq 1}checked{/if}>
                         <span><i class="material-icons rtl-no-flip checkbox-checked"></i></span>
                         Grossista/B2B
                     </label>
@@ -58,12 +58,12 @@
             </div>
         </div>
         <div class="form-group row ">
-            <label for="fi_tc_b2c" class="col-md-3 form-control-label">
+            <label for="b2c" class="col-md-3 form-control-label">
             </label>
             <div class="col-md-6">
                 <span class="custom-checkbox">
-                    <label for="fi_tc_b2c">
-                        <input id="fi_tc_b2c" name="tc_b2c" type="checkbox" value="1">
+                    <label for="b2c">
+                        <input id="b2c" name="b2c" type="checkbox" value="1" {if $customerApplication->b2c eq 1}checked{/if}>
                         <span><i class="material-icons rtl-no-flip checkbox-checked"></i></span>
                         Negozio Fisico/B2C/off line store
                     </label>
@@ -73,22 +73,22 @@
             </div>
         </div>
         <div class="form-group row ">
-            <label for="fi_website" class="col-md-3 form-control-label">
+            <label for="website" class="col-md-3 form-control-label">
                 Website
             </label>
             <div class="col-md-6">
-                <input id="fi_website" class="form-control" name="website" type="text" value="www.a.com">
+                <input id="website" class="form-control" name="website" type="text" value="{$customerApplication->website}">
             </div>
             <div class="col-md-3 form-control-comment">
                 Opzionale
             </div>
         </div>
         <div class="form-group row ">
-            <label for="fi_tc_amazon" class="col-md-3 form-control-label">
+            <label for="amazon" class="col-md-3 form-control-label">
                 Amazon seller
             </label>
             <div class="col-md-6">
-                <input id="fi_tc_amazon" class="form-control" name="tc_amazon" type="text" value="">
+                <input id="amazon" class="form-control" name="amazon" type="text" value="{$customerApplication->amazon}">
                 <span class="form-control-comment">
                     Inserire il nome o il link del negozio amazon.
                 </span>
@@ -98,11 +98,11 @@
             </div>
         </div>
         <div class="form-group row ">
-            <label for="fi_tc_ebay" class="col-md-3 form-control-label">
+            <label for="ebay" class="col-md-3 form-control-label">
                 Amazon seller
             </label>
             <div class="col-md-6">
-                <input id="fi_tc_ebay" class="form-control" name="tc_ebay" type="text" value="">
+                <input id="ebay" class="form-control" name="ebay" type="text" value="{$customerApplication->ebay}">
                 <span class="form-control-comment">
                     Inserire il nome o il link del negozio ebay.
                 </span>
@@ -112,11 +112,11 @@
             </div>
         </div>
         <div class="form-group row ">
-            <label for="fi_tc_other" class="col-md-3 form-control-label">
+            <label for="other" class="col-md-3 form-control-label">
                 Altro
             </label>
             <div class="col-md-6">
-                <input id="fi_tc_other" class="form-control" name="tc_other" type="text" value="">
+                <input id="other" class="form-control" name="other" type="text" value="{$customerApplication->other}">
             </div>
             <div class="col-md-3 form-control-comment">
                 Opzionale
