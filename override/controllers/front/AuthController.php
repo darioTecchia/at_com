@@ -92,7 +92,7 @@ class AuthController extends AuthControllerCore
                     $legalAddress->id_state = (int) Tools::getValue("id_state");
                     $legalAddress->address1 = Tools::getValue('address1');
                     $legalAddress->address2 = Tools::getValue('address2');
-                    $legalAddress->postcode = Tools::getValue('postcode');
+                    $legalAddress->postcode = Tools::getValue('id_country_postcode');
                     $legalAddress->city = Tools::getValue('city');
                     $legalAddress->phone = Tools::getValue('phone');
                     $legalAddress->dni = Tools::getValue('dni');
@@ -113,7 +113,7 @@ class AuthController extends AuthControllerCore
                     $operativeAddress->id_state = (int) Tools::getValue("op_id_state");
                     $operativeAddress->address1 = Tools::getValue('op_address1');
                     $operativeAddress->address2 = Tools::getValue('op_address2');
-                    $operativeAddress->postcode = Tools::getValue('op_postcode');
+                    $operativeAddress->postcode = Tools::getValue('op_id_country_postcode');
                     $operativeAddress->city = Tools::getValue('op_city');
                     $operativeAddress->phone = Tools::getValue('op_phone');
                     
