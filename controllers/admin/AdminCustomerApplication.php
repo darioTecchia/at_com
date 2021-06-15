@@ -28,9 +28,16 @@ class AdminCustomerApplicationController extends ModuleAdminController
 
         $this->fields_form = [
             'legend' => [
-                'title' => $this->l('Edit Customer Application'),
+                'title' => $this->l('Customer Application'),
             ],
             'input' => [
+                'id_customer' => [
+                    'type' => 'text',
+                    'label' => $this->l('ID Customer'),
+                    'name' => 'id_customer',
+                    'required' => true,
+                    'disabled' => true
+                ],
                 'brands' => [
                     'type' => 'text',
                     'label' => $this->l('Brands'),
@@ -104,16 +111,6 @@ class AdminCustomerApplicationController extends ModuleAdminController
                 'title' => $this->l('Save'),
             ],
         ];
-    }
-
-    public function renderView()
-    {
-        return;
-    }
-
-    public function postProcess()
-    {
-        return;
     }
 
     public function initContent()

@@ -28,7 +28,6 @@
       <i class="material-icons">business</i>
       Customer Application 
       {% if customer %} - {{customer.company}} {% endif %}
-
       {# <a href="{{ getAdminLink('AdminCustomers', true, {'id_customer': customerInformation.customerId.value, 'updatecustomer': 1, 'back': app.request.uri}) }}" #}
       {% if customerApplication %}
         <a href="{{ getAdminLink('AdminCustomerApplication', true, {'id_customer_application': customerApplication.id_customer_application, 'updatecustomer_application':1, 'back': app.request.uri}) }}"
@@ -41,7 +40,7 @@
           <i class="material-icons">edit</i> 
         </a>
       {% else %}
-        <a href=""
+        <a href="{{ getAdminLink('AdminCustomerApplication', true, {'id_customer': customer.id, 'addcustomer_application':1, 'back': app.request.uri}) }}"
           class="tooltip-link float-right"
           data-toggle="pstooltip"
           title=""
