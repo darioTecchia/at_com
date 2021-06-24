@@ -294,26 +294,20 @@ class At_com_module extends Module
         $customerTradeReference = CustomerTradeReference::getByCustomerId($params['id_customer']);
 
         $sections = "";
-        if ($customerApplication != false) {
-            $sections .= $this->render($this->getModuleTemplatePath() . 'customer_application_info.html.twig', [
-                'customer' => $customer,
-                'customerApplication' => $customerApplication,
-            ]);
-        }
+        $sections .= $this->render($this->getModuleTemplatePath() . 'customer_application_info.html.twig', [
+            'customer' => $customer,
+            'customerApplication' => $customerApplication,
+        ]);
 
-        if ($customerBank != false) {
-            $sections .= $this->render($this->getModuleTemplatePath() . 'customer_bank_info.html.twig', [
-                'customer' => $customer,
-                'customerBank' => $customerBank,
-            ]);
-        }
+        $sections .= $this->render($this->getModuleTemplatePath() . 'customer_bank_info.html.twig', [
+            'customer' => $customer,
+            'customerBank' => $customerBank,
+        ]);
 
-        if ($customerTradeReference != false) {
-            $sections .= $this->render($this->getModuleTemplatePath() . 'customer_trade_reference_info.html.twig', [
-                'customer' => $customer,
-                'customerTradeReference' => $customerTradeReference,
-            ]);
-        }
+        $sections .= $this->render($this->getModuleTemplatePath() . 'customer_trade_reference_info.html.twig', [
+            'customer' => $customer,
+            'customerTradeReference' => $customerTradeReference,
+        ]);
 
         return $sections;
     }
