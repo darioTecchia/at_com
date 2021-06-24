@@ -15,7 +15,8 @@ class AdminCustomerBankController extends ModuleAdminController
 
         //data to the grid of the "view" action
         $this->fields_list = [
-            'id_customer' => ['title' => $this->l('ID'), 'type' => 'number'],
+            'id_customer_bank' => ['title' => $this->l('ID'), 'type' => 'number'],
+            'id_customer' => ['title' => $this->l('Customer'), 'type' => 'number'],
             'name' => ['title' => $this->l('Name'), 'type' => 'text'],
             'address' => ['title' => $this->l('Address'), 'type' => 'text'],
             'iban' => ['title' => $this->l('Iban'), 'type' => 'text'],
@@ -28,11 +29,10 @@ class AdminCustomerBankController extends ModuleAdminController
             ],
             'input' => [
                 'id_customer' => [
-                    'type' => 'text',
+                    'type' => 'hidden',
                     'label' => $this->l('ID Customer'),
                     'name' => 'id_customer',
                     'required' => true,
-                    'disabled' => true,
                 ],
                 'name' => [
                     'type' => 'text',
