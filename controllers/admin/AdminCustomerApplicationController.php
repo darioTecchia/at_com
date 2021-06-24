@@ -15,8 +15,8 @@ class AdminCustomerApplicationController extends ModuleAdminController
 
         //data to the grid of the "view" action
         $this->fields_list = [
-            'id_customer_application' => ['title' => $this->l('ID Customer Application'), 'type' => 'number'],
-            'id_customer' => ['title' => $this->l('ID'), 'type' => 'number'],
+            'id_customer_application' => ['title' => $this->l('ID'), 'type' => 'number'],
+            'id_customer' => ['title' => $this->l('Customer'), 'type' => 'number'],
             'brands' => ['title' => $this->l('Brands'), 'type' => 'text'],
             'b2b' => ['title' => $this->l('B2B'), 'type' => 'bool'],
             'b2c' => ['title' => $this->l('B2C'), 'type' => 'bool'],
@@ -32,11 +32,10 @@ class AdminCustomerApplicationController extends ModuleAdminController
             ],
             'input' => [
                 'id_customer' => [
-                    'type' => 'text',
+                    'type' => 'hidden',
                     'label' => $this->l('ID Customer'),
                     'name' => 'id_customer',
                     'required' => true,
-                    'disabled' => true
                 ],
                 'brands' => [
                     'type' => 'text',
@@ -45,7 +44,7 @@ class AdminCustomerApplicationController extends ModuleAdminController
                     'required' => true,
                 ],
                 'b2b' => [
-                    'type' => 'radio',
+                    'type' => 'switch',
                     'label' => $this->l('B2B'),
                     'name' => 'b2b',
                     'required' => true,
@@ -64,7 +63,7 @@ class AdminCustomerApplicationController extends ModuleAdminController
                     ),
                 ],
                 'b2c' => [
-                    'type' => 'radio',
+                    'type' => 'switch',
                     'label' => $this->l('B2C'),
                     'name' => 'b2c',
                     'required' => true,

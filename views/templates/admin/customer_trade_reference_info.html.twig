@@ -14,7 +14,7 @@
           <i class="material-icons">edit</i> 
         </a>
       {% else %}
-        <a href="{{ getAdminLink('AdminCustomerTradeReference', true, {'id_customer': customer.id, 'addcustomer_application':1, 'back': app.request.uri}) }}"
+        <a href="{{ getAdminLink('AdminCustomerTradeReference', true, {'id_customer': customer.id, 'addcustomer_trade_reference':1, 'back': app.request.uri}) }}"
           class="tooltip-link float-right"
           data-toggle="pstooltip"
           title=""
@@ -27,56 +27,58 @@
     </h3>
     <div class="card-body">
 
-      <div class="row mb-1">
-        <div class="col-4 text-right">
-          {{ 'Name'|trans({}, 'Admin.Global') }}
+      {% if customerTradeReference %}
+        <div class="row mb-1">
+          <div class="col-4 text-right">
+            {{ 'Name'|trans({}, 'Admin.Global') }}
+          </div>
+          <div class="col-8">
+            {{ customerTradeReference.name }}
+          </div>
         </div>
-        <div class="col-8">
-          {{ customerTradeReference.name }}
-        </div>
-      </div>
 
-      <div class="row mb-1">
-        <div class="col-4 text-right">
-          {{ 'Email'|trans({}, 'Admin.Global') }}
+        <div class="row mb-1">
+          <div class="col-4 text-right">
+            {{ 'Email'|trans({}, 'Admin.Global') }}
+          </div>
+          <div class="col-8">
+            <a href="mailto:{{ customerTradeReference.email }}">
+              {{ customerTradeReference.email }}
+            </a>
+          </div>
         </div>
-        <div class="col-8">
-          <a href="mailto:{{ customerTradeReference.email }}">
-            {{ customerTradeReference.email }}
-          </a>
-        </div>
-      </div>
 
-      <div class="row mb-1">
-        <div class="col-4 text-right">
-          {{ 'Phone'|trans({}, 'Admin.Global') }}
+        <div class="row mb-1">
+          <div class="col-4 text-right">
+            {{ 'Phone'|trans({}, 'Admin.Global') }}
+          </div>
+          <div class="col-8">
+            <a href="tel:{{ customerTradeReference.phone }}">
+              {{ customerTradeReference.phone }}
+            </a>
+          </div>
         </div>
-        <div class="col-8">
-          <a href="tel:{{ customerTradeReference.phone }}">
-            {{ customerTradeReference.phone }}
-          </a>
-        </div>
-      </div>
 
-      <div class="row mb-1">
-        <div class="col-4 text-right">
-          {{ 'Phone mobile'|trans({}, 'Admin.Global') }}
+        <div class="row mb-1">
+          <div class="col-4 text-right">
+            {{ 'Phone mobile'|trans({}, 'Admin.Global') }}
+          </div>
+          <div class="col-8">
+            <a href="tel:{{ customerTradeReference.phone_mobile }}">
+              {{ customerTradeReference.phone_mobile }}
+            </a>
+          </div>
         </div>
-        <div class="col-8">
-          <a href="tel:{{ customerTradeReference.phone_mobile }}">
-            {{ customerTradeReference.phone_mobile }}
-          </a>
-        </div>
-      </div>
 
-      <div class="row mb-1">
-        <div class="col-4 text-right">
-          {{ 'Buyer Group'|trans({}, 'Admin.Global') }}
+        <div class="row mb-1">
+          <div class="col-4 text-right">
+            {{ 'Buyer Group'|trans({}, 'Admin.Global') }}
+          </div>
+          <div class="col-8">
+            {{ customerTradeReference.buyer_group }}
+          </div>
         </div>
-        <div class="col-8">
-          {{ customerTradeReference.buyer_group }}
-        </div>
-      </div>
+      {% endif %}
 
     </div>
   </div>

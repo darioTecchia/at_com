@@ -15,7 +15,8 @@ class AdminCustomerTradeReferenceController extends ModuleAdminController
 
         //data to the grid of the "view" action
         $this->fields_list = [
-            'id_customer' => ['title' => $this->l('ID'), 'type' => 'number'],
+            'id_customer_trade_reference' => ['title' => $this->l('ID'), 'type' => 'number'],
+            'id_customer' => ['title' => $this->l('Customer'), 'type' => 'number'],
             'name' => ['title' => $this->l('Name'), 'type' => 'text'],
             'email' => ['title' => $this->l('Email'), 'type' => 'text'],
             'phone' => ['title' => $this->l('Phone'), 'type' => 'text'],
@@ -29,11 +30,10 @@ class AdminCustomerTradeReferenceController extends ModuleAdminController
             ],
             'input' => [
                 'id_customer' => [
-                    'type' => 'text',
+                    'type' => 'hidden',
                     'label' => $this->l('ID Customer'),
                     'name' => 'id_customer',
                     'required' => true,
-                    'disabled' => true,
                 ],
                 'name' => [
                     'type' => 'text',

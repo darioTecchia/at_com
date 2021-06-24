@@ -38,7 +38,7 @@
           <i class="material-icons">edit</i> 
         </a>
       {% else %}
-        <a href="{{ getAdminLink('AdminCustomerBank', true, {'id_customer': customer.id, 'addcustomer_application':1, 'back': app.request.uri}) }}"
+        <a href="{{ getAdminLink('AdminCustomerBank', true, {'id_customer': customer.id, 'addcustomer_bank':1, 'back': app.request.uri}) }}"
           class="tooltip-link float-right"
           data-toggle="pstooltip"
           title=""
@@ -50,43 +50,43 @@
       {% endif %}
     </h3>
     <div class="card-body">
+      {% if customerBank %}
+        <div class="row mb-1">
+          <div class="col-4 text-right">
+            {{ 'Name'|trans({}, 'Admin.Global') }}
+          </div>
+          <div class="col-8">
+            {{ customerBank.name }}
+          </div>
+        </div>
 
-      <div class="row mb-1">
-        <div class="col-4 text-right">
-          {{ 'Name'|trans({}, 'Admin.Global') }}
+        <div class="row mb-1">
+          <div class="col-4 text-right">
+            {{ 'Address'|trans({}, 'Admin.Global') }}
+          </div>
+          <div class="col-8">
+            {{ customerBank.address }}
+          </div>
         </div>
-        <div class="col-8">
-          {{ customerBank.name }}
-        </div>
-      </div>
 
-      <div class="row mb-1">
-        <div class="col-4 text-right">
-          {{ 'Address'|trans({}, 'Admin.Global') }}
+        <div class="row mb-1">
+          <div class="col-4 text-right">
+            {{ 'IBAN'|trans({}, 'Admin.Global') }}
+          </div>
+          <div class="col-8">
+            {{ customerBank.iban }}
+          </div>
         </div>
-        <div class="col-8">
-          {{ customerBank.address }}
-        </div>
-      </div>
 
-      <div class="row mb-1">
-        <div class="col-4 text-right">
-          {{ 'IBAN'|trans({}, 'Admin.Global') }}
+        <div class="row mb-1">
+          <div class="col-4 text-right">
+            {{ 'Swift'|trans({}, 'Admin.Global') }}
+          </div>
+          <div class="col-8">
+            {{ customerBank.swift }}
+          </div>
         </div>
-        <div class="col-8">
-          {{ customerBank.iban }}
-        </div>
-      </div>
-
-      <div class="row mb-1">
-        <div class="col-4 text-right">
-          {{ 'Swift'|trans({}, 'Admin.Global') }}
-        </div>
-        <div class="col-8">
-          {{ customerBank.swift }}
-        </div>
-      </div>
-
+      {% endif %}
     </div>
   </div>
 </div>
