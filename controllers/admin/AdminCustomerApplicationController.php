@@ -44,7 +44,7 @@ class AdminCustomerApplicationController extends ModuleAdminController
                     'required' => true,
                 ],
                 'b2b' => [
-                    'type' => 'radio',
+                    'type' => 'switch',
                     'label' => $this->l('B2B'),
                     'name' => 'b2b',
                     'required' => true,
@@ -63,7 +63,7 @@ class AdminCustomerApplicationController extends ModuleAdminController
                     ),
                 ],
                 'b2c' => [
-                    'type' => 'radio',
+                    'type' => 'switch',
                     'label' => $this->l('B2C'),
                     'name' => 'b2c',
                     'required' => true,
