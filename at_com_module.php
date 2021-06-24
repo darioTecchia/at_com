@@ -70,8 +70,6 @@ class At_com_module extends Module
      */
     public function install()
     {
-        Configuration::updateValue('AT_COM_MODULE_LIVE_MODE', false);
-
         include dirname(__FILE__) . '/sql/install.php';
 
         return parent::install() &&
@@ -84,8 +82,6 @@ class At_com_module extends Module
 
     public function uninstall()
     {
-        Configuration::deleteByName('AT_COM_MODULE_LIVE_MODE');
-
         include dirname(__FILE__) . '/sql/uninstall.php';
 
         return $this->unregisterHook('header') &&
@@ -195,36 +191,12 @@ class At_com_module extends Module
                 ),
                 'input' => array(
                     array(
-                        'type' => 'switch',
-                        'label' => $this->l('Live mode'),
-                        'name' => 'AT_COM_MODULE_LIVE_MODE',
-                        'is_bool' => true,
-                        'desc' => $this->l('Use this module in live mode'),
-                        'values' => array(
-                            array(
-                                'id' => 'active_on',
-                                'value' => true,
-                                'label' => $this->l('Enabled'),
-                            ),
-                            array(
-                                'id' => 'active_off',
-                                'value' => false,
-                                'label' => $this->l('Disabled'),
-                            ),
-                        ),
-                    ),
-                    array(
-                        'col' => 3,
+                        'col' => 2,
                         'type' => 'text',
-                        'prefix' => '<i class="icon icon-envelope"></i>',
-                        'desc' => $this->l('Enter a valid email address'),
-                        'name' => 'AT_COM_MODULE_ACCOUNT_EMAIL',
-                        'label' => $this->l('Email'),
-                    ),
-                    array(
-                        'type' => 'password',
-                        'name' => 'AT_COM_MODULE_ACCOUNT_PASSWORD',
-                        'label' => $this->l('Password'),
+                        'suffix' => 'm³',
+                        'desc' => $this->l('Inserisci la capienza massima del singolo pallet in m³'),
+                        'name' => 'AT_COM_MODULE_PALLET_CAP',
+                        'label' => $this->l('Capienza Pallet'),
                     ),
                 ),
                 'submit' => array(
@@ -240,9 +212,7 @@ class At_com_module extends Module
     protected function getConfigFormValues()
     {
         return array(
-            'AT_COM_MODULE_LIVE_MODE' => Configuration::get('AT_COM_MODULE_LIVE_MODE', true),
-            'AT_COM_MODULE_ACCOUNT_EMAIL' => Configuration::get('AT_COM_MODULE_ACCOUNT_EMAIL', 'contact@prestashop.com'),
-            'AT_COM_MODULE_ACCOUNT_PASSWORD' => Configuration::get('AT_COM_MODULE_ACCOUNT_PASSWORD', null),
+            'AT_COM_MODULE_PALLET_CAP' => Configuration::get('AT_COM_MODULE_PALLET_CAP', 20),
         );
     }
 
