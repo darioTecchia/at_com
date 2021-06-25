@@ -230,6 +230,25 @@ class At_com_module extends Module
         }
     }
 
+    public function displayAjaxRefresh()
+    {
+        if (Configuration::isCatalogMode()) {
+            return;
+        }
+
+        ob_end_clean();
+        header('Content-Type: application/json');
+        $this->ajaxRender(Tools::jsonEncode([
+            'cart_detailed' => $this->render('checkout/_partials/cart-detailed'),
+            'cart_detailed_totals' => $this->render('checkout/_partials/cart-detailed-totals'),
+            'cart_summary_items_subtotal' => $this->render('checkout/_partials/cart-summary-items-subtotal'),
+            'cart_summary_subtotals_container' => $this->render('checkout/_partials/cart-summary-subtotals'),
+            'cart_summary_totals' => $this->render('checkout/_partials/cart-summary-totals'),
+            'cart_detailed_actions' => $this->render('checkout/_partials/cart-detailed-actions'),
+            'cart_voucher' => $this->render('checkout/_partials/cart-voucher'),
+        ]));
+    }
+
     /**
      * Add the CSS & JavaScript files you want to be loaded in the BO.
      */
@@ -322,6 +341,7 @@ class At_com_module extends Module
         $this->context->smarty->assign([
             'cart_volume' => $cart->getCartVolume(),
             'cart_pallets' => $cart->getCartPallets(),
+            'pallet_capiency' => (int) Configuration::get('AT_COM_MODULE_PALLET_CAP', 20),
         ]);
         return $this->display(dirname(__FILE__), '/views/templates/front/cartFooter.tpl');
     }
