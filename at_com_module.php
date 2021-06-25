@@ -76,6 +76,7 @@ class At_com_module extends Module
         $this->installTab() &&
         $this->registerHook('header') &&
         $this->registerHook('backOfficeHeader') &&
+        $this->registerHook('displayShoppingCartFooter') &&
         $this->registerHook('displayAdminCustomers') &&
         $this->registerHook('displayCustomerAccount');
     }
@@ -86,6 +87,7 @@ class At_com_module extends Module
 
         return $this->unregisterHook('header') &&
         $this->unregisterHook('backOfficeHeader') &&
+        $this->unregisterHook('displayShoppingCartFooter') &&
         $this->unregisterHook('displayAdminCustomers') &&
         $this->unregisterHook('displayCustomerAccount') &&
         $this->uninstallTab() &&
@@ -292,25 +294,36 @@ class At_com_module extends Module
 
         $boxes = "";
 
-        $url = Context::getContext()->link->getModuleLink($this->name, 'CustomerApplication', [], true);
+        $url = $context->link->getModuleLink($this->name, 'CustomerApplication', [], true);
         $this->context->smarty->assign([
-            'front_controller' => $url.'?back='.urlencode(Context::getContext()->link->getPageLink('my-account', true))
+            'front_controller' => $url . '?back=' . urlencode($context->link->getPageLink('my-account', true)),
         ]);
         $boxes .= $this->display(dirname(__FILE__), '/views/templates/front/customerApplicationBox.tpl');
 
-        $url = Context::getContext()->link->getModuleLink($this->name, 'CustomerBank', [], true);
+        $url = $context->link->getModuleLink($this->name, 'CustomerBank', [], true);
         $this->context->smarty->assign([
-            'front_controller' => $url
+            'front_controller' => $url,
         ]);
         $boxes .= $this->display(dirname(__FILE__), '/views/templates/front/customerBankBox.tpl');
 
-        $url = Context::getContext()->link->getModuleLink($this->name, 'CustomerTradeReference', [], true);
+        $url = $context->link->getModuleLink($this->name, 'CustomerTradeReference', [], true);
         $this->context->smarty->assign([
-            'front_controller' => $url
+            'front_controller' => $url,
         ]);
         $boxes .= $this->display(dirname(__FILE__), '/views/templates/front/customerTradeReferenceBox.tpl');
 
         return $boxes;
+    }
+
+    public function hookDisplayShoppingCartFooter($params)
+    {
+        $context = Context::getContext();
+        $cart = $context->cart;
+        $this->context->smarty->assign([
+            'cart_volume' => $cart->getCartVolume(),
+            'cart_pallets' => $cart->getCartPallets(),
+        ]);
+        return $this->display(dirname(__FILE__), '/views/templates/front/cartFooter.tpl');
     }
 
     /**

@@ -25,3 +25,23 @@
 * Don't forget to prefix your containers with your own identifier
 * to avoid any conflicts with others containers.
 */
+// http://localhost/shop-admin/index.php?controller=AdminModules&module_name=at_com_module&token=91d19d8f611d6b94e6c895065ce48451
+if (typeof prestashop !== 'undefined') {
+  prestashop.on(
+    'updatedCart',
+    function (event) {
+      console.log(this.cart);
+      console.log(event);
+
+
+      var token = prestashop.token;
+      var actionURL = '/shop-admin/index.php';
+      var query = 'controller=AdminModules&module_name=at_com_module&submitCartUpdate=1&ajax=true&token=' + token;
+      $.get(actionURL, query, null, 'json').then(function (resp) {
+        console.log(resp);
+      }).fail(function (resp) {
+        prestashop.emit('handleError', { eventType: 'updateCart', resp: resp });
+      });
+    }
+  );
+}
