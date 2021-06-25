@@ -33,13 +33,10 @@
                 Marchi Principali
             </label>
             <div class="col-md-6">
-                <input id="brands" class="form-control" name="brands" type="text" value="{$customerApplication->brands}">
+                <input id="brands" class="form-control" name="brands" type="text" required value="{$customerApplication->brands}">
                 <span class="form-control-comment">
                     Inserire i brand separati da virgola.
                 </span>
-            </div>
-            <div class="col-md-3 form-control-comment">
-                Opzionale
             </div>
         </div>
         <div class="form-group row ">
@@ -99,7 +96,7 @@
         </div>
         <div class="form-group row ">
             <label for="ebay" class="col-md-3 form-control-label">
-                Amazon seller
+                Ebay seller
             </label>
             <div class="col-md-6">
                 <input id="ebay" class="form-control" name="ebay" type="text" value="{$customerApplication->ebay}">
