@@ -31,7 +31,7 @@ class Cart extends CartCore
         if(is_null($palletCapacity)) {
             $palletCapacity = (int) Configuration::get('AT_COM_MODULE_PALLET_CAP', 20);
         }
-        return (int) ceil($this->getCartVolume() / $palletCapacity);
+        return (int) ceil(($this->getCartVolume() / 100) / $palletCapacity);
     }
 
 }
