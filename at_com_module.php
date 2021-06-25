@@ -313,24 +313,38 @@ class At_com_module extends Module
 
         $boxes = "";
 
-        $url = $context->link->getModuleLink($this->name, 'CustomerApplication', [], true);
-        $this->context->smarty->assign([
-            'front_controller' => $url . '?back=' . urlencode($context->link->getPageLink('my-account', true)),
-        ]);
-        $boxes .= $this->display(dirname(__FILE__), '/views/templates/front/customerApplicationBox.tpl');
+        $customerBoxes = array(
+            [
+                'front_controller' => 'CustomerApplication',
+                'label' => 'Customer Application',
+                'icon' => 'business',
+            ],
+            [
+                'front_controller' => 'CustomerBank',
+                'label' => 'Customer Bank',
+                'icon' => 'account_balance',
+            ],
+            [
+                'front_controller' => 'CustomerTradeReference',
+                'label' => 'Customer Trade Reference',
+                'icon' => 'sell',
+            ],
+        );
 
-        $url = $context->link->getModuleLink($this->name, 'CustomerBank', [], true);
-        $this->context->smarty->assign([
-            'front_controller' => $url,
-        ]);
-        $boxes .= $this->display(dirname(__FILE__), '/views/templates/front/customerBankBox.tpl');
-
-        $url = $context->link->getModuleLink($this->name, 'CustomerTradeReference', [], true);
-        $this->context->smarty->assign([
-            'front_controller' => $url,
-        ]);
-        $boxes .= $this->display(dirname(__FILE__), '/views/templates/front/customerTradeReferenceBox.tpl');
-
+        foreach ($customerBoxes as $customerBox) {
+            $url = $context->link->getModuleLink(
+                $this->name,
+                $customerBox['front_controller'],
+                [],
+                Configuration::get('PS_SSL_ENABLED')
+            );
+            $this->context->smarty->assign([
+                'front_controller_url' => $url . '?back=' . urlencode($url),
+                'label' => $customerBox['label'],
+                'icon' => $customerBox['icon'],
+            ]);
+            $boxes .= $this->display(dirname(__FILE__), '/views/templates/_partials/customerBox.tpl');
+        }
         return $boxes;
     }
 
