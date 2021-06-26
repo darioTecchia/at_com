@@ -41,6 +41,18 @@
         </div>
 
         <div class="form-group row ">
+            <label for="email" class="col-md-3 form-control-label">
+                Email
+            </label>
+            <div class="col-md-6">
+                <input required id="email" class="form-control" name="email" type="text"
+                    value="{$customerTradeReference->email}">
+            </div>
+            <div class="col-md-3 form-control-comment">
+            </div>
+        </div>
+
+        <div class="form-group row ">
             <label for="phone" class="col-md-3 form-control-label">
                 Phone
             </label>
