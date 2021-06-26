@@ -327,7 +327,7 @@ class At_com_module extends Module
             [
                 'front_controller' => 'CustomerTradeReference',
                 'label' => 'Customer Trade Reference',
-                'icon' => 'sell',
+                'icon' => 'account_balance_wallet',
             ],
         );
 

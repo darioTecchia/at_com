@@ -1,7 +1,7 @@
 <div class="col col-6">
   <div class="card customer-personal-informations-card">
     <h3 class="card-header">
-      <i class="material-icons">sell</i>
+      <i class="material-icons">account_balance_wallet</i>
       Customer Trade Reference 
       {% if customerTradeReference %}
         <a href="{{ getAdminLink('AdminCustomerTradeReference', true, {'id_customer_trade_reference': customerTradeReference.id_customer_trade_reference, 'updatecustomer_trade_reference':1, 'back': app.request.uri}) }}"
