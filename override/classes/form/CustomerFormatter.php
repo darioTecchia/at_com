@@ -375,225 +375,227 @@ class CustomerFormatter extends CustomerFormatterCore
                 ->setType('text');
         }
 
-        $format['title_1'] = (new FormField())
-            ->setName(
-                $this->translator->trans(
-                    'Responsabile Acquisti',
-                    [],
-                    'Shop.Forms.Labels'
+        if(Context::getContext()->controller->php_self == "authentication") {
+            $format['title_1'] = (new FormField())
+                ->setName(
+                    $this->translator->trans(
+                        'Responsabile Acquisti',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
                 )
-            )
-            ->setType('title');
-
-        $format['tr_name'] = (new FormField())
-            ->setName('tr_name')
-            ->setLabel(
-                $this->translator->trans(
-                    'Nome e Cognome',
-                    [],
-                    'Shop.Forms.Labels'
+                ->setType('title');
+    
+            $format['tr_name'] = (new FormField())
+                ->setName('tr_name')
+                ->setLabel(
+                    $this->translator->trans(
+                        'Nome e Cognome',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
                 )
-            )
-            ->setRequired(true);
-
-        $format['tr_email'] = (new FormField())
-            ->setName('tr_email')
-            ->setLabel(
-                $this->translator->trans(
-                    'Email',
-                    [],
-                    'Shop.Forms.Labels'
+                ->setRequired(true);
+    
+            $format['tr_email'] = (new FormField())
+                ->setName('tr_email')
+                ->setLabel(
+                    $this->translator->trans(
+                        'Email',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
                 )
-            )
-            ->setRequired(true);
-
-        $format['tr_phone'] = (new FormField())
-            ->setName('tr_phone')
-            ->setLabel(
-                $this->translator->trans(
-                    'Telefono',
-                    [],
-                    'Shop.Forms.Labels'
+                ->setRequired(true);
+    
+            $format['tr_phone'] = (new FormField())
+                ->setName('tr_phone')
+                ->setLabel(
+                    $this->translator->trans(
+                        'Telefono',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
                 )
-            )
-            ->setRequired(true);
-
-        $format['tr_cell'] = (new FormField())
-            ->setName('tr_cell')
-            ->setLabel(
-                $this->translator->trans(
-                    'Cellulare',
-                    [],
-                    'Shop.Forms.Labels'
+                ->setRequired(true);
+    
+            $format['tr_cell'] = (new FormField())
+                ->setName('tr_cell')
+                ->setLabel(
+                    $this->translator->trans(
+                        'Cellulare',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
                 )
-            )
-            ->setRequired(true);
-
-        $format['tr_group'] = (new FormField())
-            ->setName('tr_group')
-            ->setLabel(
-                $this->translator->trans(
-                    'Aderenti a catene',
-                    [],
-                    'Shop.Forms.Labels'
+                ->setRequired(true);
+    
+            $format['tr_group'] = (new FormField())
+                ->setName('tr_group')
+                ->setLabel(
+                    $this->translator->trans(
+                        'Aderenti a catene',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
+                );
+    
+            $format['title_2'] = (new FormField())
+                ->setName(
+                    $this->translator->trans(
+                        'Informazioni Bancarie',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
                 )
-            );
-
-        $format['title_2'] = (new FormField())
-            ->setName(
-                $this->translator->trans(
-                    'Informazioni Bancarie',
-                    [],
-                    'Shop.Forms.Labels'
+                ->setType('title');
+    
+            $format['bank_name'] = (new FormField())
+                ->setName('bank_name')
+                ->setLabel(
+                    $this->translator->trans(
+                        'Nome Banca',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
                 )
-            )
-            ->setType('title');
-
-        $format['bank_name'] = (new FormField())
-            ->setName('bank_name')
-            ->setLabel(
-                $this->translator->trans(
-                    'Nome Banca',
-                    [],
-                    'Shop.Forms.Labels'
+                ->setRequired(true);
+    
+            $format['bank_address'] = (new FormField())
+                ->setName('bank_address')
+                ->setLabel(
+                    $this->translator->trans(
+                        'Indirizzo Agenzia Banca',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
                 )
-            )
-            ->setRequired(true);
-
-        $format['bank_address'] = (new FormField())
-            ->setName('bank_address')
-            ->setLabel(
-                $this->translator->trans(
-                    'Indirizzo Agenzia Banca',
-                    [],
-                    'Shop.Forms.Labels'
+                ->setRequired(true);
+    
+            $format['iban'] = (new FormField())
+                ->setName('iban')
+                ->setLabel(
+                    $this->translator->trans(
+                        'IBAN',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
                 )
-            )
-            ->setRequired(true);
-
-        $format['iban'] = (new FormField())
-            ->setName('iban')
-            ->setLabel(
-                $this->translator->trans(
-                    'IBAN',
-                    [],
-                    'Shop.Forms.Labels'
+                ->setRequired(true);
+    
+            $format['swift'] = (new FormField())
+                ->setName('swift')
+                ->setLabel(
+                    $this->translator->trans(
+                        'SWIFT',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
                 )
-            )
-            ->setRequired(true);
-
-        $format['swift'] = (new FormField())
-            ->setName('swift')
-            ->setLabel(
-                $this->translator->trans(
-                    'SWIFT',
-                    [],
-                    'Shop.Forms.Labels'
+                ->setRequired(true);
+    
+            $format['title_3'] = (new FormField())
+                ->setName(
+                    $this->translator->trans(
+                        'Marchi Principali',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
                 )
-            )
-            ->setRequired(true);
-
-        $format['title_3'] = (new FormField())
-            ->setName(
-                $this->translator->trans(
-                    'Marchi Principali',
-                    [],
-                    'Shop.Forms.Labels'
+                ->setType('title');
+    
+            $format['brands'] = (new FormField())
+                ->setName('brands')
+                ->setLabel(
+                    $this->translator->trans(
+                        'Marchi Principali',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
                 )
-            )
-            ->setType('title');
-
-        $format['brands'] = (new FormField())
-            ->setName('brands')
-            ->setLabel(
-                $this->translator->trans(
-                    'Marchi Principali',
-                    [],
-                    'Shop.Forms.Labels'
+                ->addAvailableValue(
+                    'comment',
+                    $this->translator->trans('Inserire i brand separati da virgola.', [], 'Shop.Forms.Help')
+                );
+    
+            $format['title_4'] = (new FormField())
+                ->setName(
+                    $this->translator->trans(
+                        'Canali di vendita',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
                 )
-            )
-            ->addAvailableValue(
-                'comment',
-                $this->translator->trans('Inserire i brand separati da virgola.', [], 'Shop.Forms.Help')
-            );
-
-        $format['title_4'] = (new FormField())
-            ->setName(
-                $this->translator->trans(
-                    'Canali di vendita',
-                    [],
-                    'Shop.Forms.Labels'
+                ->setType('title');
+    
+            $format['tc_b2b'] = (new FormField())
+                ->setName('tc_b2b')
+                ->setType('checkbox')
+                ->setLabel(
+                    $this->translator->trans(
+                        'Grossista/B2B',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
                 )
-            )
-            ->setType('title');
-
-        $format['tc_b2b'] = (new FormField())
-            ->setName('tc_b2b')
-            ->setType('checkbox')
-            ->setLabel(
-                $this->translator->trans(
-                    'Grossista/B2B',
-                    [],
-                    'Shop.Forms.Labels'
+                ->setRequired(false);
+    
+            $format['tc_b2c'] = (new FormField())
+                ->setName('tc_b2c')
+                ->setType('checkbox')
+                ->setLabel(
+                    $this->translator->trans(
+                        'Negozio Fisico/B2C/off line store',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
                 )
-            )
-            ->setRequired(false);
-
-        $format['tc_b2c'] = (new FormField())
-            ->setName('tc_b2c')
-            ->setType('checkbox')
-            ->setLabel(
-                $this->translator->trans(
-                    'Negozio Fisico/B2C/off line store',
-                    [],
-                    'Shop.Forms.Labels'
+                ->setRequired(false);
+    
+            $format['tc_amazon'] = (new FormField())
+                ->setName('tc_amazon')
+                ->setType('text')
+                ->setLabel(
+                    $this->translator->trans(
+                        'Amazon seller',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
                 )
-            )
-            ->setRequired(false);
-
-        $format['tc_amazon'] = (new FormField())
-            ->setName('tc_amazon')
-            ->setType('text')
-            ->setLabel(
-                $this->translator->trans(
-                    'Amazon seller',
-                    [],
-                    'Shop.Forms.Labels'
+                ->addAvailableValue(
+                    'comment',
+                    $this->translator->trans('Inserire il nome o il link del negozio amazon.', [], 'Shop.Forms.Help')
                 )
-            )
-            ->addAvailableValue(
-                'comment',
-                $this->translator->trans('Inserire il nome o il link del negozio amazon.', [], 'Shop.Forms.Help')
-            )
-            ->setRequired(false);
-
-        $format['tc_ebay'] = (new FormField())
-            ->setName('tc_ebay')
-            ->setType('text')
-            ->setLabel(
-                $this->translator->trans(
-                    'Amazon seller',
-                    [],
-                    'Shop.Forms.Labels'
+                ->setRequired(false);
+    
+            $format['tc_ebay'] = (new FormField())
+                ->setName('tc_ebay')
+                ->setType('text')
+                ->setLabel(
+                    $this->translator->trans(
+                        'Amazon seller',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
                 )
-            )
-            ->addAvailableValue(
-                'comment',
-                $this->translator->trans('Inserire il nome o il link del negozio ebay.', [], 'Shop.Forms.Help')
-            )
-            ->setRequired(false);
-
-        $format['tc_other'] = (new FormField())
-            ->setName('tc_other')
-            ->setType('text')
-            ->setLabel(
-                $this->translator->trans(
-                    'Altro',
-                    [],
-                    'Shop.Forms.Labels'
+                ->addAvailableValue(
+                    'comment',
+                    $this->translator->trans('Inserire il nome o il link del negozio ebay.', [], 'Shop.Forms.Help')
                 )
-            )
-            ->setRequired(false);
+                ->setRequired(false);
+    
+            $format['tc_other'] = (new FormField())
+                ->setName('tc_other')
+                ->setType('text')
+                ->setLabel(
+                    $this->translator->trans(
+                        'Altro',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
+                )
+                ->setRequired(false);
+        }
 
         if ($this->ask_for_password) {
             $format['title_5'] = (new FormField())
