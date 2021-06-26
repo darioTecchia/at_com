@@ -373,9 +373,7 @@ class CustomerFormatter extends CustomerFormatterCore
                 )
                 ->setName('op_phone')
                 ->setType('text');
-        }
 
-        if(Context::getContext()->controller->php_self == "authentication") {
             $format['title_1'] = (new FormField())
                 ->setName(
                     $this->translator->trans(
@@ -385,7 +383,7 @@ class CustomerFormatter extends CustomerFormatterCore
                     )
                 )
                 ->setType('title');
-    
+
             $format['tr_name'] = (new FormField())
                 ->setName('tr_name')
                 ->setLabel(
@@ -396,7 +394,7 @@ class CustomerFormatter extends CustomerFormatterCore
                     )
                 )
                 ->setRequired(true);
-    
+
             $format['tr_email'] = (new FormField())
                 ->setName('tr_email')
                 ->setLabel(
@@ -407,7 +405,7 @@ class CustomerFormatter extends CustomerFormatterCore
                     )
                 )
                 ->setRequired(true);
-    
+
             $format['tr_phone'] = (new FormField())
                 ->setName('tr_phone')
                 ->setLabel(
@@ -418,7 +416,7 @@ class CustomerFormatter extends CustomerFormatterCore
                     )
                 )
                 ->setRequired(true);
-    
+
             $format['tr_cell'] = (new FormField())
                 ->setName('tr_cell')
                 ->setLabel(
@@ -429,7 +427,7 @@ class CustomerFormatter extends CustomerFormatterCore
                     )
                 )
                 ->setRequired(true);
-    
+
             $format['tr_group'] = (new FormField())
                 ->setName('tr_group')
                 ->setLabel(
@@ -439,7 +437,7 @@ class CustomerFormatter extends CustomerFormatterCore
                         'Shop.Forms.Labels'
                     )
                 );
-    
+
             $format['title_2'] = (new FormField())
                 ->setName(
                     $this->translator->trans(
@@ -449,7 +447,7 @@ class CustomerFormatter extends CustomerFormatterCore
                     )
                 )
                 ->setType('title');
-    
+
             $format['bank_name'] = (new FormField())
                 ->setName('bank_name')
                 ->setLabel(
@@ -460,7 +458,7 @@ class CustomerFormatter extends CustomerFormatterCore
                     )
                 )
                 ->setRequired(true);
-    
+
             $format['bank_address'] = (new FormField())
                 ->setName('bank_address')
                 ->setLabel(
@@ -471,7 +469,7 @@ class CustomerFormatter extends CustomerFormatterCore
                     )
                 )
                 ->setRequired(true);
-    
+
             $format['iban'] = (new FormField())
                 ->setName('iban')
                 ->setLabel(
@@ -482,7 +480,7 @@ class CustomerFormatter extends CustomerFormatterCore
                     )
                 )
                 ->setRequired(true);
-    
+
             $format['swift'] = (new FormField())
                 ->setName('swift')
                 ->setLabel(
@@ -493,7 +491,7 @@ class CustomerFormatter extends CustomerFormatterCore
                     )
                 )
                 ->setRequired(true);
-    
+
             $format['title_3'] = (new FormField())
                 ->setName(
                     $this->translator->trans(
@@ -503,7 +501,7 @@ class CustomerFormatter extends CustomerFormatterCore
                     )
                 )
                 ->setType('title');
-    
+
             $format['brands'] = (new FormField())
                 ->setName('brands')
                 ->setLabel(
@@ -517,7 +515,7 @@ class CustomerFormatter extends CustomerFormatterCore
                     'comment',
                     $this->translator->trans('Inserire i brand separati da virgola.', [], 'Shop.Forms.Help')
                 );
-    
+
             $format['title_4'] = (new FormField())
                 ->setName(
                     $this->translator->trans(
@@ -527,7 +525,7 @@ class CustomerFormatter extends CustomerFormatterCore
                     )
                 )
                 ->setType('title');
-    
+
             $format['tc_b2b'] = (new FormField())
                 ->setName('tc_b2b')
                 ->setType('checkbox')
@@ -539,7 +537,7 @@ class CustomerFormatter extends CustomerFormatterCore
                     )
                 )
                 ->setRequired(false);
-    
+
             $format['tc_b2c'] = (new FormField())
                 ->setName('tc_b2c')
                 ->setType('checkbox')
@@ -551,7 +549,7 @@ class CustomerFormatter extends CustomerFormatterCore
                     )
                 )
                 ->setRequired(false);
-    
+
             $format['tc_amazon'] = (new FormField())
                 ->setName('tc_amazon')
                 ->setType('text')
@@ -567,7 +565,7 @@ class CustomerFormatter extends CustomerFormatterCore
                     $this->translator->trans('Inserire il nome o il link del negozio amazon.', [], 'Shop.Forms.Help')
                 )
                 ->setRequired(false);
-    
+
             $format['tc_ebay'] = (new FormField())
                 ->setName('tc_ebay')
                 ->setType('text')
@@ -583,7 +581,7 @@ class CustomerFormatter extends CustomerFormatterCore
                     $this->translator->trans('Inserire il nome o il link del negozio ebay.', [], 'Shop.Forms.Help')
                 )
                 ->setRequired(false);
-    
+
             $format['tc_other'] = (new FormField())
                 ->setName('tc_other')
                 ->setType('text')
