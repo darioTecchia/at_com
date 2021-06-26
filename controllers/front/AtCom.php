@@ -15,20 +15,13 @@ class At_com_moduleAtComModuleFrontController extends ModuleFrontController
 
     public function displayAjaxCartPallet()
     {
-
         $context = Context::getContext();
         $cart = $context->cart;
-        
-        $this->context->smarty->assign([
+
+        $this->ajaxDie(Tools::jsonEncode(array(
             'cart_volume' => $cart->getCartVolume(),
+            'cart_volume_100' => $cart->getCartVolume() / 100,
             'cart_pallets' => $cart->getCartPallets(),
-            'pallet_capiency' => (int) Configuration::get('AT_COM_MODULE_PALLET_CAP', 20),
-        ]);
-        
-        ob_end_clean();
-        header('Content-Type: application/json');
-        $this->ajaxRender(Tools::jsonEncode([
-            'cart_pallet' => $this->display(dirname(__FILE__), '/views/templates/front/cartFooter.tpl')
-        ]));
+        )));
     }
 }

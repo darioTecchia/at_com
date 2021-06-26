@@ -17,18 +17,22 @@
  * International Registered Trademark & Property of PrestaShop SA
  *}
 
+ <script>
+  var cart_pallet_url= '{url entity='module' name='at_com_module' controller='AtCom' params = [action => 'CartPallet']}';
+</script>
+
 <div class="card mb-0 mt-1" id="at_com_module-cart">
     <div class="card-block">
         <h1 class="h1">{l s='Pallets Infos' mod='at_com_module'}</h1>
     </div>
     <hr class="separator">
     <div class="card-block">
-        • {l s='Total volume of the shipping' mod='at_com_module'} in cm<sup>3</sup>: <b>{$cart_volume} cm<sup>3</sup></b>
+        • {l s='Total volume of the shipping' mod='at_com_module'} in cm<sup>3</sup>: <b><span id="cart_volume">{$cart_volume}</span> cm<sup>3</sup></b>
         <br>
-        • {l s='Total volume of the shipping' mod='at_com_module'} in m<sup>3</sup>: <b>{$cart_volume / 100} m<sup>3</sup></b>
+        • {l s='Total volume of the shipping' mod='at_com_module'} in m<sup>3</sup>: <b><span id="cart_volume_100">{$cart_volume / 100}</span> m<sup>3</sup></b>
         <br>
-        • {l s='Single pallet capiency' mod='at_com_module'} in m<sup>3</sup>: <b>{$pallet_capiency} m<sup>3</sup></b>
+        • {l s='Single pallet capiency' mod='at_com_module'} in m<sup>3</sup>: <b><span id="pallet_capiency">{$pallet_capiency}</span> m<sup>3</sup></b>
         <br>
-        • {l s='Aproximative number of pallet' mod='at_com_module'}: <b>{$cart_pallets}</b>
+        • {l s='Aproximative number of pallet' mod='at_com_module'}: <b><span id="cart_pallets">{$cart_pallets}</span></b>
     </div>
 </div>

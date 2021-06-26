@@ -29,16 +29,12 @@
 if (typeof prestashop !== 'undefined') {
   prestashop.on(
     'updatedCart',
-    function (event) {
-      console.log(this.cart);
-      console.log(event);
-
-
-      var token = prestashop.token;
-      var actionURL = '/shop-admin/index.php';
-      var query = 'controller=AdminModules&module_name=at_com_module&submitCartUpdate=1&ajax=true&token=' + token;
-      $.get(actionURL, query, null, 'json').then(function (resp) {
-        console.log(resp);
+    function () {
+      $.get(cart_pallet_url, null, 'json').then(function (resp) {
+        let parsedResp = JSON.parse(resp)
+        $('#cart_volume').text(parsedResp.cart_volume);
+        $('#cart_volume_100').text(parsedResp.cart_volume_100);
+        $('#cart_pallets').text(parsedResp.cart_pallets);
       }).fail(function (resp) {
         prestashop.emit('handleError', { eventType: 'updateCart', resp: resp });
       });
