@@ -29,6 +29,7 @@ class At_com_moduleCustomerApplicationModuleFrontController extends ModuleFrontC
             $customerApplication = CustomerApplication::getByCustomerId($this->context->customer->id);
             $customerApplication = new CustomerApplication($customerApplication['id_customer_application']);
 
+            $customerApplication->id_customer = $this->context->customer->id;
             $customerApplication->brands = Tools::getValue("brands");
             $customerApplication->b2b = Tools::getValue("b2b");
             $customerApplication->b2c = Tools::getValue("b2c");

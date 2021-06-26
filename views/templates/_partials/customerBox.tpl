@@ -16,9 +16,8 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  *}
-
-<a class="col-lg-4 col-md-6 col-sm-6 col-xs-12" id="at_com_module-link" href="{$front_controller}">
+<a class="col-lg-4 col-md-6 col-sm-6 col-xs-12" id="at_com_module-link" href="{$front_controller_url}">
     <span class="link-item">
-        <i class="material-icons">account_balance</i> {l s='Customer Bank' mod='at_com_module'}
+        <i class="material-icons">{$icon}</i> {l s={$label} mod='at_com_module'}
     </span>
 </a>
