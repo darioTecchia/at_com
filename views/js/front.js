@@ -30,11 +30,13 @@ if (typeof prestashop !== 'undefined') {
   prestashop.on(
     'updatedCart',
     function () {
+      $('#at_com_module-cart').addClass('loading');
       $.get(cart_pallet_url, null, 'json').then(function (resp) {
         let parsedResp = JSON.parse(resp)
         $('#cart_volume').text(parsedResp.cart_volume);
         $('#cart_volume_100').text(parsedResp.cart_volume_100);
         $('#cart_pallets').text(parsedResp.cart_pallets);
+        $('#at_com_module-cart').removeClass('loading');
       }).fail(function (resp) {
         prestashop.emit('handleError', { eventType: 'updateCart', resp: resp });
       });
