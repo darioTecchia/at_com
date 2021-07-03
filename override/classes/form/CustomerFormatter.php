@@ -571,7 +571,7 @@ class CustomerFormatter extends CustomerFormatterCore
                 ->setType('text')
                 ->setLabel(
                     $this->translator->trans(
-                        'Amazon seller',
+                        'Ebay seller',
                         [],
                         'Shop.Forms.Labels'
                     )

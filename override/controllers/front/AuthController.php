@@ -101,7 +101,6 @@ class AuthController extends AuthControllerCore
                     $legalAddress->lastname = $register_form->getCustomer()->lastname;
                     $legalAddress->id_customer = $register_form->getCustomer()->id;
                     
-                    $legalAddress->id_state = 0;
                     $legalAddress->alias = $this->trans('Sede Legale', [], 'Shop.Theme.Checkout');
 
                     // operative address
@@ -116,12 +115,12 @@ class AuthController extends AuthControllerCore
                     $operativeAddress->postcode = Tools::getValue('op_id_country_postcode');
                     $operativeAddress->city = Tools::getValue('op_city');
                     $operativeAddress->phone = Tools::getValue('op_phone');
+                    $operativeAddress->dni = Tools::getValue('dni');
                     
                     $operativeAddress->firstname = $register_form->getCustomer()->firstname;
                     $operativeAddress->lastname = $register_form->getCustomer()->lastname;
                     $operativeAddress->id_customer = $register_form->getCustomer()->id;
                     
-                    $operativeAddress->id_state = 0;
                     $operativeAddress->alias = $this->trans('Sede Operativa', [], 'Shop.Theme.Checkout');
 
                     $successfull = $customerApplication->save() 
