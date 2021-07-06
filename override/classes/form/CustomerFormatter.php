@@ -179,6 +179,11 @@ class CustomerFormatter extends CustomerFormatterCore
                 $mapped_countries[$id] = $country['name'];
             }
 
+            $format['atcom_webservice_key'] = (new FormField())
+                ->setName('atcom_webservice_key')
+                ->setValue(Configuration::get('ATCOM_STATES_KEY'))
+                ->setType('hidden');
+
             $format['title_legal'] = (new FormField())
                 ->setName(
                     $this->translator->trans(

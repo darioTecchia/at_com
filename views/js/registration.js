@@ -67,12 +67,16 @@ class CountryStateSelectionToggler {
    */
   change() {
     const countryId = this.$countryInput.val();
+
     if (countryId === '') {
       return;
     }
     $.get({
       url: this.$countryInput.data('states-url'),
       dataType: 'json',
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader("Authorization", "Basic " + $('input[name="atcom_webservice_key"]').val());
+      },
       data: {
         'filter[id_country]': '[' + countryId + ']',
         output_format: 'JSON',

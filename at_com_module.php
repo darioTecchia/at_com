@@ -74,6 +74,21 @@ class At_com_module extends Module
     {
         include dirname(__FILE__) . '/sql/install.php';
 
+        $apiAccess = new WebserviceKey();
+        $apiAccess->key = '4WMDKYTLS146K63ZA9CFIAN7VGJE4L9V';
+        $apiAccess->description = 'Chiave per ottenere gli stati durante la fase di registrazione.';
+        $apiAccess->save();
+
+        $permissions = [
+            'countries' => ['GET' => 1],
+            'states' => ['GET' => 1],
+            'zones' => ['GET' => 1],
+        ];
+          
+        WebserviceKey::setPermissionForAccount($apiAccess->id, $permissions);
+
+        Configuration::updateValue('ATCOM_STATES_KEY', base64_encode($apiAccess->key . ':'));
+
         return parent::install() &&
         $this->installTab() &&
         $this->registerHook('header') &&
