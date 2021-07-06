@@ -37,7 +37,6 @@ $sql[] = 'ALTER TABLE `' . _DB_PREFIX_ . 'customer` DROP `vat`;';
 $sql[] = 'DROP TABLE IF EXISTS `' . _DB_PREFIX_ . 'customer_application`;';
 $sql[] = 'DROP TABLE IF EXISTS `' . _DB_PREFIX_ . 'customer_bank`;';
 $sql[] = 'DROP TABLE IF EXISTS `' . _DB_PREFIX_ . 'customer_trade_reference`;';
-$sql[] = 'DROP TABLE IF EXISTS `' . _DB_PREFIX_ . 'payment_method_rule`;';
 
 foreach ($sql as $query) {
     if (Db::getInstance()->execute($query) == false) {

@@ -31,12 +31,10 @@ if (!defined('_PS_VERSION_')) {
 require_once _PS_MODULE_DIR_ . 'at_com_module/classes/CustomerApplication.php';
 require_once _PS_MODULE_DIR_ . 'at_com_module/classes/CustomerBank.php';
 require_once _PS_MODULE_DIR_ . 'at_com_module/classes/CustomerTradeReference.php';
-require_once _PS_MODULE_DIR_ . 'at_com_module/classes/PaymentMethodRule.php';
 
 use At_com\CustomerApplicationCore as CustomerApplication;
 use At_com\CustomerBankCore as CustomerBank;
 use At_com\CustomerTradeReferenceCore as CustomerTradeReference;
-use At_com\PaymentMethodRuleCore as PaymentMethodRule;
 
 class At_com_module extends Module
 {
@@ -169,32 +167,6 @@ class At_com_module extends Module
 
         $output = $this->context->smarty->fetch($this->local_path . 'views/templates/admin/configure.tpl');
 
-        $payment_methods = array();
-        foreach (PaymentModule::getInstalledPaymentModules() as $payment) {
-            $module = Module::getInstanceByName($payment['name']);
-            if (Validate::isLoadedObject($module) && $module->active) {
-                $payment_methods[] = $module;
-            }
-        }
-
-        $payment_methods_rules = PaymentMethodRule::getPaymentMethodRules();
-        $map = array();
-        foreach ($payment_methods_rules as $payment_methods_rule) {
-            $map[$payment_methods_rule['id_payment_method']] = $payment_methods_rule;
-        }
-        $payment_methods_rules = $map;
-
-        foreach ($payment_methods as $key => $payment_method) {
-            if(isset($payment_methods_rules[$payment_method->id])) {
-                $payment_methods[$key]->rule_active = (bool) $payment_methods_rules[$payment_method->id]['active'];
-                $payment_methods[$key]->rule = (double) $payment_methods_rules[$payment_method->id]['rule'];
-            }
-        }
-
-        $this->context->smarty->assign('payment_methods', $payment_methods);
-
-        $output .= $this->context->smarty->fetch($this->local_path . 'views/templates/admin/configure_payments.tpl');
-
         return $output . $this->renderForm();
     }
 
@@ -277,14 +249,6 @@ class At_com_module extends Module
 
             foreach (array_keys($form_values) as $key) {
                 Configuration::updateValue($key, Tools::getValue($key));
-            }
-        } else if (((bool) Tools::isSubmit('submitAt_com_modulePaymentRule')) == true) {
-            $form = Tools::getValue('form');
-            foreach ($form['price_rules'] as $payment_method_id => $payment_method_rule) {
-                $PaymentMethodRule = PaymentMethodRule::getByPaymentMethodId($payment_method_id);
-                $PaymentMethodRule->rule = $form['price_rules'][$payment_method_id]['rule'];
-                $PaymentMethodRule->active = isset($form['price_rules'][$payment_method_id]['active']);
-                $PaymentMethodRule->save();
             }
         }
     }

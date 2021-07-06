@@ -65,16 +65,6 @@ $sql[] =
     KEY `id_customer` (`id_customer`)
 ) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8;';
 
-$sql[] =
-    'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'payment_method_rule` (
-    `id_payment_method_rule` int(10) NOT NULL auto_increment,
-    `id_payment_method` int(10) unsigned NOT NULL DEFAULT 0,
-    `active` tinyint(1) unsigned NOT NULL DEFAULT 0,
-    `rule` double NOT NULL DEFAULT 0,
-    PRIMARY KEY  (`id_payment_method_rule`),
-    KEY `id_payment_method` (`id_payment_method`)
-) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8;';
-
 $sql[] = 'ALTER TABLE `' . _DB_PREFIX_ . 'customer` ADD `sdi` varchar(64);';
 $sql[] = 'ALTER TABLE `' . _DB_PREFIX_ . 'customer` ADD `vat` varchar(64);';
 
