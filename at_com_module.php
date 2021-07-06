@@ -91,6 +91,9 @@ class At_com_module extends Module
 
         Configuration::updateValue('ATCOM_STATES_KEY', base64_encode($apiAccess->key . ':'));
 
+        Feature::addFeatureImport("Amazon SKU");
+        Feature::addFeatureImport("Ebay SKU");
+
         return parent::install() &&
         $this->installTab() &&
         $this->registerHook('header') &&
