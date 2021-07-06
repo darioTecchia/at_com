@@ -74,6 +74,8 @@ class At_com_module extends Module
     {
         include dirname(__FILE__) . '/sql/install.php';
 
+        Configuration::updateValue('PS_WEBSERVICE', 1);
+
         $apiAccess = new WebserviceKey();
         $apiAccess->key = '4WMDKYTLS146K63ZA9CFIAN7VGJE4L9V';
         $apiAccess->description = 'Chiave per ottenere gli stati durante la fase di registrazione.';
