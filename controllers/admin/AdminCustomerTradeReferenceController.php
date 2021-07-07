@@ -63,7 +63,6 @@ class AdminCustomerTradeReferenceController extends ModuleAdminController
                     'type' => 'text',
                     'label' => $this->l('Buyer group'),
                     'name' => 'buyer_group',
-                    'required' => true,
                 ],
             ],
             'submit' => [

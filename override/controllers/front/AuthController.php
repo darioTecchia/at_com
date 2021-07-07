@@ -62,9 +62,23 @@ class AuthController extends AuthControllerCore
                     $customerApplication->b2b = Tools::getValue('tc_b2b');
                     $customerApplication->b2c = Tools::getValue('tc_b2c');
                     $customerApplication->website = Tools::getValue('website');
+                    $customerApplication->attachment = Tools::getValue('attachment');
                     $customerApplication->amazon = Tools::getValue('tc_amazon');
                     $customerApplication->ebay = Tools::getValue('tc_ebay');
                     $customerApplication->other = Tools::getValue('tc_other');
+
+                    $fileName = "";
+                    $fileName .= uniqid();
+                    $fileName .= "-";
+                    $fileName .= basename($_FILES['attachment']['name']);
+                    $fileName = str_replace(' ', '-', $fileName);
+                    $fileName = strtolower($fileName);
+                    $fileName = filter_var($fileName, FILTER_SANITIZE_STRING);
+                    $_FILES['attachment']['name'] = $fileName;
+
+                    $uploader = new Uploader();
+                    $uploader->upload($_FILES['attachment']);
+                    $customerApplication->attachment = $fileName;
 
                     // customer bank
                     $customerBank = new CustomerBank();

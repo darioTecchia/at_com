@@ -184,6 +184,29 @@ class CustomerFormatter extends CustomerFormatterCore
                 ->setValue(Configuration::get('ATCOM_STATES_KEY'))
                 ->setType('hidden');
 
+
+            $format['title_attachment'] = (new FormField())
+                ->setName(
+                    $this->translator->trans(
+                        'Visura Camerale',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
+                )
+                ->setType('title');
+            $format['attachment'] = (new FormField())
+                ->setName('attachment')
+                ->setType('file')
+                ->setValue('NA')
+                ->setLabel(
+                    $this->translator->trans(
+                        'Visura Camerale',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
+                )
+                ->setRequired(true);
+
             $format['title_legal'] = (new FormField())
                 ->setName(
                     $this->translator->trans(
@@ -215,8 +238,7 @@ class CustomerFormatter extends CustomerFormatterCore
                         [],
                         'Shop.Forms.Labels'
                     )
-                )
-                ->setRequired(true);
+                );
 
             $format['postcode'] = (new FormField())
                 ->setLabel(
@@ -318,8 +340,7 @@ class CustomerFormatter extends CustomerFormatterCore
                         [],
                         'Shop.Forms.Labels'
                     )
-                )
-                ->setRequired(true);
+                );
 
             $format['op_postcode'] = (new FormField())
                 ->setLabel(
@@ -519,7 +540,8 @@ class CustomerFormatter extends CustomerFormatterCore
                 ->addAvailableValue(
                     'comment',
                     $this->translator->trans('Inserire i brand separati da virgola.', [], 'Shop.Forms.Help')
-                );
+                )
+                ->setRequired(true);
 
             $format['title_4'] = (new FormField())
                 ->setName(

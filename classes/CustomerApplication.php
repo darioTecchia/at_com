@@ -25,6 +25,9 @@ class CustomerApplicationCore extends \ObjectModel
     /** @var string website */
     public $website;
 
+    /** @var string attachment */
+    public $attachment;
+
     /** @var string Amazon seller name */
     public $amazon;
 
@@ -46,6 +49,7 @@ class CustomerApplicationCore extends \ObjectModel
             'b2b' => ['type' => self::TYPE_BOOL, 'validate' => 'isBool', 'copy_post' => false],
             'b2c' => ['type' => self::TYPE_BOOL, 'validate' => 'isBool', 'copy_post' => false],
             'website' => ['type' => self::TYPE_STRING, 'validate' => 'isUrl'],
+            'attachment' => ['type' => self::TYPE_STRING, 'size' => 128],
             'amazon' => ['type' => self::TYPE_STRING, 'size' => 128],
             'ebay' => ['type' => self::TYPE_STRING, 'size' => 128],
             'other' => ['type' => self::TYPE_STRING, 'size' => 128],

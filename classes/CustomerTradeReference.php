@@ -40,7 +40,7 @@ class CustomerTradeReferenceCore extends \ObjectModel
             'email' => ['type' => self::TYPE_STRING, 'validate' => 'isEmail', 'required' => true, 'size' => 255],
             'phone' => ['type' => self::TYPE_STRING, 'validate' => 'isPhoneNumber', 'required' => true, 'size' => 32],
             'phone_mobile' => ['type' => self::TYPE_STRING, 'validate' => 'isPhoneNumber', 'required' => true, 'size' => 32],
-            'buyer_group' => ['type' => self::TYPE_STRING, 'required' => true, 'size' => 255],
+            'buyer_group' => ['type' => self::TYPE_STRING, 'size' => 255],
         ],
     ];
 

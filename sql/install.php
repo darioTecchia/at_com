@@ -32,6 +32,7 @@ $sql[] =
     `brands` varchar(255) NOT NULL,
     `b2b` tinyint(1) unsigned NOT NULL DEFAULT 0,
     `b2c` tinyint(1) unsigned NOT NULL DEFAULT 0,
+    `attachment` varchar(128),
     `website` varchar(128),
     `amazon` varchar(128),
     `ebay` varchar(128),
