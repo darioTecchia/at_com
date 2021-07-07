@@ -84,7 +84,7 @@ class At_com_module extends Module
             'states' => ['GET' => 1],
             'zones' => ['GET' => 1],
         ];
-          
+
         WebserviceKey::setPermissionForAccount($apiAccess->id, $permissions);
 
         Configuration::updateValue('ATCOM_STATES_KEY', base64_encode($apiAccess->key . ':'));
@@ -269,6 +269,7 @@ class At_com_module extends Module
      */
     public function hookHeader()
     {
+        dump($this->getCronUrl());
         $context = $this->context;
         if ($context->controller->php_self == 'authentication') {
             $this->context->controller->registerJavascript(
@@ -381,5 +382,44 @@ class At_com_module extends Module
     private function getModuleTemplatePath(): string
     {
         return sprintf('@Modules/%s/views/templates/admin/', $this->name);
+    }
+
+    /**
+     * @return string
+     *
+     * @throws PrestaShopException
+     */
+    private function getCronUrl()
+    {
+        $protocol = Tools::getShopProtocol();
+        $shopBaseLink = $this->context->link->getBaseLink();
+        $cronFileLink = sprintf(
+            'cron_expired_customers.php?secure_key=%s',
+            md5(_COOKIE_KEY_.Configuration::get('PS_SHOP_NAME'))
+        );
+
+        return $shopBaseLink . $this->_path . 'cron/' . $cronFileLink;
+    }
+
+    /**
+     * @param string $cronUrl
+     *
+     * @return bool
+     *
+     * @throws Exception
+     */
+    private function createCronJob($cronUrl)
+    {
+        /** @var CronJobs $cronJobsModule */
+        $cronJobsModule = Module::getInstanceByName('cronjobs');
+
+        $isCronAdded = $cronJobsModule->addOneShotTask(
+            $cronUrl,
+            $this->l('Automatic expired account remover cron.')
+        );
+
+        Configuration::set('PS_ACTIVE_CRONJOB_EXPIRED_CUSTOMERS', Db::getInstance()->Insert_ID());
+
+        return $isCronAdded;
     }
 }
