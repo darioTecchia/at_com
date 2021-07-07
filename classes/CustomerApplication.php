@@ -127,7 +127,7 @@ class CustomerApplicationCore extends \ObjectModel
     public static function getCustomerApplications()
     {
         return \Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS(
-            'SELECT `id_customer_application`, `id_customer`, `brands`, `b2b`, `b2c`, `website`, `amazon`, `ebay`, `other`
+            'SELECT *
             FROM `' . _DB_PREFIX_ . 'customer_application`
             ORDER BY `id_customer` ASC'
         );
@@ -148,7 +148,7 @@ class CustomerApplicationCore extends \ObjectModel
         }
 
         $result = \Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow(
-            'SELECT `id_customer_application`, `id_customer`, `brands`, `b2b`, `b2c`, `website`, `amazon`, `ebay`, `other`
+            'SELECT *
             FROM `' . _DB_PREFIX_ . 'customer_application`
             WHERE `id_customer` = \'' . pSQL($id_customer) . '\'
             ORDER BY `id_customer` ASC'

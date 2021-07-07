@@ -20,6 +20,7 @@ class AdminCustomerApplicationController extends ModuleAdminController
             'brands' => ['title' => $this->l('Brands'), 'type' => 'text'],
             'b2b' => ['title' => $this->l('B2B'), 'type' => 'bool'],
             'b2c' => ['title' => $this->l('B2C'), 'type' => 'bool'],
+            'attachment' => ['title' => $this->l('Attachment'), 'type' => 'file'],
             'website' => ['title' => $this->l('Website'), 'type' => 'text'],
             'amazon' => ['title' => $this->l('Amazon'), 'type' => 'text'],
             'ebay' => ['title' => $this->l('EBay'), 'type' => 'text'],
@@ -79,6 +80,11 @@ class AdminCustomerApplicationController extends ModuleAdminController
                         ),
                     ),
                 ],
+                'attachment' => [
+                    'type' => 'file',
+                    'label' => $this->l('Attachment'),
+                    'name' => 'attachment'
+                ],
                 'website' => [
                     'type' => 'text',
                     'label' => $this->l('Website'),
@@ -104,6 +110,33 @@ class AdminCustomerApplicationController extends ModuleAdminController
                 'title' => $this->l('Save'),
             ],
         ];
+    }
+
+    public function postProcess()
+    {
+        $customerApplication = new At_com\CustomerApplicationCore($this->id_object);
+        if(Tools::isSubmit('submitAddcustomer_application')) {
+            if($_FILES['attachment']['name']) {
+                    
+                if($customerApplication->attachment != "") {
+                    $fileName = $customerApplication->attachment;
+                } else {
+                    $fileName = "";
+                    $fileName .= uniqid();
+                    $fileName .= '.';
+                    $fileName .= pathinfo($_FILES['attachment']['name'], PATHINFO_EXTENSION);
+                    $fileName = strtolower($fileName);
+                    $fileName = filter_var($fileName, FILTER_SANITIZE_STRING);
+                }
+                $_FILES['attachment']['name'] = $fileName;
+    
+                $uploader = new Uploader();
+                $uploader->upload($_FILES['attachment']);
+                $customerApplication->attachment = $fileName;
+                $_POST['attachment'] = $fileName;
+            }
+        }
+        parent::postProcess();
     }
 
     public function initContent()

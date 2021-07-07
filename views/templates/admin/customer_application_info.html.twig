@@ -56,6 +56,16 @@
       {% if customerApplication %}
         <div class="row mb-1">
           <div class="col-4 text-right">
+            {{ 'Attachment'|trans({}, 'Admin.Global') }}
+          </div>
+          <div class="customer-social-title col-8">
+            <a target="_blank" href="/upload/{{ customerApplication.attachment }}">Visualizza allegato</a>
+            <br>
+            <a target="_blank" download href="/upload/{{ customerApplication.attachment }}">Scarica allegato</a>
+          </div>
+        </div>
+        <div class="row mb-1">
+          <div class="col-4 text-right">
             {{ 'Brands'|trans({}, 'Admin.Global') }}
           </div>
           <div class="customer-social-title col-8">
