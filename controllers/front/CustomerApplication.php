@@ -38,6 +38,25 @@ class At_com_moduleCustomerApplicationModuleFrontController extends ModuleFrontC
             $customerApplication->ebay = Tools::getValue("ebay");
             $customerApplication->other = Tools::getValue("other");
 
+            if($_FILES['attachment']['name']) {
+                
+                if($customerApplication->attachment != "") {
+                    $fileName = $customerApplication->attachment;
+                } else {
+                    $fileName = "";
+                    $fileName .= uniqid();
+                    $fileName .= '.';
+                    $fileName .= pathinfo($_FILES['attachment']['name'], PATHINFO_EXTENSION);
+                    $fileName = strtolower($fileName);
+                    $fileName = filter_var($fileName, FILTER_SANITIZE_STRING);
+                }
+                $_FILES['attachment']['name'] = $fileName;
+    
+                $uploader = new Uploader();
+                $uploader->upload($_FILES['attachment']);
+                $customerApplication->attachment = $fileName;
+            }
+
             if($customerApplication->save()) {
                 Tools::redirect(Tools::getValue("back"));
             }

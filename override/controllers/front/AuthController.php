@@ -69,9 +69,8 @@ class AuthController extends AuthControllerCore
 
                     $fileName = "";
                     $fileName .= uniqid();
-                    $fileName .= "-";
-                    $fileName .= basename($_FILES['attachment']['name']);
-                    $fileName = str_replace(' ', '-', $fileName);
+                    $fileName .= '.';
+                    $fileName .= pathinfo($_FILES['attachment']['name'], PATHINFO_EXTENSION);
                     $fileName = strtolower($fileName);
                     $fileName = filter_var($fileName, FILTER_SANITIZE_STRING);
                     $_FILES['attachment']['name'] = $fileName;

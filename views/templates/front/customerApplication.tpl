@@ -26,8 +26,21 @@
 {block name='page_content'}
 <br>
 <form class="js-customer-form" action="{$link->getAdminLink('CustomerApplication', [], true)|escape:'html'}"
-    method="post">
+    method="post" enctype="multipart/form-data">
     <section>
+        <div class="form-group row ">
+            <label for="attachment" class="col-md-3 form-control-label required">
+                Visura Camerale
+            </label>
+            <div class="col-md-6">
+                <input id="attachment" class="form-control" name="attachment" type="file" value="{$customerApplication->attachment}" {if $customerApplication->attachment == ""}required{/if}>
+                {if $customerApplication->attachment != ""}
+                    <span class="form-control-comment">
+                        <a target="_blank" href="/upload/{$customerApplication->attachment}">Visualizza allegato</a>
+                    </span>
+                {/if}
+            </div>
+        </div>
         <div class="form-group row ">
             <label for="brands" class="col-md-3 form-control-label">
                 Marchi Principali
