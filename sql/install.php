@@ -59,9 +59,9 @@ $sql[] =
     `id_customer` int(10) unsigned NOT NULL DEFAULT 0,
     `name` varchar(255) NOT NULL,
     `email` varchar(255) NOT NULL,
-    `phone` varchar(32) DEFAULT NULL,
-    `phone_mobile` varchar(32) DEFAULT NULL,
-    `buyer_group` varchar(255) NOT NULL,
+    `phone` varchar(32) NOT NULL,
+    `phone_mobile` varchar(32) NOT NULL,
+    `buyer_group` varchar(255),
     PRIMARY KEY  (`id_customer_trade_reference`),
     KEY `id_customer` (`id_customer`)
 ) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8;';

@@ -47,7 +47,6 @@ class AdminCustomerApplicationController extends ModuleAdminController
                     'type' => 'switch',
                     'label' => $this->l('B2B'),
                     'name' => 'b2b',
-                    'required' => true,
                     'is_bool' => true,
                     'values' => array(
                         array(
@@ -66,7 +65,6 @@ class AdminCustomerApplicationController extends ModuleAdminController
                     'type' => 'switch',
                     'label' => $this->l('B2C'),
                     'name' => 'b2c',
-                    'required' => true,
                     'is_bool' => true,
                     'values' => array(
                         array(
@@ -85,25 +83,21 @@ class AdminCustomerApplicationController extends ModuleAdminController
                     'type' => 'text',
                     'label' => $this->l('Website'),
                     'name' => 'website',
-                    'required' => true,
                 ],
                 'amazon' => [
                     'type' => 'text',
                     'label' => $this->l('Amazon'),
                     'name' => 'amazon',
-                    'required' => true,
                 ],
                 'ebay' => [
                     'type' => 'text',
                     'label' => $this->l('Ebay'),
                     'name' => 'ebay',
-                    'required' => true,
                 ],
                 'other' => [
                     'type' => 'text',
                     'label' => $this->l('Other'),
                     'name' => 'other',
-                    'required' => true,
                 ],
             ],
             'submit' => [

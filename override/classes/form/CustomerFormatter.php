@@ -163,7 +163,6 @@ class CustomerFormatter extends CustomerFormatterCore
         $format['website'] = (new FormField())
             ->setName('website')
             ->setType('text')
-            ->setRequired(false)
             ->setLabel(
                 $this->translator->trans(
                     'Website',
@@ -183,7 +182,6 @@ class CustomerFormatter extends CustomerFormatterCore
                 ->setName('atcom_webservice_key')
                 ->setValue(Configuration::get('ATCOM_STATES_KEY'))
                 ->setType('hidden');
-
 
             $format['title_attachment'] = (new FormField())
                 ->setName(
@@ -562,8 +560,7 @@ class CustomerFormatter extends CustomerFormatterCore
                         [],
                         'Shop.Forms.Labels'
                     )
-                )
-                ->setRequired(false);
+                );
 
             $format['tc_b2c'] = (new FormField())
                 ->setName('tc_b2c')
@@ -574,8 +571,7 @@ class CustomerFormatter extends CustomerFormatterCore
                         [],
                         'Shop.Forms.Labels'
                     )
-                )
-                ->setRequired(false);
+                );
 
             $format['tc_amazon'] = (new FormField())
                 ->setName('tc_amazon')
@@ -590,8 +586,7 @@ class CustomerFormatter extends CustomerFormatterCore
                 ->addAvailableValue(
                     'comment',
                     $this->translator->trans('Inserire il nome o il link del negozio amazon.', [], 'Shop.Forms.Help')
-                )
-                ->setRequired(false);
+                );
 
             $format['tc_ebay'] = (new FormField())
                 ->setName('tc_ebay')
@@ -606,8 +601,7 @@ class CustomerFormatter extends CustomerFormatterCore
                 ->addAvailableValue(
                     'comment',
                     $this->translator->trans('Inserire il nome o il link del negozio ebay.', [], 'Shop.Forms.Help')
-                )
-                ->setRequired(false);
+                );
 
             $format['tc_other'] = (new FormField())
                 ->setName('tc_other')
@@ -618,8 +612,7 @@ class CustomerFormatter extends CustomerFormatterCore
                         [],
                         'Shop.Forms.Labels'
                     )
-                )
-                ->setRequired(false);
+                );
         }
 
         if ($this->ask_for_password) {
@@ -631,7 +624,6 @@ class CustomerFormatter extends CustomerFormatterCore
                         'Shop.Forms.Labels'
                     )
                 )
-                ->setRequired(false)
                 ->setType('title');
 
             $format['password'] = (new FormField())
