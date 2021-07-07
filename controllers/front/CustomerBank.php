@@ -25,7 +25,7 @@ class At_com_moduleCustomerBankModuleFrontController extends ModuleFrontControll
     }
 
     public function postProcess() {
-        if(Tools::issubmit('submitCreate')) {
+        if((bool) Tools::isSubmit('submitCreate') == true) {
             $customerBank = CustomerBank::getByCustomerId($this->context->customer->id);
             $customerBank = new CustomerBank($customerBank['id_customer_bank']);
 

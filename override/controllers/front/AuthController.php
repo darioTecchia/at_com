@@ -37,13 +37,13 @@ class AuthController extends AuthControllerCore
     {
         $should_redirect = false;
 
-        if (Tools::isSubmit('submitCreate') || Tools::isSubmit('create_account')) {
+        if ((bool) Tools::isSubmit('submitCreate') == true || (bool) Tools::isSubmit('create_account') == true) {
             $register_form = $this
                 ->makeCustomerForm()
                 ->setGuestAllowed(false)
                 ->fillWith(Tools::getAllValues());
 
-            if (Tools::isSubmit('submitCreate')) {
+            if ((bool) Tools::isSubmit('submitCreate') == true) {
                 $hookResult = array_reduce(
                     Hook::exec('actionSubmitAccountBefore', [], null, true),
                     function ($carry, $item) {
@@ -163,7 +163,7 @@ class AuthController extends AuthControllerCore
                 Tools::getAllValues()
             );
 
-            if (Tools::isSubmit('submitLogin')) {
+            if ((bool) Tools::isSubmit('submitLogin') == true) {
                 if ($login_form->submit()) {
                     $should_redirect = true;
                 }

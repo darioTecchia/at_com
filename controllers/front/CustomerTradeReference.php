@@ -25,7 +25,7 @@ class At_com_moduleCustomerTradeReferenceModuleFrontController extends ModuleFro
     }
 
     public function postProcess() {
-        if(Tools::issubmit('submitCreate')) {
+        if((bool) Tools::isSubmit('submitCreate') == true) {
             $customerTradeReference = CustomerTradeReference::getByCustomerId($this->context->customer->id);
             $customerTradeReference = new CustomerTradeReference($customerTradeReference['id_customer_trade_reference']);
 

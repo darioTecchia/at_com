@@ -115,7 +115,7 @@ class AdminCustomerApplicationController extends ModuleAdminController
     public function postProcess()
     {
         $customerApplication = new At_com\CustomerApplicationCore($this->id_object);
-        if(Tools::isSubmit('submitAddcustomer_application')) {
+        if((bool) Tools::isSubmit('submitAddcustomer_application') == true) {
             if($_FILES['attachment']['name']) {
                     
                 if($customerApplication->attachment != "") {

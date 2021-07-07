@@ -25,7 +25,7 @@ class At_com_moduleCustomerApplicationModuleFrontController extends ModuleFrontC
     }
 
     public function postProcess() {
-        if(Tools::issubmit('submitCreate')) {
+        if((bool) Tools::isSubmit('submitCreate') == true) {
             $customerApplication = CustomerApplication::getByCustomerId($this->context->customer->id);
             $customerApplication = new CustomerApplication($customerApplication['id_customer_application']);
 
