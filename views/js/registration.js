@@ -72,7 +72,7 @@ class CountryStateSelectionToggler {
       return;
     }
     $.get({
-      url: this.$countryInput.data('states-url'),
+      url: '/' + this.$countryInput.data('states-url'),
       dataType: 'json',
       beforeSend: function (xhr) {
         xhr.setRequestHeader("Authorization", "Basic " + $('input[name="atcom_webservice_key"]').val());
