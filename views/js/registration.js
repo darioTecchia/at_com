@@ -230,4 +230,6 @@ $(document).ready(() => {
   new CountryStateSelectionToggler('#fi_op_id_country', '#fi_op_id_state');
   new CountryDniRequiredToggler('#fi_op_id_country', '#fi_op_dni');
   new CountryPostcodeRequiredToggler('#fi_op_id_country', '#fi_op_id_country_postcode');
+
+  $('#customer-form').attr('enctype', 'multipart/form-data');
 });
