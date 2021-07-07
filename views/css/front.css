@@ -37,3 +37,9 @@
   align-items: center;
   justify-content: center;
 }
+
+.page-cart #_mobile_currency_selector,
+.page-cart #_desktop_currency_selector {
+  pointer-events: none !important;
+  opacity: .5;
+}
