@@ -269,7 +269,6 @@ class At_com_module extends Module
      */
     public function hookHeader()
     {
-        dump($this->getCronUrl());
         $context = $this->context;
         if ($context->controller->php_self == 'authentication') {
             $this->context->controller->registerJavascript(
