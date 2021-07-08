@@ -37,6 +37,7 @@ use At_com\CustomerApplicationCore as CustomerApplication;
 use At_com\CustomerBankCore as CustomerBank;
 use At_com\CustomerTradeReferenceCore as CustomerTradeReference;
 use At_com\ModuleCronsManager as ModuleCronsManager;
+use PrestaShopBundle\Form\Admin\Type\DatePickerType;
 
 class At_com_module extends Module
 {
@@ -106,6 +107,9 @@ class At_com_module extends Module
         $this->registerHook('displayShoppingCartFooter') &&
         $this->registerHook('displayCustomerAdditionalInfoTop') &&
         $this->registerHook('displayCustomerAdditionalInfoBottom') &&
+        $this->registerHook('actionCustomerFormBuilderModifier') &&
+        $this->registerHook('actionAfterCreateCustomerFormHandler') &&
+        $this->registerHook('actionAfterUpdateCustomerFormHandler') &&
         $this->registerHook('displayAdminCustomers') &&
         $this->registerHook('displayCustomerAccount');
     }
@@ -118,7 +122,11 @@ class At_com_module extends Module
         $this->unregisterHook('backOfficeHeader') &&
         $this->unregisterHook('displayShoppingCartFooter') &&
         $this->unregisterHook('displayAdminCustomers') &&
+        $this->unregisterHook('displayCustomerAdditionalInfoTop') &&
         $this->unregisterHook('displayCustomerAdditionalInfoBottom') &&
+        $this->unregisterHook('actionCustomerFormBuilderModifier') &&
+        $this->unregisterHook('actionAfterCreateCustomerFormHandler') &&
+        $this->unregisterHook('actionAfterUpdateCustomerFormHandler') &&
         $this->unregisterHook('displayCustomerAccount') &&
         $this->uninstallTab() &&
         parent::uninstall();
@@ -394,7 +402,7 @@ class At_com_module extends Module
 
         $infos = "";
         $infos .= $this->render($this->getModuleTemplatePath() . 'topAdditionalCustomerInfos.html.twig', [
-            'customer' => $customer
+            'customer' => $customer,
         ]);
         return $infos;
     }
@@ -406,9 +414,41 @@ class At_com_module extends Module
 
         $infos = "";
         $infos .= $this->render($this->getModuleTemplatePath() . 'bottomAdditionalCustomerInfos.html.twig', [
-            'customer' => $customer
+            'customer' => $customer,
         ]);
         return $infos;
+    }
+
+    public function hookActionCustomerFormBuilderModifier(array $params)
+    {
+        $formBuilder = $params['form_builder'];
+        $formBuilder->add('exp_date', DatePickerType::class, [
+            'label' => 'Deactivation date',
+            'required' => false,
+        ]);
+
+        $customerId = $params['id'];
+        $customer = new Customer($customerId);
+
+        $params['data']['exp_date'] = $customer->exp_date;
+
+        $formBuilder->setData($params['data']);
+    }
+
+    public function hookActionAfterUpdateCustomerFormHandler(array $params)
+    {
+        $customerId = $params['id'];
+        $customer = new Customer($customerId);
+        $customer->exp_date = $params['form_data']['exp_date'];
+        $customer->update();
+    }
+
+    public function hookActionAfterCreateCustomerFormHandler(array $params)
+    {
+        $customerId = $params['id'];
+        $customer = new Customer($customerId);
+        $customer->exp_date = $params['form_data']['exp_date'];
+        $customer->update();
     }
 
     /**
