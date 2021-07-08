@@ -94,6 +94,7 @@ class At_com_module extends Module
         WebserviceKey::setPermissionForAccount($apiAccess->id, $permissions);
 
         Configuration::updateValue('ATCOM_STATES_KEY', base64_encode($apiAccess->key . ':'));
+        Configuration::set('PS_B2B_ENABLE', 1);
 
         Feature::addFeatureImport("Amazon SKU");
         Feature::addFeatureImport("Ebay SKU");
@@ -103,6 +104,7 @@ class At_com_module extends Module
         $this->registerHook('header') &&
         $this->registerHook('backOfficeHeader') &&
         $this->registerHook('displayShoppingCartFooter') &&
+        $this->registerHook('displayCustomerAdditionalInfoTop') &&
         $this->registerHook('displayAdminCustomers') &&
         $this->registerHook('displayCustomerAccount');
     }
@@ -115,6 +117,7 @@ class At_com_module extends Module
         $this->unregisterHook('backOfficeHeader') &&
         $this->unregisterHook('displayShoppingCartFooter') &&
         $this->unregisterHook('displayAdminCustomers') &&
+        $this->unregisterHook('displayCustomerAdditionalInfoTop') &&
         $this->unregisterHook('displayCustomerAccount') &&
         $this->uninstallTab() &&
         parent::uninstall();
@@ -382,6 +385,18 @@ class At_com_module extends Module
             'pallet_capiency' => (int) Configuration::get('AT_COM_MODULE_PALLET_CAP', 20),
         ]);
         return $this->display(dirname(__FILE__), '/views/templates/front/cartFooter.tpl');
+    }
+
+    public function hookDisplayCustomerAdditionalInfoTop($params)
+    {
+        $customer = new Customer($params['id_customer']);
+        dump($customer);
+
+        $infos = "";
+        $infos .= $this->render($this->getModuleTemplatePath() . 'topAdditionalCustomerInfos.html.twig', [
+            'customer' => $customer
+        ]);
+        return $infos;
     }
 
     /**
