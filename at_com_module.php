@@ -173,8 +173,6 @@ class At_com_module extends Module
 
         $cronJobsModule = Module::getInstanceByName('cronjobs');
 
-        dump($cronJobsModule);
-
         $this->context->smarty->assign('cronJobsModule', $cronJobsModule);
         $this->context->smarty->assign('exsistCustomerCron', $this->crons_manager->exsistCron("cron_expired_customers.php"));
 
