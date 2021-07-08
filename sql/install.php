@@ -68,6 +68,7 @@ $sql[] =
 
 $sql[] = 'ALTER TABLE `' . _DB_PREFIX_ . 'customer` ADD `sdi` varchar(64);';
 $sql[] = 'ALTER TABLE `' . _DB_PREFIX_ . 'customer` ADD `vat` varchar(64);';
+$sql[] = 'ALTER TABLE `' . _DB_PREFIX_ . 'customer` ADD `exp_date` datetime NULL;';
 
 foreach ($sql as $query) {
     if (Db::getInstance()->execute($query) == false) {
