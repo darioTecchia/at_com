@@ -47,16 +47,21 @@
                     {/if}
                 {/if}
             </p>
-            <br>
-            <p>
-                <button {if $exsistCustomerCron}disabled{/if} class="btn btn-primary" {if !$exsistCustomerCron}name="create_customer_cron" value="1"{/if}>
-                    {if $exsistCustomerCron}
-                        cron customer già creato
-                    {else}
-                        crea cron customer
-                    {/if}
-                </button>
-            </p>
+            {if $cronJobsModule && $cronJobsModule->active}
+                <p>
+                    <button {if $exsistCustomerCron}disabled{/if} class="btn btn-primary" {if !$exsistCustomerCron}name="create_customer_cron" value="1"{/if}>
+                        {if $exsistCustomerCron}
+                            cron customer già creato
+                        {else}
+                            crea cron customer
+                        {/if}
+                    </button>
+                </p>
+            {else}
+                <p>
+                    <strong>{l s='Per poter procedere assicurati di aver installato e attivato il modulo cronjob!' mod='at_com_module'}</strong>
+                </p>
+            {/if}
 
         </div>
 
