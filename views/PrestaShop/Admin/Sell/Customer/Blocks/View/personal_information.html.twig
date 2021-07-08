@@ -163,6 +163,8 @@
       </div>
     </div>
 
+    {{ renderhook('displayCustomerAdditionalInfoBottom', { 'id_customer': customerInformation.customerId.value }) }}
+
     {% if customerInformation.personalInformation.guest %}
       <div class="customer-guest-status row mb-1">
         <div class="col-4 text-right">

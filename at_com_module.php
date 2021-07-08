@@ -105,6 +105,7 @@ class At_com_module extends Module
         $this->registerHook('backOfficeHeader') &&
         $this->registerHook('displayShoppingCartFooter') &&
         $this->registerHook('displayCustomerAdditionalInfoTop') &&
+        $this->registerHook('displayCustomerAdditionalInfoBottom') &&
         $this->registerHook('displayAdminCustomers') &&
         $this->registerHook('displayCustomerAccount');
     }
@@ -117,7 +118,7 @@ class At_com_module extends Module
         $this->unregisterHook('backOfficeHeader') &&
         $this->unregisterHook('displayShoppingCartFooter') &&
         $this->unregisterHook('displayAdminCustomers') &&
-        $this->unregisterHook('displayCustomerAdditionalInfoTop') &&
+        $this->unregisterHook('displayCustomerAdditionalInfoBottom') &&
         $this->unregisterHook('displayCustomerAccount') &&
         $this->uninstallTab() &&
         parent::uninstall();
@@ -390,10 +391,21 @@ class At_com_module extends Module
     public function hookDisplayCustomerAdditionalInfoTop($params)
     {
         $customer = new Customer($params['id_customer']);
-        dump($customer);
 
         $infos = "";
         $infos .= $this->render($this->getModuleTemplatePath() . 'topAdditionalCustomerInfos.html.twig', [
+            'customer' => $customer
+        ]);
+        return $infos;
+    }
+
+    public function hookDisplayCustomerAdditionalInfoBottom($params)
+    {
+        $customer = new Customer($params['id_customer']);
+        $customer->exp_date = $lastUpdateDate = Tools::displayDate($customer->exp_date, null, true);
+
+        $infos = "";
+        $infos .= $this->render($this->getModuleTemplatePath() . 'bottomAdditionalCustomerInfos.html.twig', [
             'customer' => $customer
         ]);
         return $infos;
