@@ -31,15 +31,19 @@ if (!defined('_PS_VERSION_')) {
 require_once _PS_MODULE_DIR_ . 'at_com_module/classes/CustomerApplication.php';
 require_once _PS_MODULE_DIR_ . 'at_com_module/classes/CustomerBank.php';
 require_once _PS_MODULE_DIR_ . 'at_com_module/classes/CustomerTradeReference.php';
+require_once _PS_MODULE_DIR_ . 'at_com_module/classes/ModuleCronsManager.php';
 
 use At_com\CustomerApplicationCore as CustomerApplication;
 use At_com\CustomerBankCore as CustomerBank;
 use At_com\CustomerTradeReferenceCore as CustomerTradeReference;
+use At_com\ModuleCronsManager as ModuleCronsManager;
 
 class At_com_module extends Module
 {
 
     protected $config_form = false;
+
+    private $crons_manager;
 
     public function __construct()
     {
@@ -62,6 +66,8 @@ class At_com_module extends Module
         $this->confirmUninstall = $this->l('');
 
         $this->ps_versions_compliancy = array('min' => '1.6', 'max' => _PS_VERSION_);
+
+        $this->crons_manager = new ModuleCronsManager($this->_path);
     }
 
     /**
@@ -165,6 +171,13 @@ class At_com_module extends Module
 
         $this->context->smarty->assign('module_dir', $this->_path);
 
+        $cronJobsModule = Module::getInstanceByName('cronjobs');
+
+        dump($cronJobsModule);
+
+        $this->context->smarty->assign('cronJobsModule', $cronJobsModule);
+        $this->context->smarty->assign('exsistCustomerCron', $this->crons_manager->exsistCron("cron_expired_customers.php"));
+
         $output = $this->context->smarty->fetch($this->local_path . 'views/templates/admin/configure.tpl');
 
         return $output . $this->renderForm();
@@ -249,6 +262,15 @@ class At_com_module extends Module
 
             foreach (array_keys($form_values) as $key) {
                 Configuration::updateValue($key, Tools::getValue($key));
+            }
+        } else if (((bool) Tools::isSubmit('submitAt_com_moduleCreateCron')) == true) {
+            if ((((bool) Tools::isSubmit('create_product_cron')) == true)) {
+            } elseif ((((bool) Tools::isSubmit('create_customer_cron')) == true)) {
+                if ($this->crons_manager->createCronJob("cron_expired_customers.php")) {
+                    $redirect_link = $this->context->link->getAdminLink('AdminModules', false)
+                    . '?configure=cronjobs&token=' . Tools::getAdminTokenLite('AdminModules');
+                    Tools::redirectLink($redirect_link);
+                }
             }
         }
     }
@@ -381,44 +403,5 @@ class At_com_module extends Module
     private function getModuleTemplatePath(): string
     {
         return sprintf('@Modules/%s/views/templates/admin/', $this->name);
-    }
-
-    /**
-     * @return string
-     *
-     * @throws PrestaShopException
-     */
-    private function getCronUrl()
-    {
-        $protocol = Tools::getShopProtocol();
-        $shopBaseLink = $this->context->link->getBaseLink();
-        $cronFileLink = sprintf(
-            'cron_expired_customers.php?secure_key=%s',
-            md5(_COOKIE_KEY_.Configuration::get('PS_SHOP_NAME'))
-        );
-
-        return $shopBaseLink . $this->_path . 'cron/' . $cronFileLink;
-    }
-
-    /**
-     * @param string $cronUrl
-     *
-     * @return bool
-     *
-     * @throws Exception
-     */
-    private function createCronJob($cronUrl)
-    {
-        /** @var CronJobs $cronJobsModule */
-        $cronJobsModule = Module::getInstanceByName('cronjobs');
-
-        $isCronAdded = $cronJobsModule->addOneShotTask(
-            $cronUrl,
-            $this->l('Automatic expired account remover cron.')
-        );
-
-        Configuration::set('PS_ACTIVE_CRONJOB_EXPIRED_CUSTOMERS', Db::getInstance()->Insert_ID());
-
-        return $isCronAdded;
     }
 }

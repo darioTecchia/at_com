@@ -1,32 +1,64 @@
-{*
-* 2007-2021 PrestaShop
-*
-* NOTICE OF LICENSE
-*
-* This source file is subject to the Academic Free License (AFL 3.0)
-* that is bundled with this package in the file LICENSE.txt.
-* It is also available through the world-wide-web at this URL:
-* http://opensource.org/licenses/afl-3.0.php
-* If you did not receive a copy of the license and are unable to
-* obtain it through the world-wide-web, please send an email
-* to license@prestashop.com so we can send you a copy immediately.
-*
-* DISCLAIMER
-*
-* Do not edit or add to this file if you wish to upgrade PrestaShop to newer
-* versions in the future. If you wish to customize PrestaShop for your
-* needs please refer to http://www.prestashop.com for more information.
-*
-*  @author    PrestaShop SA <contact@prestashop.com>
-*  @copyright 2007-2021 PrestaShop SA
-*  @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
-*  International Registered Trademark & Property of PrestaShop SA
-*}
-
 <div class="panel">
-	<h3>{l s='@.com module' mod='at_com_module'}</h3>
-	<p>
-		<strong>{l s='Benvenuto nel modulo @.com!' mod='at_com_module'}</strong><br />
-		{l s='In questa pagina puoi configurare i parametri necessari al funzionamento del modulo.' mod='at_com_module'}
-	</p>
+    <h3>{l s='@.com module' mod='at_com_module'}</h3>
+    <p>
+        <strong>{l s='Benvenuto nel modulo @.com!' mod='at_com_module'}</strong><br />
+        {l s='In questa pagina puoi configurare i parametri necessari al funzionamento del modulo.'
+        mod='at_com_module'}
+    </p>
 </div>
+
+<form id="payment_price_rule_module_form" class="defaultForm form-horizontal"
+    action="http://localhost/shop-admin/index.php?controller=AdminModules&configure=at_com_module&tab_module=administration&module_name=at_com_module&token=91d19d8f611d6b94e6c895065ce48451"
+    method="post" enctype="multipart/form-data" novalidate="">
+
+    <input type="hidden" name="submitAt_com_moduleCreateCron" value="1">
+
+    <div class="panel" id="fieldset_0">
+        <div class="panel-heading">
+            <i class="icon-user"></i> {l s='Disable Expired Customer via Cron' mod='at_com_module'} <i
+                class="icon-time"></i>
+        </div>
+
+        <div>
+            <p>
+                <strong>{l s='In questa sezione puoi attivare/disattivare la disattivazione automatizzata dei
+                    customer temporanei.'
+                    mod='at_com_module'}</strong> <br>
+                {l s='Necessita del seguente modulo installato e attivato: ' mod='at_com_module'}
+                <a href="https://github.com/darioTecchia/cronjobs" target="_blank">cronjobs</a>
+            </p>
+
+            <p>
+                {l s='Stato installazione modulo: ' mod='at_com_module'}
+                {if !$cronJobsModule}
+                    <i class="icon-remove color_danger"></i>
+                {else}
+                    <i class="icon-ok process-icon-ok color_success"></i>
+                {/if}
+                <br>
+                    {l s='Stato attivazione modulo: ' mod='at_com_module'}
+                    {if !$cronJobsModule}
+                    <i class="icon-remove color_danger"></i>
+                {else}
+                    {if $cronJobsModule->active}
+                        <i class="icon-ok process-icon-ok color_success"></i>
+                    {else}
+                        <i class="icon-remove color_danger"></i>
+                    {/if}
+                {/if}
+            </p>
+            <br>
+            <p>
+                <button {if $exsistCustomerCron}disabled{/if} class="btn btn-primary" {if !$exsistCustomerCron}name="create_customer_cron" value="1"{/if}>
+                    {if $exsistCustomerCron}
+                        cron customer già creato
+                    {else}
+                        crea cron customer
+                    {/if}
+                </button>
+            </p>
+
+        </div>
+
+    </div>
+</form>
