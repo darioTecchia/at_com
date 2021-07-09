@@ -109,11 +109,14 @@ class AuthController extends AuthControllerCore
                     $legalAddress->city = Tools::getValue('city');
                     $legalAddress->phone = Tools::getValue('phone');
                     $legalAddress->dni = Tools::getValue('dni');
-                    
+
+                    $legalAddress->vat_number = Tools::getValue('vat');
+                    $legalAddress->company = Tools::getValue('company');
+
                     $legalAddress->firstname = $register_form->getCustomer()->firstname;
                     $legalAddress->lastname = $register_form->getCustomer()->lastname;
                     $legalAddress->id_customer = $register_form->getCustomer()->id;
-                    
+
                     $legalAddress->alias = $this->trans('Sede Legale', [], 'Shop.Theme.Checkout');
 
                     // operative address
@@ -129,18 +132,21 @@ class AuthController extends AuthControllerCore
                     $operativeAddress->city = Tools::getValue('op_city');
                     $operativeAddress->phone = Tools::getValue('op_phone');
                     $operativeAddress->dni = Tools::getValue('dni');
-                    
+
+                    $operativeAddress->vat_number = Tools::getValue('vat');
+                    $operativeAddress->company = Tools::getValue('company');
+
                     $operativeAddress->firstname = $register_form->getCustomer()->firstname;
                     $operativeAddress->lastname = $register_form->getCustomer()->lastname;
                     $operativeAddress->id_customer = $register_form->getCustomer()->id;
-                    
+
                     $operativeAddress->alias = $this->trans('Sede Operativa', [], 'Shop.Theme.Checkout');
 
-                    $successfull = $customerApplication->save() 
-                        && $customerBank->save() 
-                        && $customerTradeReference->save()
-                        && $legalAddress->save()
-                        && $operativeAddress->save();
+                    $successfull = $customerApplication->save()
+                    && $customerBank->save()
+                    && $customerTradeReference->save()
+                    && $legalAddress->save()
+                    && $operativeAddress->save();
 
                     if ($successfull) {
                         $should_redirect = true;
