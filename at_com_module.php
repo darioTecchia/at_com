@@ -107,6 +107,7 @@ class At_com_module extends Module
         $this->registerHook('displayShoppingCartFooter') &&
         $this->registerHook('displayCustomerAdditionalInfoTop') &&
         $this->registerHook('displayCustomerAdditionalInfoBottom') &&
+        $this->registerHook('displayAdminOrderSide') &&
         $this->registerHook('actionCustomerFormBuilderModifier') &&
         $this->registerHook('actionAfterCreateCustomerFormHandler') &&
         $this->registerHook('actionAfterUpdateCustomerFormHandler') &&
@@ -124,6 +125,7 @@ class At_com_module extends Module
         $this->unregisterHook('displayAdminCustomers') &&
         $this->unregisterHook('displayCustomerAdditionalInfoTop') &&
         $this->unregisterHook('displayCustomerAdditionalInfoBottom') &&
+        $this->unregisterHook('displayAdminOrderSide') &&
         $this->unregisterHook('actionCustomerFormBuilderModifier') &&
         $this->unregisterHook('actionAfterCreateCustomerFormHandler') &&
         $this->unregisterHook('actionAfterUpdateCustomerFormHandler') &&
@@ -307,7 +309,6 @@ class At_com_module extends Module
                 'registration-module',
                 $this->_path . '/views/js/registration.js'
             );
-            // $this->context->controller->addJS($this->_path . '/views/js/registration.js');
         }
         $this->context->controller->addJS($this->_path . '/views/js/front.js');
         $this->context->controller->addCSS($this->_path . '/views/css/front.css');
@@ -449,6 +450,20 @@ class At_com_module extends Module
         $customer = new Customer($customerId);
         $customer->exp_date = $params['form_data']['exp_date'];
         $customer->update();
+    }
+
+    public function hookDisplayAdminOrderSide(array $params)
+    {
+        $context = Context::getContext();
+        $order = new Order($params['id_order']);
+        $cart = new Cart($order->id_cart);
+        dump($order);
+        $this->context->smarty->assign([
+            'cart_volume' => $cart->getCartVolume(),
+            'cart_pallets' => $cart->getCartPallets(),
+            'pallet_capiency' => (int) Configuration::get('AT_COM_MODULE_PALLET_CAP', 20),
+        ]);
+        return $this->display(dirname(__FILE__), '/views/templates/admin/palletInfos.tpl');
     }
 
     /**
