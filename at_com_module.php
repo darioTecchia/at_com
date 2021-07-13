@@ -95,7 +95,7 @@ class At_com_module extends Module
         WebserviceKey::setPermissionForAccount($apiAccess->id, $permissions);
 
         Configuration::updateValue('ATCOM_STATES_KEY', base64_encode($apiAccess->key . ':'));
-        Configuration::set('PS_B2B_ENABLE', 1);
+        Configuration::updateValue('PS_B2B_ENABLE', 1);
 
         Feature::addFeatureImport("Amazon SKU");
         Feature::addFeatureImport("Ebay SKU");
