@@ -8,7 +8,7 @@
 </div>
 
 <form id="payment_price_rule_module_form" class="defaultForm form-horizontal"
-    action="http://localhost/shop-admin/index.php?controller=AdminModules&configure=at_com_module&tab_module=administration&module_name=at_com_module&token=91d19d8f611d6b94e6c895065ce48451"
+    action="{$actionUrl}"
     method="post" enctype="multipart/form-data" novalidate="">
 
     <input type="hidden" name="submitAt_com_moduleCreateCron" value="1">

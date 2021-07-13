@@ -189,6 +189,10 @@ class At_com_module extends Module
 
         $this->context->smarty->assign('cronJobsModule', $cronJobsModule);
         $this->context->smarty->assign('exsistCustomerCron', $this->crons_manager->exsistCron("cron_expired_customers.php"));
+        
+        $actionUrl = $this->context->link->getAdminLink("AdminModules") . "&configure=at_com_module&tab_module=administration&module_name=at_com_module";
+
+        $this->context->smarty->assign('actionUrl', $actionUrl);
 
         $output = $this->context->smarty->fetch($this->local_path . 'views/templates/admin/configure.tpl');
 
