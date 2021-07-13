@@ -23,15 +23,18 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  */
+require_once _PS_MODULE_DIR_ . 'at_com_module/classes/CustomerApplication.php';
+require_once _PS_MODULE_DIR_ . 'at_com_module/classes/CustomerBank.php';
+require_once _PS_MODULE_DIR_ . 'at_com_module/classes/CustomerTradeReference.php';
+
+use At_com\CustomerApplicationCore as CustomerApplication;
+use At_com\CustomerBankCore as CustomerBank;
+use At_com\CustomerTradeReferenceCore as CustomerTradeReference;
+
 class AuthController extends AuthControllerCore
 {
-
     public function initContent()
     {
-        require_once _PS_MODULE_DIR_ . 'at_com_module/classes/CustomerApplication.php';
-        require_once _PS_MODULE_DIR_ . 'at_com_module/classes/CustomerBank.php';
-        require_once _PS_MODULE_DIR_ . 'at_com_module/classes/CustomerTradeReference.php';
-
         $should_redirect = false;
 
         if ((bool) Tools::isSubmit('submitCreate') == true || (bool) Tools::isSubmit('create_account') == true) {
@@ -53,7 +56,7 @@ class AuthController extends AuthControllerCore
 
                     //NEED TO CREATE HERE NEW CUSTOMER APPLIACE AND BANK INFOS
                     // customer application
-                    $customerApplication = new CustomerApplicationCore();
+                    $customerApplication = new CustomerApplication();
                     $customerApplication->id_customer = $register_form->getCustomer()->id;
                     $customerApplication->brands = Tools::getValue('brands');
                     $customerApplication->b2b = Tools::getValue('tc_b2b');
@@ -77,7 +80,7 @@ class AuthController extends AuthControllerCore
                     $customerApplication->attachment = $fileName;
 
                     // customer bank
-                    $customerBank = new CustomerBankCore();
+                    $customerBank = new CustomerBank();
                     $customerBank->id_customer = $register_form->getCustomer()->id;
                     $customerBank->name = Tools::getValue('bank_name');
                     $customerBank->address = Tools::getValue('bank_address');
@@ -85,7 +88,7 @@ class AuthController extends AuthControllerCore
                     $customerBank->swift = Tools::getValue('swift');
 
                     // customer trade reference
-                    $customerTradeReference = new CustomerTradeReferenceCore();
+                    $customerTradeReference = new CustomerTradeReference();
                     $customerTradeReference->id_customer = $register_form->getCustomer()->id;
                     $customerTradeReference->name = Tools::getValue('tr_name');
                     $customerTradeReference->email = Tools::getValue('tr_email');
