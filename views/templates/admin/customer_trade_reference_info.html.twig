@@ -30,7 +30,7 @@
       {% if customerTradeReference %}
         <div class="row mb-1">
           <div class="col-4 text-right">
-            {{ 'Name'|trans({}, 'Admin.Global') }}
+            {{ 'Name'|trans({}, 'Shop.Forms.Labels') }}
           </div>
           <div class="col-8">
             {{ customerTradeReference.name }}
@@ -39,7 +39,7 @@
 
         <div class="row mb-1">
           <div class="col-4 text-right">
-            {{ 'Email'|trans({}, 'Admin.Global') }}
+            {{ 'Email'|trans({}, 'Shop.Forms.Labels') }}
           </div>
           <div class="col-8">
             <a href="mailto:{{ customerTradeReference.email }}">
@@ -50,7 +50,7 @@
 
         <div class="row mb-1">
           <div class="col-4 text-right">
-            {{ 'Phone'|trans({}, 'Admin.Global') }}
+            {{ 'Phone'|trans({}, 'Shop.Forms.Labels') }}
           </div>
           <div class="col-8">
             <a href="tel:{{ customerTradeReference.phone }}">
@@ -61,7 +61,7 @@
 
         <div class="row mb-1">
           <div class="col-4 text-right">
-            {{ 'Phone mobile'|trans({}, 'Admin.Global') }}
+            {{ 'Phone mobile'|trans({}, 'Shop.Forms.Labels') }}
           </div>
           <div class="col-8">
             <a href="tel:{{ customerTradeReference.phone_mobile }}">
@@ -72,7 +72,7 @@
 
         <div class="row mb-1">
           <div class="col-4 text-right">
-            {{ 'Buyer Group'|trans({}, 'Admin.Global') }}
+            {{ 'Buyer Group'|trans({}, 'Shop.Forms.Labels') }}
           </div>
           <div class="col-8">
             {{ customerTradeReference.buyer_group }}

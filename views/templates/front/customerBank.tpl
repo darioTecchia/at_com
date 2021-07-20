@@ -29,7 +29,7 @@
     <section>
         <div class="form-group row ">
             <label for="name" class="col-md-3 form-control-label">
-                Bank Name
+                {l s='Bank name' mod='at_com_module'}
             </label>
             <div class="col-md-6">
                 <input required id="name" class="form-control" name="name" type="text"
@@ -41,7 +41,7 @@
 
         <div class="form-group row ">
             <label for="address" class="col-md-3 form-control-label">
-                Address
+                {l s='Address' mod='at_com_module'}
             </label>
             <div class="col-md-6">
                 <input required id="address" class="form-control" name="address" type="text"
@@ -53,7 +53,7 @@
 
         <div class="form-group row ">
             <label for="iban" class="col-md-3 form-control-label">
-                IBAN
+                {l s='IBAN' mod='at_com_module'}
             </label>
             <div class="col-md-6">
                 <input required id="iban" class="form-control" name="iban" type="text"
@@ -65,7 +65,7 @@
 
         <div class="form-group row ">
             <label for="swift" class="col-md-3 form-control-label">
-                SWIFT
+                {l s='SWIFT' mod='at_com_module'}
             </label>
             <div class="col-md-6">
                 <input required id="swift" class="form-control" name="swift" type="text"
@@ -80,7 +80,7 @@
         <input type="hidden" name="submitCreate" value="1">
         <button class="btn btn-primary form-control-submit float-xs-right" data-link-action="save-customer"
             type="submit">
-            Salva
+            {l s='Save' mod='at_com_module'}
         </button>
     </footer>
 </form>

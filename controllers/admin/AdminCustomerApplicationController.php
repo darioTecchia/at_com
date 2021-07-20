@@ -109,7 +109,7 @@ class AdminCustomerApplicationController extends ModuleAdminController
                 ],
                 'other' => [
                     'type' => 'text',
-                    'label' => $this->l('Other'),
+                    'label' => $this->l('Other marketplace'),
                     'name' => 'other',
                 ],
             ],

@@ -1,7 +1,7 @@
 {% if customer.exp_date is defined %}
   <div class="row mb-1">
     <div class="col-4 text-right">
-      {{ 'Deactivation Date'|trans({}, 'Admin.Global') }}
+      {{ 'Deactivation Date'|trans({}, 'Shop.Forms.Labels') }}
     </div>
     <div class="customer-company-title col-8">
       {% if customer.exp_date != "" %}

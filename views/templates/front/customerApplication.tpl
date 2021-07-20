@@ -30,25 +30,27 @@
     <section>
         <div class="form-group row ">
             <label for="attachment" class="col-md-3 form-control-label required">
-                Visura Camerale
+                {l s='Chamber of Commerce View' mod='at_com_module'}
             </label>
             <div class="col-md-6">
                 <input id="attachment" class="form-control" name="attachment" type="file" value="{$customerApplication->attachment}" {if $customerApplication->attachment == ""}required{/if}>
                 {if $customerApplication->attachment != ""}
                     <span class="form-control-comment">
-                        <a target="_blank" href="/upload/{$customerApplication->attachment}">Visualizza allegato</a>
+                        <a target="_blank" href="/upload/{$customerApplication->attachment}">{l s='View' mod='at_com_module'} {l s='Attachment' mod='at_com_module'}</a>
+                        <br>
+                        <a download target="_blank" href="/upload/{$customerApplication->attachment}">{l s='Download' mod='at_com_module'} {l s='Attachment' mod='at_com_module'}</a>
                     </span>
                 {/if}
             </div>
         </div>
         <div class="form-group row ">
             <label for="brands" class="col-md-3 form-control-label">
-                Marchi Principali
+                {l s='Brands' mod='at_com_module'}
             </label>
             <div class="col-md-6">
                 <input id="brands" class="form-control" name="brands" type="text" required value="{$customerApplication->brands}">
                 <span class="form-control-comment">
-                    Inserire i brand separati da virgola.
+                    {l s='Enter brands separated by commas.' mod='at_com_module'}
                 </span>
             </div>
         </div>
@@ -60,7 +62,7 @@
                     <label for="b2b">
                         <input id="b2b" name="b2b" type="checkbox" value="1" {if $customerApplication->b2b eq 1}checked{/if}>
                         <span><i class="material-icons rtl-no-flip checkbox-checked"></i></span>
-                        Grossista/B2B
+                        {l s='Wholesaler/B2B' mod='at_com_module'}
                     </label>
                 </span>
             </div>
@@ -75,7 +77,7 @@
                     <label for="b2c">
                         <input id="b2c" name="b2c" type="checkbox" value="1" {if $customerApplication->b2c eq 1}checked{/if}>
                         <span><i class="material-icons rtl-no-flip checkbox-checked"></i></span>
-                        Negozio Fisico/B2C/off line store
+                        {l s='Physical store/B2C/off line store' mod='at_com_module'}
                     </label>
                 </span>
             </div>
@@ -84,52 +86,52 @@
         </div>
         <div class="form-group row ">
             <label for="website" class="col-md-3 form-control-label">
-                Website
+                {l s='Website' mod='at_com_module'}
             </label>
             <div class="col-md-6">
                 <input id="website" class="form-control" name="website" type="text" value="{$customerApplication->website}">
             </div>
             <div class="col-md-3 form-control-comment">
-                Opzionale
+                {l s='Optional' mod='at_com_module'}
             </div>
         </div>
         <div class="form-group row ">
             <label for="amazon" class="col-md-3 form-control-label">
-                Amazon seller
+                {l s='Amazon seller' mod='at_com_module'}
             </label>
             <div class="col-md-6">
                 <input id="amazon" class="form-control" name="amazon" type="text" value="{$customerApplication->amazon}">
                 <span class="form-control-comment">
-                    Inserire il nome o il link del negozio amazon.
+                    {l s='Enter the name or link to the amazon store.' mod='at_com_module'}
                 </span>
             </div>
             <div class="col-md-3 form-control-comment">
-                Opzionale
+                {l s='Optional' mod='at_com_module'}
             </div>
         </div>
         <div class="form-group row ">
             <label for="ebay" class="col-md-3 form-control-label">
-                Ebay seller
+                {l s='Ebay seller' mod='at_com_module'}
             </label>
             <div class="col-md-6">
                 <input id="ebay" class="form-control" name="ebay" type="text" value="{$customerApplication->ebay}">
                 <span class="form-control-comment">
-                    Inserire il nome o il link del negozio ebay.
+                    {l s='Enter the name or link to the ebay store.' mod='at_com_module'}
                 </span>
             </div>
             <div class="col-md-3 form-control-comment">
-                Opzionale
+                {l s='Optional' mod='at_com_module'}
             </div>
         </div>
         <div class="form-group row ">
             <label for="other" class="col-md-3 form-control-label">
-                Altro
+                {l s='Other marketplace' mod='at_com_module'}
             </label>
             <div class="col-md-6">
                 <input id="other" class="form-control" name="other" type="text" value="{$customerApplication->other}">
             </div>
             <div class="col-md-3 form-control-comment">
-                Opzionale
+                {l s='Optional' mod='at_com_module'}
             </div>
         </div>
 
@@ -138,7 +140,7 @@
         <input type="hidden" name="submitCreate" value="1">
         <button class="btn btn-primary form-control-submit float-xs-right" data-link-action="save-customer"
             type="submit">
-            Salva
+            {l s='Save' mod='at_com_module'}
         </button>
     </footer>
 </form>

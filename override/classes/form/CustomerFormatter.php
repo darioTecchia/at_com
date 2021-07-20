@@ -70,7 +70,7 @@ class CustomerFormatter extends CustomerFormatterCore
         $format['client_title'] = (new FormField())
             ->setName(
                 $this->translator->trans(
-                    'Scheda Cliente',
+                    'Customer Application',
                     [],
                     'Shop.Forms.Labels'
                 )
@@ -198,7 +198,7 @@ class CustomerFormatter extends CustomerFormatterCore
             $format['title_attachment'] = (new FormField())
                 ->setName(
                     $this->translator->trans(
-                        'Visura Camerale',
+                        'Chamber of Commerce view',
                         [],
                         'Shop.Forms.Labels'
                     )
@@ -210,7 +210,7 @@ class CustomerFormatter extends CustomerFormatterCore
                 ->setValue('NA')
                 ->setLabel(
                     $this->translator->trans(
-                        'Visura Camerale',
+                        'Chamber of Commerce view',
                         [],
                         'Shop.Forms.Labels'
                     )
@@ -220,7 +220,7 @@ class CustomerFormatter extends CustomerFormatterCore
             $format['title_legal'] = (new FormField())
                 ->setName(
                     $this->translator->trans(
-                        'Sede Legale',
+                        'Headquarter',
                         [],
                         'Shop.Forms.Labels'
                     )
@@ -322,7 +322,7 @@ class CustomerFormatter extends CustomerFormatterCore
             $format['title_operative'] = (new FormField())
                 ->setName(
                     $this->translator->trans(
-                        'Sede Operativa',
+                        'Operating Headquarters',
                         [],
                         'Shop.Forms.Labels'
                     )
@@ -413,7 +413,7 @@ class CustomerFormatter extends CustomerFormatterCore
             $format['title_1'] = (new FormField())
                 ->setName(
                     $this->translator->trans(
-                        'Responsabile Acquisti',
+                        'Purchasing Manager',
                         [],
                         'Shop.Forms.Labels'
                     )
@@ -424,7 +424,7 @@ class CustomerFormatter extends CustomerFormatterCore
                 ->setName('tr_name')
                 ->setLabel(
                     $this->translator->trans(
-                        'Nome e Cognome',
+                        'First and Last Name',
                         [],
                         'Shop.Forms.Labels'
                     )
@@ -446,7 +446,7 @@ class CustomerFormatter extends CustomerFormatterCore
                 ->setName('tr_phone')
                 ->setLabel(
                     $this->translator->trans(
-                        'Telefono',
+                        'Phone',
                         [],
                         'Shop.Forms.Labels'
                     )
@@ -457,7 +457,7 @@ class CustomerFormatter extends CustomerFormatterCore
                 ->setName('tr_cell')
                 ->setLabel(
                     $this->translator->trans(
-                        'Cellulare',
+                        'Mobile Phone',
                         [],
                         'Shop.Forms.Labels'
                     )
@@ -468,7 +468,7 @@ class CustomerFormatter extends CustomerFormatterCore
                 ->setName('tr_group')
                 ->setLabel(
                     $this->translator->trans(
-                        'Aderenti a catene',
+                        'Buyer group',
                         [],
                         'Shop.Forms.Labels'
                     )
@@ -477,7 +477,7 @@ class CustomerFormatter extends CustomerFormatterCore
             $format['title_2'] = (new FormField())
                 ->setName(
                     $this->translator->trans(
-                        'Informazioni Bancarie',
+                        'Bank Information',
                         [],
                         'Shop.Forms.Labels'
                     )
@@ -488,7 +488,7 @@ class CustomerFormatter extends CustomerFormatterCore
                 ->setName('bank_name')
                 ->setLabel(
                     $this->translator->trans(
-                        'Nome Banca',
+                        'Bank Name',
                         [],
                         'Shop.Forms.Labels'
                     )
@@ -499,7 +499,7 @@ class CustomerFormatter extends CustomerFormatterCore
                 ->setName('bank_address')
                 ->setLabel(
                     $this->translator->trans(
-                        'Indirizzo Agenzia Banca',
+                        'Bank Agency Address',
                         [],
                         'Shop.Forms.Labels'
                     )
@@ -531,7 +531,7 @@ class CustomerFormatter extends CustomerFormatterCore
             $format['title_3'] = (new FormField())
                 ->setName(
                     $this->translator->trans(
-                        'Marchi Principali',
+                        'Brands',
                         [],
                         'Shop.Forms.Labels'
                     )
@@ -542,7 +542,7 @@ class CustomerFormatter extends CustomerFormatterCore
                 ->setName('brands')
                 ->setLabel(
                     $this->translator->trans(
-                        'Marchi Principali',
+                        'Brands',
                         [],
                         'Shop.Forms.Labels'
                     )
@@ -556,7 +556,7 @@ class CustomerFormatter extends CustomerFormatterCore
             $format['title_4'] = (new FormField())
                 ->setName(
                     $this->translator->trans(
-                        'Canali di vendita',
+                        'Sales channels',
                         [],
                         'Shop.Forms.Labels'
                     )
@@ -568,7 +568,7 @@ class CustomerFormatter extends CustomerFormatterCore
                 ->setType('checkbox')
                 ->setLabel(
                     $this->translator->trans(
-                        'Grossista/B2B',
+                        'Wholesaler/B2B',
                         [],
                         'Shop.Forms.Labels'
                     )
@@ -579,7 +579,7 @@ class CustomerFormatter extends CustomerFormatterCore
                 ->setType('checkbox')
                 ->setLabel(
                     $this->translator->trans(
-                        'Negozio Fisico/B2C/off line store',
+                        'Physical store/B2C/off line store',
                         [],
                         'Shop.Forms.Labels'
                     )
@@ -620,7 +620,7 @@ class CustomerFormatter extends CustomerFormatterCore
                 ->setType('text')
                 ->setLabel(
                     $this->translator->trans(
-                        'Altro',
+                        'Other marketplaces',
                         [],
                         'Shop.Forms.Labels'
                     )
@@ -631,7 +631,7 @@ class CustomerFormatter extends CustomerFormatterCore
             $format['title_5'] = (new FormField())
                 ->setName(
                     $this->translator->trans(
-                        'Credenziali',
+                        'Credentials',
                         [],
                         'Shop.Forms.Labels'
                     )

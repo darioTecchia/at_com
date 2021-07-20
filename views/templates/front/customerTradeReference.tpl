@@ -30,7 +30,7 @@
 
         <div class="form-group row ">
             <label for="name" class="col-md-3 form-control-label">
-                Name
+                {l s='Name' mod='at_com_module'}
             </label>
             <div class="col-md-6">
                 <input required id="name" class="form-control" name="name" type="text"
@@ -42,7 +42,7 @@
 
         <div class="form-group row ">
             <label for="email" class="col-md-3 form-control-label">
-                Email
+                {l s='Email' mod='at_com_module'}
             </label>
             <div class="col-md-6">
                 <input required id="email" class="form-control" name="email" type="text"
@@ -54,7 +54,7 @@
 
         <div class="form-group row ">
             <label for="phone" class="col-md-3 form-control-label">
-                Phone
+                {l s='Phone' mod='at_com_module'}
             </label>
             <div class="col-md-6">
                 <input required id="phone" class="form-control" name="phone" type="text"
@@ -66,7 +66,7 @@
 
         <div class="form-group row ">
             <label for="phone_mobile" class="col-md-3 form-control-label">
-                Mobile Phone
+                {l s='Mobile phone' mod='at_com_module'}
             </label>
             <div class="col-md-6">
                 <input required id="phone_mobile" class="form-control" name="phone_mobile" type="text"
@@ -78,7 +78,7 @@
 
         <div class="form-group row ">
             <label for="buyer_group" class="col-md-3 form-control-label">
-                Buyer Group
+                {l s='Buyer group' mod='at_com_module'}
             </label>
             <div class="col-md-6">
                 <input required id="buyer_group" class="form-control" name="buyer_group" type="text"
@@ -93,7 +93,7 @@
         <input type="hidden" name="submitCreate" value="1">
         <button class="btn btn-primary form-control-submit float-xs-right" data-link-action="save-customer"
             type="submit">
-            Salva
+            {l s='Save' mod='at_com_module'}
         </button>
     </footer>
 </form>

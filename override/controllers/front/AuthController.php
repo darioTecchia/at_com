@@ -118,7 +118,7 @@ class AuthController extends AuthControllerCore
                     $legalAddress->lastname = $register_form->getCustomer()->lastname;
                     $legalAddress->id_customer = $register_form->getCustomer()->id;
 
-                    $legalAddress->alias = $this->trans('Sede Legale', [], 'Shop.Theme.Checkout');
+                    $legalAddress->alias = $this->trans('Legal Headquarters', [], 'Shop.Forms.Labels');
 
                     // operative address
                     $operativeAddress = new Address(
@@ -141,7 +141,7 @@ class AuthController extends AuthControllerCore
                     $operativeAddress->lastname = $register_form->getCustomer()->lastname;
                     $operativeAddress->id_customer = $register_form->getCustomer()->id;
 
-                    $operativeAddress->alias = $this->trans('Sede Operativa', [], 'Shop.Theme.Checkout');
+                    $operativeAddress->alias = $this->trans('Operating Headquarters', [], 'Shop.Forms.Labels');
 
                     $successfull = $customerApplication->save()
                     && $customerBank->save()
