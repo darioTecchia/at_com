@@ -38,6 +38,7 @@ use At_com\CustomerBankCore as CustomerBank;
 use At_com\CustomerTradeReferenceCore as CustomerTradeReference;
 use At_com\ModuleCronsManager as ModuleCronsManager;
 use PrestaShopBundle\Form\Admin\Type\DatePickerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class At_com_module extends Module
 {
@@ -452,10 +453,22 @@ class At_com_module extends Module
             'required' => false,
         ]);
 
+        $formBuilder->add('sdi', TextType::class, [
+            'label' => 'SDI',
+            'required' => false,
+        ]);
+
+        $formBuilder->add('vat', TextType::class, [
+            'label' => 'VAT',
+            'required' => false,
+        ]);
+
         $customerId = $params['id'];
         $customer = new Customer($customerId);
 
         $params['data']['exp_date'] = $customer->exp_date;
+        $params['data']['sdi'] = $customer->sdi;
+        $params['data']['vat'] = $customer->vat;
 
         $formBuilder->setData($params['data']);
     }
@@ -465,6 +478,8 @@ class At_com_module extends Module
         $customerId = $params['id'];
         $customer = new Customer($customerId);
         $customer->exp_date = $params['form_data']['exp_date'];
+        $customer->sdi = $params['form_data']['sdi'];
+        $customer->vat = $params['form_data']['vat'];
         $customer->update();
     }
 
@@ -473,6 +488,8 @@ class At_com_module extends Module
         $customerId = $params['id'];
         $customer = new Customer($customerId);
         $customer->exp_date = $params['form_data']['exp_date'];
+        $customer->sdi = $params['form_data']['sdi'];
+        $customer->vat = $params['form_data']['vat'];
         $customer->update();
     }
 
