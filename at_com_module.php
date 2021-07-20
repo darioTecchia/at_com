@@ -54,6 +54,27 @@ class At_com_module extends Module
         $this->author = 'dariotecchia';
         $this->need_instance = 1;
 
+        $this->hooks = array(
+            'header',
+            'backOfficeHeader',
+            'displayShoppingCartFooter',
+            'displayCustomerAdditionalInfoTop',
+            'displayCustomerAdditionalInfoBottom',
+            'displayAdminOrderSide',
+            'actionCustomerFormBuilderModifier',
+            'actionAfterCreateCustomerFormHandler',
+            'actionAfterUpdateCustomerFormHandler',
+            'actionObjectCustomerDeleteBefore',
+            'displayAdminCustomers',
+            'displayCustomerAccount',
+        );
+
+        $this->controllers = array(
+            "AdminCustomerApplicationController",
+            "AdminCustomerBankController",
+            "AdminCustomerTradeReferenceController",
+        );
+
         /**
          * Set $this->bootstrap to true if your module is compliant with bootstrap (PrestaShop 1.6)
          */
@@ -102,17 +123,7 @@ class At_com_module extends Module
 
         return parent::install() &&
         $this->installTab() &&
-        $this->registerHook('header') &&
-        $this->registerHook('backOfficeHeader') &&
-        $this->registerHook('displayShoppingCartFooter') &&
-        $this->registerHook('displayCustomerAdditionalInfoTop') &&
-        $this->registerHook('displayCustomerAdditionalInfoBottom') &&
-        $this->registerHook('displayAdminOrderSide') &&
-        $this->registerHook('actionCustomerFormBuilderModifier') &&
-        $this->registerHook('actionAfterCreateCustomerFormHandler') &&
-        $this->registerHook('actionAfterUpdateCustomerFormHandler') &&
-        $this->registerHook('displayAdminCustomers') &&
-        $this->registerHook('displayCustomerAccount');
+        $this->registerHooks();
     }
 
     public function uninstall()
@@ -120,26 +131,36 @@ class At_com_module extends Module
         include dirname(__FILE__) . '/sql/uninstall.php';
 
         return $this->unregisterHook('header') &&
-        $this->unregisterHook('backOfficeHeader') &&
-        $this->unregisterHook('displayShoppingCartFooter') &&
-        $this->unregisterHook('displayAdminCustomers') &&
-        $this->unregisterHook('displayCustomerAdditionalInfoTop') &&
-        $this->unregisterHook('displayCustomerAdditionalInfoBottom') &&
-        $this->unregisterHook('displayAdminOrderSide') &&
-        $this->unregisterHook('actionCustomerFormBuilderModifier') &&
-        $this->unregisterHook('actionAfterCreateCustomerFormHandler') &&
-        $this->unregisterHook('actionAfterUpdateCustomerFormHandler') &&
-        $this->unregisterHook('displayCustomerAccount') &&
+        $this->unregisterHooks() &&
         $this->uninstallTab() &&
         parent::uninstall();
     }
 
-    public function installTab()
+    private function registerHooks()
     {
-        $controllers = array("AdminCustomerApplicationController", "AdminCustomerBankController", "AdminCustomerTradeReferenceController");
         $successfull = true;
 
-        foreach ($controllers as $key => $controller) {
+        foreach ($this->hooks as $hook) {
+            $successfull &= $this->registerHook($hook);
+        }
+
+        return $successfull;
+    }
+
+    private function unregisterHooks()
+    {
+        $successfull = true;
+        foreach ($this->hooks as $hook) {
+            $successfull &= $this->unregisterHook($hook);
+        }
+        return $successfull;
+    }
+
+    public function installTab()
+    {
+        $successfull = true;
+
+        foreach ($this->controllers as $key => $controller) {
             $tab = new Tab();
             $tab->active = 1;
             $tab->class_name = $controller;
@@ -158,10 +179,9 @@ class At_com_module extends Module
 
     public function uninstallTab()
     {
-        $controllers = array("AdminCustomerApplicationController", "AdminCustomerBankController", "AdminCustomerTradeReferenceController");
         $successfull = true;
 
-        foreach ($controllers as $key => $controller) {
+        foreach ($this->controllers as $key => $controller) {
 
             $id_tab = (int) Tab::getIdFromClassName($controller);
 
@@ -189,7 +209,7 @@ class At_com_module extends Module
 
         $this->context->smarty->assign('cronJobsModule', $cronJobsModule);
         $this->context->smarty->assign('exsistCustomerCron', $this->crons_manager->exsistCron("cron_expired_customers.php"));
-        
+
         $actionUrl = $this->context->link->getAdminLink("AdminModules") . "&configure=at_com_module&tab_module=administration&module_name=at_com_module";
 
         $this->context->smarty->assign('actionUrl', $actionUrl);
@@ -454,6 +474,28 @@ class At_com_module extends Module
         $customer = new Customer($customerId);
         $customer->exp_date = $params['form_data']['exp_date'];
         $customer->update();
+    }
+
+    public function hookActionObjectCustomerDeleteBefore(array $params)
+    {
+        $successfull = true;
+        $customer = $params['object'];
+        $customerApplication = CustomerApplication::getByCustomerId($customer->id);
+        if ($customerApplication) {
+            $customerApplication = new CustomerApplication($customerApplication['id_customer_application']);
+            $successfull &= $customerApplication->delete();
+        }
+        $customerBank = CustomerBank::getByCustomerId($customer->id);
+        if ($customerBank) {
+            $customerBank = new CustomerBank($customerBank['id_customer_bank']);
+            $successfull &= $customerBank->delete();
+        }
+        $customerTradeReference = CustomerTradeReference::getByCustomerId($customer->id);
+        if ($customerTradeReference) {
+            $customerTradeReference = new CustomerTradeReference($customerTradeReference['id_customer_trade_reference']);
+            $successfull &= $customerTradeReference->delete();
+        }
+        return $successfull;
     }
 
     public function hookDisplayAdminOrderSide(array $params)
