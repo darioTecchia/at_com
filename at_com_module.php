@@ -86,7 +86,7 @@ class At_com_module extends Module
         $this->displayName = $this->l('@.com module');
         $this->description = $this->l('Prestashop Module developed for @.com.');
 
-        $this->confirmUninstall = $this->l('');
+        $this->confirmUninstall = $this->l('Sicuro di disinstallare il modulo @.com?');
 
         $this->ps_versions_compliancy = array('min' => '1.6', 'max' => _PS_VERSION_);
 
