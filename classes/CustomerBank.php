@@ -111,7 +111,7 @@ class CustomerBankCore extends \ObjectModel
     public static function getCustomerBanks()
     {
         return \Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS(
-            'SELECT `id_customer_bank`, `id_customer`, `name`, `address`, `iban`, `swift`
+            'SELECT *
             FROM `' . _DB_PREFIX_ . 'customer_bank`
             ORDER BY `id_customer` ASC'
         );
@@ -132,7 +132,7 @@ class CustomerBankCore extends \ObjectModel
         }
 
         $result = \Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow(
-            'SELECT `id_customer_bank`, `id_customer`, `name`, `address`, `iban`, `swift`
+            'SELECT *
             FROM `' . _DB_PREFIX_ . 'customer_bank`
             WHERE `id_customer` = \'' . pSQL($id_customer) . '\'
             ORDER BY `id_customer` ASC'

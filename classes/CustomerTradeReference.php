@@ -115,7 +115,7 @@ class CustomerTradeReferenceCore extends \ObjectModel
     public static function getCustomerTradeReferences()
     {
         return \Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS(
-            'SELECT `id_customer_trade_reference`, `id_customer`, `name`, `email`, `phone`, `phone_mobile`, `buyer_group`
+            'SELECT *
             FROM `' . _DB_PREFIX_ . 'customer_trade_reference`
             ORDER BY `id_customer` ASC'
         );
@@ -136,7 +136,7 @@ class CustomerTradeReferenceCore extends \ObjectModel
         }
 
         $result = \Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow(
-            'SELECT `id_customer_trade_reference`, `id_customer`, `name`, `email`, `phone`, `phone_mobile`, `buyer_group`
+            'SELECT *
             FROM `' . _DB_PREFIX_ . 'customer_trade_reference`
             WHERE `id_customer` = \'' . pSQL($id_customer) . '\'
             ORDER BY `id_customer` ASC'
