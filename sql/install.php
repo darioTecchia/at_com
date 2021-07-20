@@ -29,6 +29,7 @@ $sql[] =
     'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'customer_application` (
     `id_customer_application` int(10) NOT NULL auto_increment,
     `id_customer` int(10) unsigned NOT NULL DEFAULT 0,
+    `pec` varchar(255) NOT NULL,
     `brands` varchar(255) NOT NULL,
     `b2b` tinyint(1) unsigned NOT NULL DEFAULT 0,
     `b2c` tinyint(1) unsigned NOT NULL DEFAULT 0,

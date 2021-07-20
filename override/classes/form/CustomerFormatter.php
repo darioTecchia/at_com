@@ -153,7 +153,19 @@ class CustomerFormatter extends CustomerFormatterCore
             ->setType('email')
             ->setLabel(
                 $this->translator->trans(
-                    'PEC/Email',
+                    'Email',
+                    [],
+                    'Shop.Forms.Labels'
+                )
+            )
+            ->setRequired(true);
+
+        $format['pec'] = (new FormField())
+            ->setName('pec')
+            ->setType('email')
+            ->setLabel(
+                $this->translator->trans(
+                    'PEC',
                     [],
                     'Shop.Forms.Labels'
                 )

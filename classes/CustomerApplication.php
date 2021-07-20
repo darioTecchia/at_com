@@ -45,6 +45,7 @@ class CustomerApplicationCore extends \ObjectModel
         'primary' => 'id_customer_application',
         'fields' => [
             'id_customer' => ['type' => self::TYPE_INT, 'validate' => 'isNullOrUnsignedId', 'copy_post' => false],
+            'pec' => ['type' => self::TYPE_STRING, 'validate' => 'isEmail', 'required' => true, 'size' => 255],
             'brands' => ['type' => self::TYPE_STRING, 'required' => true, 'size' => 255],
             'b2b' => ['type' => self::TYPE_BOOL, 'validate' => 'isBool', 'copy_post' => false],
             'b2c' => ['type' => self::TYPE_BOOL, 'validate' => 'isBool', 'copy_post' => false],

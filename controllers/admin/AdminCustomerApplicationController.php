@@ -17,6 +17,7 @@ class AdminCustomerApplicationController extends ModuleAdminController
         $this->fields_list = [
             'id_customer_application' => ['title' => $this->l('ID'), 'type' => 'number'],
             'id_customer' => ['title' => $this->l('Customer'), 'type' => 'number'],
+            'pec' => ['title' => $this->l('PEC'), 'type' => 'text'],
             'brands' => ['title' => $this->l('Brands'), 'type' => 'text'],
             'b2b' => ['title' => $this->l('B2B'), 'type' => 'bool'],
             'b2c' => ['title' => $this->l('B2C'), 'type' => 'bool'],
@@ -36,6 +37,12 @@ class AdminCustomerApplicationController extends ModuleAdminController
                     'type' => 'hidden',
                     'label' => $this->l('ID Customer'),
                     'name' => 'id_customer',
+                    'required' => true,
+                ],
+                'pec' => [
+                    'type' => 'text',
+                    'label' => $this->l('PEC'),
+                    'name' => 'pec',
                     'required' => true,
                 ],
                 'brands' => [

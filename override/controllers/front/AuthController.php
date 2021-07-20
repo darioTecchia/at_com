@@ -59,6 +59,7 @@ class AuthController extends AuthControllerCore
                     $customerApplication = new CustomerApplication();
                     $customerApplication->id_customer = $register_form->getCustomer()->id;
                     $customerApplication->brands = Tools::getValue('brands');
+                    $customerApplication->pec = Tools::getValue('pec');
                     $customerApplication->b2b = Tools::getValue('tc_b2b');
                     $customerApplication->b2c = Tools::getValue('tc_b2c');
                     $customerApplication->website = Tools::getValue('website');
