@@ -43,3 +43,9 @@
   pointer-events: none !important;
   opacity: .5;
 }
+
+#header .logo {
+  max-width: 100%;
+  object-fit: contain;
+  height: 42px;
+}
