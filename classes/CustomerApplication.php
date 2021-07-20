@@ -13,6 +13,9 @@ class CustomerApplicationCore extends \ObjectModel
     /** @var int Customer ID which application belongs to */
     public $id_customer = null;
 
+    /** @var string PEC */
+    public $pec;
+
     /** @var string Address first line */
     public $brands;
 
