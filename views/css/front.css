@@ -39,7 +39,8 @@
 }
 
 .page-cart #_mobile_currency_selector,
-.page-cart #_desktop_currency_selector {
+.page-cart #_desktop_currency_selector,
+#checkout .currency-selector {
   pointer-events: none !important;
   opacity: .5;
 }
