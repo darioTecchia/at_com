@@ -34,12 +34,16 @@ class CustomerFormatter extends CustomerFormatterCore
         "address1" => 0,
         "address2" => 0,
         "id_country_postcode" => 0,
+        "id_state" => 0,
+        "id_country" => 0,
         "city" => 0,
         "dni" => 0,
         "phone" => 0,
         "op_address1" => 0,
         "op_address2" => 0,
         "op_id_country_postcode" => 0,
+        "op_id_state" => 0,
+        "op_id_country" => 0,
         "op_city" => 0,
         "op_phone" => 0,
         "tr_name" => 0,
@@ -57,12 +61,7 @@ class CustomerFormatter extends CustomerFormatterCore
         "tc_amazon" => 0,
         "tc_ebay" => 0,
         "tc_other" => 0,
-        "notes" => 0,
-        "password" => 1,
-        "optin" => 0,
-        "customer_privacy" => 1,
-        "newsletter" => 0,
-        "psgdpr" => 1
+        "notes" => 0
     );
 
     public function __construct(
@@ -131,7 +130,7 @@ class CustomerFormatter extends CustomerFormatterCore
                     'Shop.Forms.Labels'
                 )
             )
-            ->setRequired(true)
+            ->setRequired($this->required_map['firstname'])
             ->addAvailableValue(
                 'comment',
                 $this->translator->trans('Only letters and the dot (.) character, followed by a space, are allowed.', [], 'Shop.Forms.Help')
@@ -146,7 +145,7 @@ class CustomerFormatter extends CustomerFormatterCore
                     'Shop.Forms.Labels'
                 )
             )
-            ->setRequired(true)
+            ->setRequired($this->required_map['lastname'])
             ->addAvailableValue(
                 'comment',
                 $this->translator->trans('Only letters and the dot (.) character, followed by a space, are allowed.', [], 'Shop.Forms.Help')
@@ -155,7 +154,7 @@ class CustomerFormatter extends CustomerFormatterCore
         $format['company'] = (new FormField())
             ->setName('company')
             ->setType('text')
-            ->setRequired(true)
+            ->setRequired($this->required_map['company'])
             ->setLabel($this->translator->trans(
                 'Company',
                 [],
@@ -174,6 +173,7 @@ class CustomerFormatter extends CustomerFormatterCore
         $format['siret'] = (new FormField())
             ->setName('siret')
             ->setType('text')
+            ->setRequired($this->required_map['siret'])
             ->setLabel($this->translator->trans(
                 'Identification number',
                 [],
@@ -183,6 +183,7 @@ class CustomerFormatter extends CustomerFormatterCore
         $format['sdi'] = (new FormField())
             ->setName('sdi')
             ->setType('text')
+            ->setRequired($this->required_map['sdi'])
             ->setLabel($this->translator->trans(
                 'SDI',
                 [],
@@ -203,7 +204,7 @@ class CustomerFormatter extends CustomerFormatterCore
                     'Shop.Forms.Labels'
                 )
             )
-            ->setRequired(true);
+            ->setRequired($this->required_map['email']);
 
         $format['pec'] = (new FormField())
             ->setName('pec')
@@ -215,11 +216,12 @@ class CustomerFormatter extends CustomerFormatterCore
                     'Shop.Forms.Labels'
                 )
             )
-            ->setRequired(true);
+            ->setRequired($this->required_map['pec']);
 
         $format['website'] = (new FormField())
             ->setName('website')
             ->setType('text')
+            ->setRequired($this->required_map['website'])
             ->setLabel(
                 $this->translator->trans(
                     'Website',
@@ -249,6 +251,7 @@ class CustomerFormatter extends CustomerFormatterCore
                     )
                 )
                 ->setType('title');
+
             $format['attachment'] = (new FormField())
                 ->setName('attachment')
                 ->setType('file')
@@ -260,7 +263,7 @@ class CustomerFormatter extends CustomerFormatterCore
                         'Shop.Forms.Labels'
                     )
                 )
-                ->setRequired(true);
+                ->setRequired($this->required_map['attachment']);
 
             $format['title_legal'] = (new FormField())
                 ->setName(
@@ -282,7 +285,7 @@ class CustomerFormatter extends CustomerFormatterCore
                         'Shop.Forms.Labels'
                     )
                 )
-                ->setRequired(true);
+                ->setRequired($this->required_map['address1']);
 
             $format['address2'] = (new FormField())
                 ->setName('address2')
@@ -293,7 +296,8 @@ class CustomerFormatter extends CustomerFormatterCore
                         [],
                         'Shop.Forms.Labels'
                     )
-                );
+                )
+                ->setRequired($this->required_map['address2']);
 
             $format['postcode'] = (new FormField())
                 ->setLabel(
@@ -304,7 +308,8 @@ class CustomerFormatter extends CustomerFormatterCore
                     )
                 )
                 ->setName('id_country_postcode')
-                ->setType('text');
+                ->setType('text')
+                ->setRequired($this->required_map['id_country_postcode']);
 
             $format['city'] = (new FormField())
                 ->setName('city')
@@ -316,7 +321,7 @@ class CustomerFormatter extends CustomerFormatterCore
                         'Shop.Forms.Labels'
                     )
                 )
-                ->setRequired(true);
+                ->setRequired($this->required_map['city']);
 
             $format['legal_state'] = (new FormField())
                 ->setLabel(
@@ -328,7 +333,8 @@ class CustomerFormatter extends CustomerFormatterCore
                 )
                 ->setName('id_state')
                 ->setAvailableValues(array())
-                ->setType('state');
+                ->setType('state')
+                ->setRequired($this->required_map['id_state']);
 
             $format['legal_country'] = (new FormField())
                 ->setLabel(
@@ -340,7 +346,8 @@ class CustomerFormatter extends CustomerFormatterCore
                 )
                 ->setName('id_country')
                 ->setAvailableValues($countries)
-                ->setType('country');
+                ->setType('country')
+                ->setRequired($this->required_map['id_country']);
 
             $format['dni'] = (new FormField())
                 ->setLabel(
@@ -351,7 +358,8 @@ class CustomerFormatter extends CustomerFormatterCore
                     )
                 )
                 ->setName('dni')
-                ->setType('text');
+                ->setType('text')
+                ->setRequired($this->required_map['dni']);
 
             $format['phone'] = (new FormField())
                 ->setLabel(
@@ -362,7 +370,8 @@ class CustomerFormatter extends CustomerFormatterCore
                     )
                 )
                 ->setName('phone')
-                ->setType('text');
+                ->setType('text')
+                ->setRequired($this->required_map['phone']);
 
             $format['title_operative'] = (new FormField())
                 ->setName(
@@ -384,7 +393,7 @@ class CustomerFormatter extends CustomerFormatterCore
                         'Shop.Forms.Labels'
                     )
                 )
-                ->setRequired(true);
+                ->setRequired($this->required_map['op_address1']);
 
             $format['op_address2'] = (new FormField())
                 ->setName('op_address2')
@@ -395,7 +404,8 @@ class CustomerFormatter extends CustomerFormatterCore
                         [],
                         'Shop.Forms.Labels'
                     )
-                );
+                )
+                ->setRequired($this->required_map['op_address2']);
 
             $format['op_postcode'] = (new FormField())
                 ->setLabel(
@@ -406,7 +416,8 @@ class CustomerFormatter extends CustomerFormatterCore
                     )
                 )
                 ->setName('op_id_country_postcode')
-                ->setType('text');
+                ->setType('text')
+                ->setRequired($this->required_map['op_id_country_postcode']);
 
             $format['op_city'] = (new FormField())
                 ->setName('op_city')
@@ -418,7 +429,8 @@ class CustomerFormatter extends CustomerFormatterCore
                         'Shop.Forms.Labels'
                     )
                 )
-                ->setRequired(true);
+                ->setRequired(true)
+                ->setRequired($this->required_map['op_city']);
 
             $format['op_state'] = (new FormField())
                 ->setLabel(
@@ -430,7 +442,8 @@ class CustomerFormatter extends CustomerFormatterCore
                 )
                 ->setName('op_id_state')
                 ->setAvailableValues(array())
-                ->setType('state');
+                ->setType('state')
+                ->setRequired($this->required_map['op_id_state']);
 
             $format['op_country'] = (new FormField())
                 ->setLabel(
@@ -442,7 +455,8 @@ class CustomerFormatter extends CustomerFormatterCore
                 )
                 ->setName('op_id_country')
                 ->setAvailableValues($countries)
-                ->setType('country');
+                ->setType('country')
+                ->setRequired($this->required_map['op_id_country']);
 
             $format['op_phone'] = (new FormField())
                 ->setLabel(
@@ -453,7 +467,8 @@ class CustomerFormatter extends CustomerFormatterCore
                     )
                 )
                 ->setName('op_phone')
-                ->setType('text');
+                ->setType('text')
+                ->setRequired($this->required_map['op_phone']);
 
             $format['title_1'] = (new FormField())
                 ->setName(
@@ -474,7 +489,7 @@ class CustomerFormatter extends CustomerFormatterCore
                         'Shop.Forms.Labels'
                     )
                 )
-                ->setRequired(true);
+                ->setRequired($this->required_map['tr_name']);
 
             $format['tr_email'] = (new FormField())
                 ->setName('tr_email')
@@ -485,7 +500,7 @@ class CustomerFormatter extends CustomerFormatterCore
                         'Shop.Forms.Labels'
                     )
                 )
-                ->setRequired(true);
+                ->setRequired($this->required_map['tr_email']);
 
             $format['tr_phone'] = (new FormField())
                 ->setName('tr_phone')
@@ -496,7 +511,7 @@ class CustomerFormatter extends CustomerFormatterCore
                         'Shop.Forms.Labels'
                     )
                 )
-                ->setRequired(true);
+                ->setRequired($this->required_map['tr_phone']);
 
             $format['tr_cell'] = (new FormField())
                 ->setName('tr_cell')
@@ -507,7 +522,7 @@ class CustomerFormatter extends CustomerFormatterCore
                         'Shop.Forms.Labels'
                     )
                 )
-                ->setRequired(true);
+                ->setRequired($this->required_map['tr_cell']);
 
             $format['tr_group'] = (new FormField())
                 ->setName('tr_group')
@@ -517,7 +532,8 @@ class CustomerFormatter extends CustomerFormatterCore
                         [],
                         'Shop.Forms.Labels'
                     )
-                );
+                )
+                ->setRequired($this->required_map['tr_group']);
 
             $format['title_2'] = (new FormField())
                 ->setName(
@@ -538,7 +554,7 @@ class CustomerFormatter extends CustomerFormatterCore
                         'Shop.Forms.Labels'
                     )
                 )
-                ->setRequired(true);
+                ->setRequired($this->required_map['bank_name']);
 
             $format['bank_address'] = (new FormField())
                 ->setName('bank_address')
@@ -549,7 +565,7 @@ class CustomerFormatter extends CustomerFormatterCore
                         'Shop.Forms.Labels'
                     )
                 )
-                ->setRequired(true);
+                ->setRequired($this->required_map['bank_address']);
 
             $format['iban'] = (new FormField())
                 ->setName('iban')
@@ -560,7 +576,7 @@ class CustomerFormatter extends CustomerFormatterCore
                         'Shop.Forms.Labels'
                     )
                 )
-                ->setRequired(true);
+                ->setRequired($this->required_map['iban']);
 
             $format['swift'] = (new FormField())
                 ->setName('swift')
@@ -571,7 +587,7 @@ class CustomerFormatter extends CustomerFormatterCore
                         'Shop.Forms.Labels'
                     )
                 )
-                ->setRequired(true);
+                ->setRequired($this->required_map['swift']);
 
             $format['title_3'] = (new FormField())
                 ->setName(
@@ -596,7 +612,7 @@ class CustomerFormatter extends CustomerFormatterCore
                     'comment',
                     $this->translator->trans('Inserire i brand separati da virgola.', [], 'Shop.Forms.Help')
                 )
-                ->setRequired(true);
+                ->setRequired($this->required_map['brands']);
 
             $format['title_4'] = (new FormField())
                 ->setName(
@@ -617,7 +633,8 @@ class CustomerFormatter extends CustomerFormatterCore
                         [],
                         'Shop.Forms.Labels'
                     )
-                );
+                )
+                ->setRequired($this->required_map['tc_b2b']);
 
             $format['tc_b2c'] = (new FormField())
                 ->setName('tc_b2c')
@@ -628,7 +645,8 @@ class CustomerFormatter extends CustomerFormatterCore
                         [],
                         'Shop.Forms.Labels'
                     )
-                );
+                )
+                ->setRequired($this->required_map['tc_b2c']);
 
             $format['tc_amazon'] = (new FormField())
                 ->setName('tc_amazon')
@@ -643,7 +661,8 @@ class CustomerFormatter extends CustomerFormatterCore
                 ->addAvailableValue(
                     'comment',
                     $this->translator->trans('Inserire il nome o il link del negozio amazon.', [], 'Shop.Forms.Help')
-                );
+                )
+                ->setRequired($this->required_map['tc_amazon']);
 
             $format['tc_ebay'] = (new FormField())
                 ->setName('tc_ebay')
@@ -658,7 +677,8 @@ class CustomerFormatter extends CustomerFormatterCore
                 ->addAvailableValue(
                     'comment',
                     $this->translator->trans('Inserire il nome o il link del negozio ebay.', [], 'Shop.Forms.Help')
-                );
+                )
+                ->setRequired($this->required_map['tc_ebay']);
 
             $format['tc_other'] = (new FormField())
                 ->setName('tc_other')
@@ -669,7 +689,8 @@ class CustomerFormatter extends CustomerFormatterCore
                         [],
                         'Shop.Forms.Labels'
                     )
-                );
+                )
+                ->setRequired($this->required_map['tc_other']);
         }
 
         $format['title_5'] = (new FormField())
@@ -692,7 +713,8 @@ class CustomerFormatter extends CustomerFormatterCore
                     [],
                     'Shop.Forms.Labels'
                 )
-            );
+            )
+            ->setRequired($this->required_map['notes']);
 
         if ($this->ask_for_password) {
             $format['title_6'] = (new FormField())
