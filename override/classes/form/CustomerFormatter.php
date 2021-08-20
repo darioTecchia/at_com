@@ -20,6 +20,51 @@ class CustomerFormatter extends CustomerFormatterCore
 
     private $ask_for_new_password = false;
 
+    private $required_map = array(
+        "firstname" => 1,
+        "lastname" => 1,
+        "company" => 1,
+        "vat" => 0,
+        "siret" => 0,
+        "sdi" => 0,
+        "email" => 1,
+        "pec" => 0,
+        "website" => 0,
+        "attachment" => 0,
+        "address1" => 0,
+        "address2" => 0,
+        "id_country_postcode" => 0,
+        "city" => 0,
+        "dni" => 0,
+        "phone" => 0,
+        "op_address1" => 0,
+        "op_address2" => 0,
+        "op_id_country_postcode" => 0,
+        "op_city" => 0,
+        "op_phone" => 0,
+        "tr_name" => 0,
+        "tr_email" => 0,
+        "tr_phone" => 0,
+        "tr_cell" => 0,
+        "tr_group" => 0,
+        "bank_name" => 0,
+        "bank_address" => 0,
+        "iban" => 0,
+        "swift" => 0,
+        "brands" => 0,
+        "tc_b2b" => 0,
+        "tc_b2c" => 0,
+        "tc_amazon" => 0,
+        "tc_ebay" => 0,
+        "tc_other" => 0,
+        "notes" => 0,
+        "password" => 1,
+        "optin" => 0,
+        "customer_privacy" => 1,
+        "newsletter" => 0,
+        "psgdpr" => 1
+    );
+
     public function __construct(
         TranslatorInterface $translator,
         Language $language
@@ -627,8 +672,30 @@ class CustomerFormatter extends CustomerFormatterCore
                 );
         }
 
+        $format['title_5'] = (new FormField())
+            ->setName(
+                $this->translator->trans(
+                    'Additional notes',
+                    [],
+                    'Shop.Forms.Labels'
+                )
+            )
+            ->setType('title');
+
+        $format['notes'] = (new FormField())
+            ->setName('notes')
+            ->setType('text')
+            ->setMaxLength(256)
+            ->setLabel(
+                $this->translator->trans(
+                    'Additional notes',
+                    [],
+                    'Shop.Forms.Labels'
+                )
+            );
+
         if ($this->ask_for_password) {
-            $format['title_5'] = (new FormField())
+            $format['title_6'] = (new FormField())
                 ->setName(
                     $this->translator->trans(
                         'Credentials',

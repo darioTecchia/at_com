@@ -32,6 +32,7 @@
 $sql = array();
 
 $sql[] = 'ALTER TABLE `' . _DB_PREFIX_ . 'customer` DROP `sdi`;';
+$sql[] = 'ALTER TABLE `' . _DB_PREFIX_ . 'customer` DROP `notes`;';
 $sql[] = 'ALTER TABLE `' . _DB_PREFIX_ . 'customer` DROP `vat`;';
 $sql[] = 'ALTER TABLE `' . _DB_PREFIX_ . 'customer` DROP `exp_date`;';
 

@@ -458,6 +458,11 @@ class At_com_module extends Module
             'required' => false,
         ]);
 
+        $formBuilder->add('notes', TextType::class, [
+            'label' => 'Additional notes',
+            'required' => false,
+        ]);
+
         $formBuilder->add('vat', TextType::class, [
             'label' => 'VAT',
             'required' => false,
@@ -468,6 +473,7 @@ class At_com_module extends Module
 
         $params['data']['exp_date'] = $customer->exp_date;
         $params['data']['sdi'] = $customer->sdi;
+        $params['data']['notes'] = $customer->notes;
         $params['data']['vat'] = $customer->vat;
 
         $formBuilder->setData($params['data']);
@@ -479,6 +485,7 @@ class At_com_module extends Module
         $customer = new Customer($customerId);
         $customer->exp_date = $params['form_data']['exp_date'];
         $customer->sdi = $params['form_data']['sdi'];
+        $customer->notes = $params['form_data']['notes'];
         $customer->vat = $params['form_data']['vat'];
         $customer->update();
     }
@@ -489,6 +496,7 @@ class At_com_module extends Module
         $customer = new Customer($customerId);
         $customer->exp_date = $params['form_data']['exp_date'];
         $customer->sdi = $params['form_data']['sdi'];
+        $customer->notes = $params['form_data']['notes'];
         $customer->vat = $params['form_data']['vat'];
         $customer->update();
     }
