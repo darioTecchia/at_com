@@ -78,3 +78,7 @@ input[type="checkbox"]:required {
 label.col-md-3.form-control-label.required:after {
   content: '*';
 }
+
+.popup-over .popup-content li:first-child {
+  display: none;
+}
