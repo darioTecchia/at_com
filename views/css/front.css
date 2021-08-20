@@ -64,6 +64,17 @@ input:required {
   border-color: black !important;
 }
 
+input[type="checkbox"]:required {
+  opacity: 1;
+  margin: 0px;
+  outline: 1px solid black;
+  outline-style: auto;
+}
+
 #authentication .custom-checkbox label {
   padding: 0 !important;
+}
+
+label.col-md-3.form-control-label.required:after {
+  content: '*';
 }
