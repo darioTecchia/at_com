@@ -55,3 +55,15 @@
 .page-authentication #content {
   max-width: 910px;
 }
+
+label.form-control-label.required {
+  font-weight: bold !important;
+}
+
+input:required {
+  border-color: black !important;
+}
+
+#authentication .custom-checkbox label {
+  padding: 0 !important;
+}
