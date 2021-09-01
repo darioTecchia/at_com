@@ -30,7 +30,7 @@ class CustomerFormatter extends CustomerFormatterCore
         "email" => 1,
         "pec" => 0,
         "website" => 0,
-        "attachment" => 0, 
+        "attachment" => 0,
         "address1" => 0,
         "address2" => 0,
         "id_country_postcode" => 0,
@@ -61,7 +61,7 @@ class CustomerFormatter extends CustomerFormatterCore
         "tc_amazon" => 1,
         "tc_ebay" => 1,
         "tc_other" => 1,
-        "notes" => 0
+        "notes" => 0,
     );
 
     public function __construct(
@@ -206,17 +206,19 @@ class CustomerFormatter extends CustomerFormatterCore
             )
             ->setRequired($this->required_map['email']);
 
-        $format['pec'] = (new FormField())
-            ->setName('pec')
-            ->setType('email')
-            ->setLabel(
-                $this->translator->trans(
-                    'PEC',
-                    [],
-                    'Shop.Forms.Labels'
+        if (Context::getContext()->controller->php_self == "authentication") {
+            $format['pec'] = (new FormField())
+                ->setName('pec')
+                ->setType('email')
+                ->setLabel(
+                    $this->translator->trans(
+                        'PEC',
+                        [],
+                        'Shop.Forms.Labels'
+                    )
                 )
-            )
-            ->setRequired($this->required_map['pec']);
+                ->setRequired($this->required_map['pec']);
+        }
 
         $format['website'] = (new FormField())
             ->setName('website')
