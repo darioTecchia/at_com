@@ -82,3 +82,7 @@ label.col-md-3.form-control-label.required:after {
 .popup-over .popup-content li:first-child {
   display: none;
 }
+
+.custom-checkbox label {
+  position: relative;
+}
