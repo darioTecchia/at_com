@@ -414,7 +414,6 @@ class At_com_module extends Module
     {
         $context = Context::getContext();
         $cart = $context->cart;
-        // dump($cart->getProducts());
         $this->context->smarty->assign([
             'cart_volume' => $cart->getCartVolume(),
             'cart_pallets' => $cart->getCartPallets(),

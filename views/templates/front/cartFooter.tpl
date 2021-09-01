@@ -27,9 +27,9 @@
     </div>
     <hr class="separator">
     <div class="card-block">
-        • {l s='Total volume of the shipping' mod='at_com_module'} in cm<sup>3</sup>: <b><span id="cart_volume">{$cart_volume}</span> cm<sup>3</sup></b>
+        • {l s='Total volume of the shipping' mod='at_com_module'} in cm<sup>3</sup>: <b><span id="cart_volume">{$cart_volume|number_format:2:",":""}</span> cm<sup>3</sup></b>
         <br>
-        • {l s='Total volume of the shipping' mod='at_com_module'} in m<sup>3</sup>: <b><span id="cart_volume_100">{$cart_volume / 100}</span> m<sup>3</sup></b>
+        • {l s='Total volume of the shipping' mod='at_com_module'} in m<sup>3</sup>: <b><span id="cart_volume_100">{($cart_volume / 100)|number_format:2:",":""}</span> m<sup>3</sup></b>
         <br>
         • {l s='Single pallet capiency' mod='at_com_module'} in m<sup>3</sup>: <b><span id="pallet_capiency">{$pallet_capiency}</span> m<sup>3</sup></b>
         <br>

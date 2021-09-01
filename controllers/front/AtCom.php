@@ -19,8 +19,8 @@ class At_com_moduleAtComModuleFrontController extends ModuleFrontController
         $cart = $context->cart;
 
         $this->ajaxDie(Tools::jsonEncode(array(
-            'cart_volume' => $cart->getCartVolume(),
-            'cart_volume_100' => $cart->getCartVolume() / 100,
+            'cart_volume' => number_format($cart->getCartVolume(), 2, ',', ''),
+            'cart_volume_100' => number_format($cart->getCartVolume() / 100, 2, ',', ''),
             'cart_pallets' => $cart->getCartPallets(),
         )));
     }
