@@ -285,7 +285,7 @@ class At_com_module extends Module
     protected function getConfigFormValues()
     {
         return array(
-            'AT_COM_MODULE_PALLET_CAP' => Configuration::get('AT_COM_MODULE_PALLET_CAP', 20),
+            'AT_COM_MODULE_PALLET_CAP' => (double) Configuration::get('AT_COM_MODULE_PALLET_CAP', 19200),
         );
     }
 
@@ -414,10 +414,11 @@ class At_com_module extends Module
     {
         $context = Context::getContext();
         $cart = $context->cart;
+        // dump($cart->getProducts());
         $this->context->smarty->assign([
             'cart_volume' => $cart->getCartVolume(),
             'cart_pallets' => $cart->getCartPallets(),
-            'pallet_capiency' => (int) Configuration::get('AT_COM_MODULE_PALLET_CAP', 20),
+            'pallet_capiency' => (double) Configuration::get('AT_COM_MODULE_PALLET_CAP', 19200),
         ]);
         return $this->display(dirname(__FILE__), '/views/templates/front/cartFooter.tpl');
     }
@@ -532,7 +533,7 @@ class At_com_module extends Module
         $this->context->smarty->assign([
             'cart_volume' => $cart->getCartVolume(),
             'cart_pallets' => $cart->getCartPallets(),
-            'pallet_capiency' => (int) Configuration::get('AT_COM_MODULE_PALLET_CAP', 20),
+            'pallet_capiency' => (double) Configuration::get('AT_COM_MODULE_PALLET_CAP', 19200),
         ]);
         return $this->display(dirname(__FILE__), '/views/templates/admin/palletInfos.tpl');
     }

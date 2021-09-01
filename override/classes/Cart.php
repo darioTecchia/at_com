@@ -17,7 +17,7 @@ class Cart extends CartCore
 
     private function volumeReducer($carry, $item)
     {
-        $carry += ( (double) $item["width"] * (double) $item["height"] * (double) $item["depth"]) * (int) $item["cart_quantity"];
+        $carry += ((double) $item["width"] * (double) $item["height"] * (double) $item["depth"]) * (int) $item["cart_quantity"];
         return $carry;
     }
 
@@ -29,9 +29,9 @@ class Cart extends CartCore
     public function getCartPallets($palletCapacity = null)
     {
         if(is_null($palletCapacity)) {
-            $palletCapacity = (int) Configuration::get('AT_COM_MODULE_PALLET_CAP', 20);
+            $palletCapacity = (double) Configuration::get('AT_COM_MODULE_PALLET_CAP', 19200);
         }
-        return (int) ceil(($this->getCartVolume() / 100) / $palletCapacity);
+        return (double) ceil(($this->getCartVolume() / 100) / $palletCapacity);
     }
 
 }
